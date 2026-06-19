@@ -1,0 +1,37 @@
+<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Process BI logo">
+  <defs>
+    <linearGradient id="pbBar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#1A4AC2"></stop>
+      <stop offset="1" stop-color="#2E6BF6"></stop>
+    </linearGradient>
+    <linearGradient id="pbBarTop" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#2E6BF6"></stop>
+      <stop offset="1" stop-color="#46D5FF"></stop>
+    </linearGradient>
+    <linearGradient id="pbLine" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E6BF6"></stop>
+      <stop offset="1" stop-color="#46D5FF"></stop>
+    </linearGradient>
+    <filter id="pbGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.4" result="b"></feGaussianBlur>
+      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    
+  </defs>
+
+  
+  <rect class="pb-bar pb-b0" x="12" y="78" width="17" height="26" rx="6" fill="url(#pbBar)"></rect>
+  <rect class="pb-bar pb-b1" x="37" y="60" width="17" height="44" rx="6" fill="url(#pbBar)"></rect>
+  <rect class="pb-bar pb-b2" x="62" y="38" width="17" height="66" rx="6" fill="url(#pbBar)"></rect>
+  <rect class="pb-bar pb-b3" x="87" y="16" width="17" height="88" rx="6" fill="url(#pbBarTop)"></rect>
+
+  
+  <path class="pb-line" d="M20.5 78 L45.5 60 L70.5 38 L95.5 16 L122 5" fill="none" stroke="url(#pbLine)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#pbGlow)"></path>
+  <path class="pb-arrow" d="M122 5 L109 6.5 M122 5 L120.5 18" fill="none" stroke="#46D5FF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#pbGlow)"></path>
+
+  
+  <g class="pb-node pb-n0"><circle class="pb-halo" cx="20.5" cy="78" r="11" fill="#46D5FF"></circle><circle cx="20.5" cy="78" r="6.2" fill="#06182F" stroke="#46D5FF" stroke-width="3"></circle><circle cx="20.5" cy="78" r="2.6" fill="#86E6FF"></circle></g>
+  <g class="pb-node pb-n1"><circle class="pb-halo" cx="45.5" cy="60" r="11" fill="#46D5FF"></circle><circle cx="45.5" cy="60" r="6.2" fill="#06182F" stroke="#46D5FF" stroke-width="3"></circle><circle cx="45.5" cy="60" r="2.6" fill="#86E6FF"></circle></g>
+  <g class="pb-node pb-n2"><circle class="pb-halo" cx="70.5" cy="38" r="11" fill="#46D5FF"></circle><circle cx="70.5" cy="38" r="6.2" fill="#06182F" stroke="#46D5FF" stroke-width="3"></circle><circle cx="70.5" cy="38" r="2.6" fill="#86E6FF"></circle></g>
+  <g class="pb-node pb-n3"><circle class="pb-halo" cx="95.5" cy="16" r="11" fill="#46D5FF"></circle><circle cx="95.5" cy="16" r="6.2" fill="#06182F" stroke="#46D5FF" stroke-width="3"></circle><circle cx="95.5" cy="16" r="2.6" fill="#86E6FF"></circle></g>
+</svg>
