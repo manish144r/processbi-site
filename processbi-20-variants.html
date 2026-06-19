@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProcessBI — 20 Logo Theme Variants</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:#eef2f7;
+  min-height:100vh;
+  padding:52px 28px 60px;
+}
+.page{max-width:1080px;margin:0 auto}
+
+/* ── Header ── */
+header{text-align:center;margin-bottom:52px}
+header h1{
+  font-size:1.9rem;font-weight:800;color:#0f172a;
+  letter-spacing:-0.03em;margin-bottom:6px;
+}
+header p{color:#64748b;font-size:0.95rem;letter-spacing:0.01em}
+.pip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:999px;
+  background:#fff;border:1px solid #e2e8f0;
+  color:#475569;font-size:0.72rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.pip-dot{width:6px;height:6px;border-radius:50%;background:#0ea5e9}
+
+/* ── Grid ── */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+@media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.gallery{grid-template-columns:1fr}}
+
+/* ── Card ── */
+.card{
+  border-radius:18px;
+  padding:30px 18px 22px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.07),
+    0 4px 14px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  transition:transform 0.22s ease,box-shadow 0.22s ease;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,0.06);
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.07),
+    0 12px 32px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.logo-wrap{display:flex;align-items:center;justify-content:center}
+.logo-wrap svg{width:120px;height:120px;display:block;overflow:visible}
+.label{
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-align:center;line-height:1.4;
+}
+
+/* ── Footer ── */
+footer{
+  text-align:center;margin-top:52px;
+  color:#94a3b8;font-size:0.78rem;letter-spacing:0.04em;
+}
+
+/* ────────────────────────────────────────────
+   Shared SVG animation classes
+   (applied to inline SVG elements in all cards)
+───────────────────────────────────────────── */
+.ring  {animation:pbi-spin 24s linear infinite;transform-origin:40px 40px}
+.ring2 {animation:pbi-spin 16s linear infinite reverse;transform-origin:40px 40px}
+.conn  {stroke-dasharray:4 3}
+.c0{animation:pbi-flow 2s linear infinite 0s}
+.c1{animation:pbi-flow 2s linear infinite -0.33s}
+.c2{animation:pbi-flow 2s linear infinite -0.66s}
+.c3{animation:pbi-flow 2s linear infinite -1s}
+.c4{animation:pbi-flow 2s linear infinite -1.33s}
+.c5{animation:pbi-flow 2s linear infinite -1.66s}
+.nd{transform-box:fill-box;transform-origin:center;animation:pbi-npl 2.8s ease-in-out infinite}
+.n0{animation-delay:0s}
+.n1{animation-delay:-0.47s}
+.n2{animation-delay:-0.93s}
+.n3{animation-delay:-1.4s}
+.n4{animation-delay:-1.87s}
+.n5{animation-delay:-2.33s}
+.bar{transform-box:fill-box;transform-origin:50% 100%}
+.b1{animation:pbi-ba 2.2s ease-in-out infinite 0s}
+.b2{animation:pbi-ba 2.6s ease-in-out infinite -0.5s}
+.b3{animation:pbi-ba 1.9s ease-in-out infinite -1.1s}
+.ag {animation:pbi-ag 3s ease-in-out infinite}
+
+@keyframes pbi-spin{to{transform:rotate(360deg)}}
+@keyframes pbi-flow{to{stroke-dashoffset:-14}}
+@keyframes pbi-npl{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.35);opacity:1}}
+@keyframes pbi-ba  {0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+@keyframes pbi-ag  {0%,100%{opacity:.12}50%{opacity:.4}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="pip"><span class="pip-dot"></span>Logo Theme Gallery</div>
+    <h1>ProcessBI — 20 Colour Variants</h1>
+    <p>Live CSS animations · fully self-contained · no external dependencies</p>
+  </header>
+
+  <div class="gallery" id="gallery"></div>
+
+  <footer>ProcessBI · Microsoft Fabric &amp; AI Consulting · Australia</footer>
+</div>
+
+<script>
+// ── Theme definitions ──────────────────────────────────────────────────
+// p  = primary colour    s  = secondary colour    q  = tertiary colour
+// c1 = centre disc dark  c2 = centre disc mid     lbl= label text
+// bg = card background (all light / pale)
+const themes = [
+  {
+    name:"Ocean Teal",
+    bg:"#f0fbff", p:"#00b4d8", s:"#48cae4", q:"#0077b6",
+    c1:"#023e8a", c2:"#01578a", lbl:"#0369a1"
+  },
+  {
+    name:"Forest Green",
+    bg:"#f0fdf4", p:"#22c55e", s:"#4ade80", q:"#15803d",
+    c1:"#052e16", c2:"#064e3b", lbl:"#166534"
+  },
+  {
+    name:"Warm Amber",
+    bg:"#fffbeb", p:"#f59e0b", s:"#fbbf24", q:"#d97706",
+    c1:"#78350f", c2:"#92400e", lbl:"#92400e"
+  },
+  {
+    name:"Coral Sunset",
+    bg:"#fff7f2", p:"#f97316", s:"#fb923c", q:"#dc2626",
+    c1:"#7c2d12", c2:"#881337", lbl:"#9a3412"
+  },
+  {
+    name:"Cobalt Blue",
+    bg:"#eff6ff", p:"#2563eb", s:"#60a5fa", q:"#1d4ed8",
+    c1:"#1e3a8a", c2:"#1e40af", lbl:"#1e40af"
+  },
+  {
+    name:"Sage Mist",
+    bg:"#f4f9f4", p:"#6b9e6d", s:"#9dc99e", q:"#4a7c4e",
+    c1:"#1f4e20", c2:"#2d6a2f", lbl:"#2d6a2f"
+  },
+  {
+    name:"Rose Bloom",
+    bg:"#fff1f2", p:"#f43f5e", s:"#fb7185", q:"#e11d48",
+    c1:"#881337", c2:"#9f1239", lbl:"#9f1239"
+  },
+  {
+    name:"Steel Blue",
+    bg:"#f0f4ff", p:"#3b82f6", s:"#93c5fd", q:"#1d4ed8",
+    c1:"#0f172a", c2:"#1e293b", lbl:"#1e3a8a"
+  },
+  {
+    name:"Pewter Grey",
+    bg:"#f8fafc", p:"#64748b", s:"#94a3b8", q:"#334155",
+    c1:"#1e293b", c2:"#0f172a", lbl:"#334155"
+  },
+  {
+    name:"Citrus Lime",
+    bg:"#f7fee7", p:"#65a30d", s:"#a3e635", q:"#4d7c0f",
+    c1:"#1a2e05", c2:"#14532d", lbl:"#3f6212"
+  },
+  {
+    name:"Glacier Blue",
+    bg:"#f0f9ff", p:"#0ea5e9", s:"#38bdf8", q:"#0284c7",
+    c1:"#0c4a6e", c2:"#075985", lbl:"#075985"
+  },
+  {
+    name:"Crimson Red",
+    bg:"#fef2f2", p:"#dc2626", s:"#f87171", q:"#b91c1c",
+    c1:"#7f1d1d", c2:"#991b1b", lbl:"#991b1b"
+  },
+  {
+    name:"Aquamarine",
+    bg:"#f0fdfa", p:"#14b8a6", s:"#2dd4bf", q:"#0f9186",
+    c1:"#042f2e", c2:"#134e4a", lbl:"#115e59"
+  },
+  {
+    name:"Burnished Copper",
+    bg:"#fff8f0", p:"#c27a15", s:"#e8a23a", q:"#92600a",
+    c1:"#451a03", c2:"#78350f", lbl:"#7c2d12"
+  },
+  {
+    name:"Emerald Isle",
+    bg:"#ecfdf5", p:"#059669", s:"#34d399", q:"#047857",
+    c1:"#022c22", c2:"#052e16", lbl:"#065f46"
+  },
+  {
+    name:"Morning Frost",
+    bg:"#f8fbff", p:"#7dd3fc", s:"#bae6fd", q:"#38bdf8",
+    c1:"#0c4a6e", c2:"#0369a1", lbl:"#0369a1"
+  },
+  {
+    name:"Desert Gold",
+    bg:"#fefce8", p:"#ca8a04", s:"#fcd34d", q:"#a16207",
+    c1:"#422006", c2:"#713f12", lbl:"#713f12"
+  },
+  {
+    name:"Pacific Cyan",
+    bg:"#ecfeff", p:"#06b6d4", s:"#22d3ee", q:"#0891b2",
+    c1:"#083344", c2:"#0e4f64", lbl:"#0e7490"
+  },
+  {
+    name:"Olive Earth",
+    bg:"#f6f9ee", p:"#6b8f3e", s:"#92bc5a", q:"#4d6b28",
+    c1:"#1c2d0a", c2:"#2d4a10", lbl:"#3f6212"
+  },
+  {
+    name:"Teal Dusk",
+    bg:"#f0faf9", p:"#0f766e", s:"#2dd4bf", q:"#0d5c56",
+    c1:"#042f2e", c2:"#115e59", lbl:"#115e59"
+  }
+];
+
+// ── SVG generator ────────────────────────────────────────────────────────
+// Each SVG gets unique IDs via the `u` (uid) suffix to avoid conflicts
+// when multiple SVGs share the same document.
+function makeSVG(t, idx) {
+  const {p, s, q, c1, c2} = t;
+  const u = `v${idx}`;
+  return `<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${t.name} ProcessBI logo">
+<defs>
+  <linearGradient id="lg${u}" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="${p}"/>
+    <stop offset="100%" stop-color="${q}"/>
+  </linearGradient>
+  <radialGradient id="rg1${u}" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="${q}" stop-opacity="0.32"/>
+    <stop offset="100%" stop-color="${p}" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="rg2${u}" cx="38%" cy="32%" r="65%">
+    <stop offset="0%" stop-color="${c1}"/>
+    <stop offset="100%" stop-color="${c2}"/>
+  </radialGradient>
+  <filter id="glo${u}" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="1.8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glo2${u}" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <clipPath id="cc${u}">
+    <circle cx="40" cy="40" r="8.5"/>
+  </clipPath>
+</defs>
+
+<!-- ambient radial glow -->
+<circle cx="40" cy="40" r="36" fill="url(#rg1${u})" class="ag"/>
+
+<!-- outer rotating dashed ring -->
+<circle cx="40" cy="40" r="31" fill="none"
+  stroke="url(#lg${u})" stroke-width="0.6" stroke-dasharray="3 6"
+  class="ring" opacity="0.6"/>
+
+<!-- inner counter-rotating ring -->
+<circle cx="40" cy="40" r="22" fill="none"
+  stroke="${p}" stroke-width="0.4" stroke-dasharray="2 8"
+  class="ring2" opacity="0.5"/>
+
+<!-- connectors: centre → each peripheral node, animated dashes -->
+<line x1="40" y1="40" x2="40"   y2="14"   stroke="${p}" stroke-width="0.7" fill="none" class="conn c0" opacity="0.8"/>
+<line x1="40" y1="40" x2="62.5" y2="27"   stroke="${s}" stroke-width="0.7" fill="none" class="conn c1" opacity="0.8"/>
+<line x1="40" y1="40" x2="62.5" y2="53"   stroke="${q}" stroke-width="0.7" fill="none" class="conn c2" opacity="0.8"/>
+<line x1="40" y1="40" x2="40"   y2="66"   stroke="${q}" stroke-width="0.7" fill="none" class="conn c3" opacity="0.8"/>
+<line x1="40" y1="40" x2="17.5" y2="53"   stroke="${s}" stroke-width="0.7" fill="none" class="conn c4" opacity="0.8"/>
+<line x1="40" y1="40" x2="17.5" y2="27"   stroke="${p}" stroke-width="0.7" fill="none" class="conn c5" opacity="0.8"/>
+
+<!-- peripheral nodes — pulsing scale animation -->
+<circle cx="40"   cy="14"   r="4" fill="${p}" class="nd n0" filter="url(#glo${u})"/>
+<circle cx="62.5" cy="27"   r="4" fill="${s}" class="nd n1" filter="url(#glo${u})"/>
+<circle cx="62.5" cy="53"   r="4" fill="${q}" class="nd n2" filter="url(#glo${u})"/>
+<circle cx="40"   cy="66"   r="4" fill="${q}" class="nd n3" filter="url(#glo${u})"/>
+<circle cx="17.5" cy="53"   r="4" fill="${s}" class="nd n4" filter="url(#glo${u})"/>
+<circle cx="17.5" cy="27"   r="4" fill="${p}" class="nd n5" filter="url(#glo${u})"/>
+
+<!-- centre disc with gradient fill and glowing stroke -->
+<circle cx="40" cy="40" r="9.5"
+  fill="url(#rg2${u})" stroke="url(#lg${u})" stroke-width="1.2"
+  filter="url(#glo2${u})"/>
+
+<!-- bar chart clipped inside the centre disc, bars animated from base -->
+<g clip-path="url(#cc${u})">
+  <rect x="34.5" y="40" width="3"   height="7" rx="0.6" fill="${p}"            class="bar b1"/>
+  <rect x="38.5" y="38" width="3"   height="9" rx="0.6" fill="url(#lg${u})"   class="bar b2"/>
+  <rect x="42.5" y="42" width="3"   height="5" rx="0.6" fill="${q}"            class="bar b3"/>
+</g>
+</svg>`;
+}
+
+// ── Inject cards into the gallery grid ──────────────────────────────────
+const gallery = document.getElementById('gallery');
+
+themes.forEach(function(t, i) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.background = t.bg;
+  card.innerHTML =
+    '<div class="logo-wrap">' + makeSVG(t, i) + '</div>' +
+    '<div class="label" style="color:' + t.lbl + '">' + t.name + '</div>';
+  gallery.appendChild(card);
+});
+</script>
+</body>
+</html>
