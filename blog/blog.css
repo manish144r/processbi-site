@@ -136,4 +136,75 @@
   letter-spacing: 0.14em;
   margin-bottom: 8px;
 }
-.info-box p { margin-bottom: 0 !import
+.info-box p { margin-bottom: 0 !important; }
+.info-box a { color: #00C2FF; }
+
+/* ── Blog callout ── */
+.blog-callout {
+  background: rgba(0,194,255,0.05);
+  border-left: 4px solid #00C2FF;
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 2rem 0;
+}
+.blog-callout p { font-size: 0.9375rem; color: #CBD5E1; margin: 0; line-height: 1.7; }
+.blog-callout a { color: #00C2FF; text-decoration: underline; text-decoration-color: rgba(0,194,255,0.4); }
+.blog-callout strong { color: #FFFFFF; }
+
+/* ── Blog card category ── */
+.blog-card-category {
+  display: inline-block;
+  background: rgba(0,194,255,0.12);
+  border: 1px solid rgba(0,194,255,0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #00C2FF;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ── Related services section ── */
+.related-services {
+  padding: 72px 24px;
+  border-top: 1px solid rgba(0,194,255,0.1);
+  background: rgba(0,194,255,0.025);
+}
+.related-services-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #00C2FF;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 12px;
+}
+.related-services h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+/* ── Article table ── */
+.table-wrap { overflow-x: auto; margin: 2rem 0; }
+.article-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.article-table th {
+  background: rgba(0,194,255,0.1);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-bottom: 2px solid rgba(0,194,255,0.3);
+}
+.article-table td {
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  color: #CBD5E1;
+  border-bottom: 1px solid rgba(0,194,255,0.08);
+}
+.article-table tr:last-child td { border-bottom: none; }
+.article-table tr:hover td { background: rgba(0,194,255,0.04); }
