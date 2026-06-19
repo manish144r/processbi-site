@@ -1,9 +1,0 @@
-# Deploy scripts
-push_log.txt
-fix_log.txt
-github_push.py
-push_to_github.ps1
-*.log
-*.py
-# Git broken backup
-.git_broken/

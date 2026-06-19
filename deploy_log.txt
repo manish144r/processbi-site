@@ -1,0 +1,83 @@
+=== Claude Design Deploy Log ===
+Found zip: C:\Users\smani\Downloads\Process Bi motion graphics.zip (96,999 bytes)
+
+Extracting to C:\Users\smani\Downloads\processbi_extracted...
+Zip contains 14 files:
+  processbi-site/about.html
+  processbi-site/case-studies.html
+  processbi-site/contact.html
+  processbi-site/favicon.svg
+  processbi-site/index.html
+  processbi-site/logo-animated.svg
+  processbi-site/methodology.html
+  processbi-site/og-image.png
+  processbi-site/robots.txt
+  processbi-site/services.html
+  processbi-site/shared-nav.js
+  processbi-site/shared.css
+  processbi-site/sitemap.xml
+  processbi-site/technology.html
+Extraction complete.
+
+HTML files found: ['C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\about.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\case-studies.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\contact.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\index.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\methodology.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\services.html', 'C:\\Users\\smani\\Downloads\\processbi_extracted\\processbi-site\\technology.html']
+Root items: ['processbi-site']
+Single subfolder detected, using: C:\Users\smani\Downloads\processbi_extracted\processbi-site
+
+Cleaning deploy dir (keeping .git and CNAME)...
+  Removed: .gitignore
+  Removed: .git_broken
+  Removed: .nojekyll
+  Removed: about.html
+  Removed: assets
+  Removed: case-studies.html
+  Removed: contact.html
+  Removed: deploy_claude_design.py
+  Removed: favicon.svg
+  Removed: fix_and_push.py
+  Removed: fix_log.txt
+  Removed: hermes_business_factory_spec.md
+  Removed: index.html
+  Removed: logo-animated.svg
+  Removed: methodology.html
+  Removed: nf_biz_count.py
+  Removed: og-image.png
+  Removed: processbi-20-variants.html
+  Removed: research_actions_2026-06-19.md
+  Removed: robots.txt
+  Removed: sample_process_dashboard_spec.md
+  Removed: services.html
+  Removed: shared-nav.js
+  Removed: shared.css
+  Removed: sitemap.xml
+  Removed: system_state_2026-06-19.md
+  Removed: technology.html
+  Removed: technology_review_report.md
+  Removed: _redirects
+
+Copying from C:\Users\smani\Downloads\processbi_extracted\processbi-site to C:\Users\smani\CompanyWorkspaces\NightFactory\outputs\processbi-3d-deploy...
+  Copied: about.html
+  Copied: case-studies.html
+  Copied: contact.html
+  Copied: favicon.svg
+  Copied: index.html
+  Copied: logo-animated.svg
+  Copied: methodology.html
+  Copied: og-image.png
+  Copied: robots.txt
+  Copied: services.html
+  Copied: shared-nav.js
+  Copied: shared.css
+  Copied: sitemap.xml
+  Copied: technology.html
+Wrote .nojekyll
+
+--- Git operations ---
+> taskkill /IM git.exe /F
+SUCCESS: The process "git.exe" with PID 55196 has been terminated.
+SUCCESS: The process "git.exe" with PID 384984 has been terminated.
+ERR: ERROR: The process "git.exe" with PID 87724 could not be terminated.
+Reason: The operation attempted is not supported.
+
+ERROR: The process "git.exe" with PID 243104 could not be terminated.
+Reason: The operation attempted is not supported.
+> git add -A
