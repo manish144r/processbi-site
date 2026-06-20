@@ -10,31 +10,11 @@ canvas.id = 'bg-canvas';
 document.body.insertBefore(canvas, document.body.firstChild);
 
 /* ───────────────────────────────────────────────
-   2. Logo SVG (inline, reusable) — cyan only, no purple
+   2. Logo — uses logo-animated.svg (full animation: bar grow, line draw,
+      node pop-in, floating spark particles). Absolute path so it works
+      from every page including subdirectories like blog/.
 ─────────────────────────────────────────────── */
-const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" width="42" height="38" aria-hidden="true" style="flex:none">
-<defs>
-  <linearGradient id="nl1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1A4AC2"/><stop offset="1" stop-color="#2E6BF6"/></linearGradient>
-  <linearGradient id="nlt" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2E6BF6"/><stop offset="1" stop-color="#46D5FF"/></linearGradient>
-  <linearGradient id="nln" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2E6BF6"/><stop offset="1" stop-color="#46D5FF"/></linearGradient>
-  <filter id="ngl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <style>
-    .nline{stroke-dasharray:none}
-    .nhalo{transform-box:fill-box;transform-origin:center;animation:npulse 4.4s ease-in-out infinite}
-    @keyframes npulse{0%,100%{opacity:.18}50%{opacity:.42}}
-  </style>
-</defs>
-<rect class="nbar nb0" x="12" y="78" width="17" height="26" rx="6" fill="url(#nl1)"/>
-<rect class="nbar nb1" x="37" y="60" width="17" height="44" rx="6" fill="url(#nl1)"/>
-<rect class="nbar nb2" x="62" y="38" width="17" height="66" rx="6" fill="url(#nl1)"/>
-<rect class="nbar nb3" x="87" y="16" width="17" height="88" rx="6" fill="url(#nlt)"/>
-<path class="nline" d="M20.5 78 L45.5 60 L70.5 38 L95.5 16 L122 5" fill="none" stroke="url(#nln)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#ngl)"/>
-<path class="narr" d="M122 5 L109 6.5 M122 5 L120.5 18" fill="none" stroke="#46D5FF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#ngl)"/>
-<g class="nnode nn0"><circle class="nhalo" cx="20.5" cy="78" r="11" fill="#46D5FF"/><circle cx="20.5" cy="78" r="6.2" fill="#0B1A2E" stroke="#46D5FF" stroke-width="3"/><circle cx="20.5" cy="78" r="2.6" fill="#86E6FF"/></g>
-<g class="nnode nn1"><circle class="nhalo" cx="45.5" cy="60" r="11" fill="#46D5FF"/><circle cx="45.5" cy="60" r="6.2" fill="#0B1A2E" stroke="#46D5FF" stroke-width="3"/><circle cx="45.5" cy="60" r="2.6" fill="#86E6FF"/></g>
-<g class="nnode nn2"><circle class="nhalo" cx="70.5" cy="38" r="11" fill="#46D5FF"/><circle cx="70.5" cy="38" r="6.2" fill="#0B1A2E" stroke="#46D5FF" stroke-width="3"/><circle cx="70.5" cy="38" r="2.6" fill="#86E6FF"/></g>
-<g class="nnode nn3"><circle class="nhalo" cx="95.5" cy="16" r="11" fill="#46D5FF"/><circle cx="95.5" cy="16" r="6.2" fill="#0B1A2E" stroke="#46D5FF" stroke-width="3"/><circle cx="95.5" cy="16" r="2.6" fill="#86E6FF"/></g>
-</svg>`;
+const LOGO_SVG = `<img src="/logo-animated.svg" width="42" height="38" alt="ProcessBI logo" style="flex:none;display:block" onerror="this.style.display='none'">`;
 
 /* ───────────────────────────────────────────────
    3. Nav links config
@@ -42,6 +22,7 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
 const NAV_LINKS = [
   {href:'index.html',       label:'Home'},
   {href:'services.html',    label:'Services'},
+  {href:'pricing.html',     label:'Pricing'},
   {href:'methodology.html', label:'Methodology'},
   {href:'case-studies.html',label:'Case Studies'},
   {href:'technology.html',  label:'Technology'},
@@ -215,19 +196,30 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 
 /* ───────────────────────────────────────────────
    12. Three.js particle background — dark navy palette
+       Mobile: reduced particle count + no mousemove parallax
 ─────────────────────────────────────────────── */
 if(typeof THREE !== 'undefined'){
   (function(){
-    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    // Mobile detection — reduce load on phones/tablets
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod|Touch/i.test(navigator.userAgent)
+                  || innerWidth < 768;
+
+    // Skip animation for prefers-reduced-motion
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      canvas.style.display = 'none';
+      return;
+    }
+
+    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:!isMobile});
     renderer.setSize(innerWidth,innerHeight);
-    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1 : 2));
 
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 1000);
     camera.position.z = 30;
 
-    // Particles — cyan/blue palette
-    const N = 400;
+    // Particles — 80 on mobile vs 400 on desktop
+    const N = isMobile ? 80 : 400;
     const pos = new Float32Array(N*3);
     const col = new Float32Array(N*3);
     for(let i=0;i<N*3;i+=3){
@@ -247,14 +239,16 @@ if(typeof THREE !== 'undefined'){
     geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
     geo.setAttribute('color',    new THREE.BufferAttribute(col,3));
     const mat = new THREE.PointsMaterial({
-      size:0.18,vertexColors:true,transparent:true,
-      opacity:0.5,blending:THREE.AdditiveBlending
+      size: isMobile ? 0.22 : 0.18,
+      vertexColors:true,transparent:true,
+      opacity: isMobile ? 0.4 : 0.5,
+      blending:THREE.AdditiveBlending
     });
     const pts = new THREE.Points(geo,mat);
     scene.add(pts);
 
-    // Connection lines — subtle cyan
-    const MAX_LINES = 180;
+    // Connection lines — 30 on mobile vs 180 on desktop
+    const MAX_LINES = isMobile ? 30 : 180;
     const lgeo = new THREE.BufferGeometry();
     const lpos  = new Float32Array(MAX_LINES*6);
     lgeo.setAttribute('position', new THREE.BufferAttribute(lpos,3));
@@ -263,20 +257,30 @@ if(typeof THREE !== 'undefined'){
     });
     scene.add(new THREE.LineSegments(lgeo,lmat));
 
+    // Mousemove parallax — desktop only (saves battery on mobile)
     let mx=0,my=0;
-    document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;},{passive:true});
+    if(!isMobile){
+      document.addEventListener('mousemove',e=>{
+        mx=(e.clientX/innerWidth-.5)*2;
+        my=(e.clientY/innerHeight-.5)*2;
+      },{passive:true});
+    }
+
+    const CONN_LIMIT = isMobile ? 20 : 70;
 
     function animate(){
       requestAnimationFrame(animate);
-      pts.rotation.y += 0.00015;
-      pts.rotation.x += 0.00008;
-      camera.position.x += (mx*1.5 - camera.position.x)*0.006;
-      camera.position.y += (-my*1.5 - camera.position.y)*0.006;
+      pts.rotation.y += isMobile ? 0.00008 : 0.00015;
+      pts.rotation.x += isMobile ? 0.00004 : 0.00008;
+      if(!isMobile){
+        camera.position.x += (mx*1.5 - camera.position.x)*0.006;
+        camera.position.y += (-my*1.5 - camera.position.y)*0.006;
+      }
       camera.lookAt(scene.position);
 
       let li=0;
       const p = pts.geometry.attributes.position.array;
-      const limit = Math.min(70,N);
+      const limit = Math.min(CONN_LIMIT,N);
       for(let i=0;i<limit&&li<MAX_LINES*6;i++){
         for(let j=i+1;j<limit&&li<MAX_LINES*6;j++){
           const dx=p[i*3]-p[j*3],dy=p[i*3+1]-p[j*3+1],dz=p[i*3+2]-p[j*3+2];
@@ -295,4 +299,10 @@ if(typeof THREE !== 'undefined'){
     window.addEventListener('resize',()=>{
       camera.aspect=innerWidth/innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(inne
+      renderer.setSize(innerWidth,innerHeight);
+    },{passive:true});
+  })();
+}
+
+})();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

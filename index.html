@@ -107,7 +107,7 @@
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center" style="padding-top:100px">
     <!-- Animated logo above headline -->
     <div class="flex justify-center mb-8">
-      <object data="logo-animated.svg" type="image/svg+xml" width="100" height="100" aria-label="ProcessBI logo"></object>
+      <img src="logo-animated.svg" width="100" height="100" alt="ProcessBI logo" style="width:100px;height:100px;object-fit:contain" onerror="this.style.display='none'">
     </div>
 
     <div class="brand-label mb-4">PROCESS × INTELLIGENCE</div>
@@ -182,6 +182,17 @@
     </div>
   </div>
 </section>
+
+<!-- ── Mid-page CTA strip ── -->
+<div class="py-8 reveal" style="background:rgba(0,194,255,0.04);border-top:1px solid rgba(0,194,255,0.1);border-bottom:1px solid rgba(0,194,255,0.1)">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <p class="text-slate-900 font-semibold text-base">Not sure which engagement is right for you?</p>
+      <p class="text-slate-500 text-sm">We'll scope it in a free 30-minute discovery call — no obligation.</p>
+    </div>
+    <a href="pricing.html" class="btn-primary flex-shrink-0" style="padding:12px 28px;font-size:0.875rem">See Engagement Options</a>
+  </div>
+</div>
 
 <!-- ── AI Research Engine ── -->
 <section class="py-32 relative" id="ai-research-engine" style="background:rgba(255,255,255,0.02)">
@@ -466,31 +477,281 @@
   </div>
 </section>
 
+
+<!-- ── Testimonials / Social Proof ── -->
+<section class="py-24 relative" style="background:rgba(255,255,255,0.02)">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Client Outcomes</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">What Australian Organisations<br>Say About Working With Us</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card p-8 reveal" style="transition-delay:0.1s">
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">"ProcessBI mapped our end-to-end billing process and found eleven handoff failures we didn't know existed. The redesign cut our disputes resolution time from 14 days to 3. The Power BI dashboard now flags emerging dispute clusters before they escalate."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
+            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">Head of Operations</div>
+            <div style="color:#8BB4CC;font-size:0.72rem">ASX-listed Utilities Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card p-8 reveal" style="transition-delay:0.2s">
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">"We'd tried two other BI vendors. ProcessBI was the first firm that insisted on understanding how our grants assessment process actually worked before touching data. Six weeks later we had a Fabric lakehouse that our auditors actually trusted."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
+            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">Digital Transformation Lead</div>
+            <div style="color:#8BB4CC;font-size:0.72rem">NSW Government Agency</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card p-8 reveal" style="transition-delay:0.3s">
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">"The DMAIC engagement surfaced $1.4M in process waste across our loan origination workflow. ProcessBI didn't just identify the problems — they co-designed the future-state process, automated the top five manual steps, and built the reporting layer to prove the gains held."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
+            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">CFO</div>
+            <div style="color:#8BB4CC;font-size:0.72rem">Mid-tier Financial Services Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-12 reveal">
+      <a href="case-studies.html" class="btn-outline">See Full Case Studies</a>
+    </div>
+  </div>
+</section>
+
 <!-- ── Technology Partners ── -->
 <section class="py-12 border-y border-slate-100">
   <div class="max-w-6xl mx-auto px-6">
     <p class="text-center text-slate-400 text-xs font-semibold tracking-widest uppercase mb-8">Built on enterprise-grade platforms</p>
     <div class="flex flex-wrap items-center justify-center gap-10 opacity-60">
-      <!-- Microsoft -->
       <div class="flex items-center gap-2.5">
         <svg width="20" height="20" viewBox="0 0 21 21" fill="none"><rect x="1" y="1" width="9" height="9" fill="#F25022"/><rect x="11" y="1" width="9" height="9" fill="#7FBA00"/><rect x="1" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
         <span class="text-slate-600 font-semibold text-sm">Microsoft</span>
       </div>
-      <!-- Microsoft Fabric -->
       <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect wi
-</li>
-</li>
-</li>
-</li>
-</li>
-</li>
-</li>
-</div>
-</div>
-</div>
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#773ADC"/><rect x="5" y="5" width="7" height="7" fill="white" opacity="0.9"/><rect x="14" y="5" width="7" height="7" fill="white" opacity="0.6"/><rect x="5" y="14" width="7" height="7" fill="white" opacity="0.6"/><rect x="14" y="14" width="7" height="7" fill="white" opacity="0.9"/></svg>
+        <span class="text-slate-600 font-semibold text-sm">Microsoft Fabric</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#F2C811"/><rect x="8" y="18" width="4" height="8" rx="1" fill="#1F1F1F"/><rect x="14" y="12" width="4" height="14" rx="1" fill="#1F1F1F"/><rect x="20" y="7" width="4" height="19" rx="1" fill="#1F1F1F"/></svg>
+        <span class="text-slate-600 font-semibold text-sm">Power BI</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#0078D4"/><path d="M16 6L6 24h8l2-4h8L16 6z" fill="white" opacity="0.9"/></svg>
+        <span class="text-slate-600 font-semibold text-sm">Azure</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#FF3621"/><path d="M16 9L23 13v6l-7 4-7-4v-6l7-4z" fill="white"/></svg>
+        <span class="text-slate-600 font-semibold text-sm">Databricks</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#1d4ed8"/><path d="M16 7l2.4 7.2H26l-6.1 4.5 2.3 7.3L16 21.5l-6.2 4.5 2.3-7.3L6 14.2h7.6L16 7z" fill="white"/></svg>
+        <span class="text-slate-600 font-semibold text-sm">Lean Six Sigma</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<script src="shared-nav.js" defer></script>
+<!-- ── Standards & Methodology ── -->
+<section class="py-20 relative">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">How We Work</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">The ProcessBI Method</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">Three disciplines, sequenced in the right order. Fix the process using Lean Six Sigma. Then automate it with Power Automate and AI. Then instrument it with Microsoft Fabric and Power BI. Skip a step and the data lies to you.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card p-7 reveal" style="transition-delay:0.1s">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
+            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">ISO 9001</div>
+            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Quality Management</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Every process design is documented, peer-reviewed, and signed off at each milestone. Nothing is delivered that hasn't been verified against the agreed specification.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card p-7 reveal" style="transition-delay:0.2s">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
+            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">Lean Six Sigma</div>
+            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Process Excellence</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">We use DMAIC to analyse root causes and eliminate waste before recommending technology. Business logic is fixed in the process — not patched with software.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card p-7 reveal" style="transition-delay:0.3s">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
+            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <div>
+            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">Process Automation</div>
+            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Intelligent Automation</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Every repetitive manual step in a redesigned process is a candidate for automation — from Power Automate flows to full AI agent orchestration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Practice Lead ── -->
+<section class="py-20 relative" style="background:rgba(255,255,255,0.02)">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="glass-card p-10 md:p-14 reveal" style="border-radius:16px">
+      <div class="grid md:grid-cols-3 gap-10 items-center">
+        <div class="md:col-span-2">
+          <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">The Practice</span>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-5">Built by a Practitioner,<br>Not a Generalist Firm</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">ProcessBI is a specialist practice, not a large generalist consultancy. That means every engagement is led by a senior practitioner with hands-on experience across process design, automation, and Microsoft Fabric — not handed to a junior analyst after the sales meeting.</p>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">The practice lead brings 15+ years designing and fixing enterprise processes across government, financial services, utilities, and manufacturing — and has personally delivered Microsoft Fabric and Power BI platforms under APRA, AML/CTF, and NSW Government frameworks. The AI Research Engine running behind every engagement is the same infrastructure we've built for clients.</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="tag-badge">Lean Six Sigma Black Belt</span>
+            <span class="tag-badge">Microsoft Certified: Fabric Analytics</span>
+            <span class="tag-badge">BPMN 2.0</span>
+            <span class="tag-badge">ISO 9001</span>
+            <span class="tag-badge">APRA CPS 234</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5 text-center">
+          <div class="glass-card p-6" style="border-radius:12px">
+            <div class="text-3xl font-black font-display gradient-text-blue mb-1">15+</div>
+            <div class="text-slate-500 text-xs uppercase tracking-wider">Years in Process &amp; BI</div>
+          </div>
+          <div class="glass-card p-6" style="border-radius:12px">
+            <div class="text-3xl font-black font-display" style="color:#0ea5e9">50+</div>
+            <div class="text-slate-500 text-xs uppercase tracking-wider">Enterprise Engagements</div>
+          </div>
+          <a href="about.html" class="btn-outline text-sm" style="padding:12px 20px">About the Practice &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="py-32 relative">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <div class="mesh-gradient" style="background:#00C2FF;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06"></div>
+    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Get Started</span>
+    <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">Ready to Fix How<br>Your Business Works?</h2>
+    <p class="text-slate-600 text-lg mb-10">Tell us about a process that's costing you time, money, or accuracy — or a data platform that isn't delivering. We'll map it, benchmark it against industry standards, and come back with a concrete improvement plan. No obligation. One Australian business day.</p>
+    <a href="contact.html" class="btn-primary text-lg w-full sm:w-auto block sm:inline-block" style="padding:18px 48px">Book a Free Discovery Call</a>
+  </div>
+</section>
+
+<!-- ── FAQ Section ── -->
+<section class="py-20 relative" style="background:rgba(255,255,255,0.02)">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Common Questions</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">Process &amp; BI Consulting FAQ</h2>
+    </div>
+    <div class="space-y-3 reveal">
+      <details class="glass-card" style="border-radius:12px;overflow:hidden">
+        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#0f172a;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
+          What is business process mapping and why does it matter?
+          <svg width="16" height="16" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div style="padding:0 24px 20px;color:#475569;font-size:0.875rem;line-height:1.75">
+          Business process mapping is the practice of documenting how work actually moves through an organisation — who does what, in what order, with what systems, and where it breaks down. A process map uses standardised notations like BPMN 2.0 or cross-functional swim lane diagrams to make the invisible visible. Most operational problems in Australian enterprise — missed SLAs, compliance gaps, rework, and handoff delays — are process problems wearing technology clothing. No software tool fixes a broken process. You have to map it first.
+        </div>
+      </details>
+      <details class="glass-card" style="border-radius:12px;overflow:hidden">
+        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#0f172a;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
+          What's the difference between process mapping and process design?
+          <svg width="16" height="16" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div style="padding:0 24px 20px;color:#475569;font-size:0.875rem;line-height:1.75">
+          Process mapping documents the current state — the AS-IS. Process design creates the future state — the TO-BE. Both are necessary; skipping mapping and jumping straight to design produces a shiny new process built on misunderstood inputs. At ProcessBI, every engagement starts with current-state process mapping, then moves to gap analysis using Lean Six Sigma DMAIC, then to TO-BE process design. Only after the future state is signed off does any technology get specified.
+        </div>
+      </details>
+      <details class="glass-card" style="border-radius:12px;overflow:hidden">
+        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#0f172a;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
+          How long does a business process consulting engagement take in Australia?
+          <svg width="16" height="16" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div style="padding:0 24px 20px;color:#475569;font-size:0.875rem;line-height:1.75">
+          A process mapping and gap analysis workshop is typically 1–2 weeks. A full Lean Six Sigma DMAIC cycle with redesign runs 4–8 weeks for a single process domain. Adding process automation adds 2–6 weeks per automation domain. A Microsoft Fabric implementation runs 4–12 weeks depending on data estate complexity. Combined process-to-BI engagements across government and financial services typically run 3–6 months end to end. All engagements start with a free 30-minute discovery call and a written scope within 48 hours.
+        </div>
+      </details>
+    </div>
+    <div class="text-center mt-10 reveal">
+      <a href="services.html" class="btn-outline">See All Services &amp; FAQs</a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "ProcessBI",
+  "url": "https://processbi.com.au",
+  "logo": "https://processbi.com.au/favicon.svg",
+  "image": "https://processbi.com.au/og-image.png",
+  "description": "Business process intelligence consultancy specialising in process design, mapping, automation, and Microsoft Fabric implementations across Australia.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Melbourne",
+    "addressRegion": "VIC",
+    "addressCountry": "AU"
+  },
+  "areaServed": {"@type": "Country","name": "Australia"},
+  "serviceType": ["Business Process Consulting","Microsoft Fabric Implementation","Power BI Consulting","Process Automation","Business Intelligence Consulting","Lean Six Sigma Consulting","Process Mapping"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@processbi.com.au",
+    "contactType": "customer service",
+    "areaServed": "AU",
+    "availableLanguage": "English"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is business process mapping and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Business process mapping is the practice of documenting how work actually moves through an organisation — who does what, in what order, with what systems, and where it breaks down. Most operational problems in Australian enterprise are process problems wearing technology clothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a business process consulting engagement take in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A process mapping workshop is typically 1–2 weeks. A full Lean Six Sigma DMAIC cycle runs 4–8 weeks. A Microsoft Fabric implementation runs 4–12 weeks. Combined engagements typically run 3–6 months end to end."
+      }
+    }
+  ]
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="shared-nav.js?v=3"></script>
 </body>
 </html>
