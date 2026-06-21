@@ -10,11 +10,56 @@ canvas.id = 'bg-canvas';
 document.body.insertBefore(canvas, document.body.firstChild);
 
 /* ───────────────────────────────────────────────
-   2. Logo — uses logo-animated.svg (full animation: bar grow, line draw,
-      node pop-in, floating spark particles). Absolute path so it works
-      from every page including subdirectories like blog/.
+   2. Logo — inline SVG (bar-chart + trend-line + spark-particle mark).
+      No external file dependency; unique IDs (nb*) avoid collisions.
 ─────────────────────────────────────────────── */
-const LOGO_SVG = `<img src="/logo-animated.svg" width="42" height="38" alt="ProcessBI logo" style="flex:none;display:block" onerror="this.style.display='none'">`;
+const LOGO_SVG = `<svg viewBox="0 0 132 120" width="42" height="38" xmlns="http://www.w3.org/2000/svg" aria-label="ProcessBI logo" style="flex:none;display:block;overflow:visible">
+  <defs>
+    <linearGradient id="nb0" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1A4AC2"/><stop offset="1" stop-color="#2E6BF6"/></linearGradient>
+    <linearGradient id="nb1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2E6BF6"/><stop offset="1" stop-color="#46D5FF"/></linearGradient>
+    <linearGradient id="nl" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2E6BF6"/><stop offset="1" stop-color="#46D5FF"/></linearGradient>
+    <filter id="ng"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <style>
+    .nb-b{animation:nb-up .5s cubic-bezier(.34,1.56,.64,1) both}
+    .nb-b0{animation-delay:.1s;transform-origin:20.5px 104px}
+    .nb-b1{animation-delay:.25s;transform-origin:45.5px 104px}
+    .nb-b2{animation-delay:.4s;transform-origin:70.5px 104px}
+    .nb-b3{animation-delay:.55s;transform-origin:95.5px 104px}
+    @keyframes nb-up{from{transform:scaleY(0);opacity:.3}to{transform:scaleY(1);opacity:1}}
+    .nb-line{stroke-dasharray:200;stroke-dashoffset:200;animation:nb-draw .9s ease .7s forwards}
+    @keyframes nb-draw{to{stroke-dashoffset:0}}
+    .nb-node{opacity:0;animation:nb-pop .3s cubic-bezier(.34,1.56,.64,1) forwards}
+    .nb-n0{animation-delay:1.5s;transform-origin:20.5px 78px}
+    .nb-n1{animation-delay:1.6s;transform-origin:45.5px 60px}
+    .nb-n2{animation-delay:1.7s;transform-origin:70.5px 38px}
+    .nb-n3{animation-delay:1.8s;transform-origin:95.5px 16px}
+    @keyframes nb-pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+    .nb-spark{animation:nb-sf linear infinite;opacity:0}
+    .nb-s1{animation-duration:2.2s;animation-delay:2s}
+    .nb-s2{animation-duration:1.9s;animation-delay:2.4s}
+    .nb-s3{animation-duration:2.5s;animation-delay:2.2s}
+    @keyframes nb-sf{0%{opacity:0;transform:translateY(0) scale(1)}20%{opacity:.9}80%{opacity:.4}100%{opacity:0;transform:translateY(-18px) scale(.4)}}
+    .nb-arrow{opacity:0;animation:nb-af .3s ease 1.9s forwards}
+    @keyframes nb-af{to{opacity:1}}
+    .nb-ap{opacity:0;animation:nb-pulse 1.6s ease-in-out 2.4s infinite}
+    @keyframes nb-pulse{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:.6;transform:translateY(-2px)}}
+  </style>
+  <rect class="nb-b nb-b0" x="12" y="78" width="17" height="26" rx="4" fill="url(#nb0)"/>
+  <rect class="nb-b nb-b1" x="37" y="60" width="17" height="44" rx="4" fill="url(#nb0)"/>
+  <rect class="nb-b nb-b2" x="62" y="38" width="17" height="66" rx="4" fill="url(#nb0)"/>
+  <rect class="nb-b nb-b3" x="87" y="16" width="17" height="88" rx="4" fill="url(#nb1)"/>
+  <path class="nb-line" d="M20.5 78 L45.5 60 L70.5 38 L95.5 16 L122 5" fill="none" stroke="url(#nl)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ng)"/>
+  <g class="nb-node nb-n0"><circle cx="20.5" cy="78" r="6" fill="#06182F" stroke="#46D5FF" stroke-width="2.5"/><circle cx="20.5" cy="78" r="2.5" fill="#86E6FF"/></g>
+  <g class="nb-node nb-n1"><circle cx="45.5" cy="60" r="6" fill="#06182F" stroke="#46D5FF" stroke-width="2.5"/><circle cx="45.5" cy="60" r="2.5" fill="#86E6FF"/></g>
+  <g class="nb-node nb-n2"><circle cx="70.5" cy="38" r="6" fill="#06182F" stroke="#46D5FF" stroke-width="2.5"/><circle cx="70.5" cy="38" r="2.5" fill="#86E6FF"/></g>
+  <g class="nb-node nb-n3"><circle cx="95.5" cy="16" r="6" fill="#06182F" stroke="#46D5FF" stroke-width="2.5"/><circle cx="95.5" cy="16" r="2.5" fill="#86E6FF"/></g>
+  <circle class="nb-spark nb-s1" cx="95" cy="16" r="2" fill="#86E6FF"/>
+  <circle class="nb-spark nb-s2" cx="100" cy="20" r="1.5" fill="#46D5FF"/>
+  <circle class="nb-spark nb-s3" cx="90" cy="22" r="1.5" fill="#86E6FF"/>
+  <path class="nb-arrow" d="M122 5 L109 6.5 M122 5 L120.5 18" fill="none" stroke="#46D5FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ng)"/>
+  <path class="nb-ap" d="M122 5 L109 6.5 M122 5 L120.5 18" fill="none" stroke="#86E6FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 
 /* ───────────────────────────────────────────────
    3. Nav links config
@@ -22,12 +67,9 @@ const LOGO_SVG = `<img src="/logo-animated.svg" width="42" height="38" alt="Proc
 const NAV_LINKS = [
   {href:'index.html',       label:'Home'},
   {href:'services.html',    label:'Services'},
-  {href:'pricing.html',     label:'Pricing'},
-  {href:'methodology.html', label:'Methodology'},
   {href:'case-studies.html',label:'Case Studies'},
   {href:'technology.html',  label:'Technology'},
   {href:'about.html',       label:'About'},
-  {href:'blog/index.html',  label:'Insights'},
   {href:'contact.html',     label:'Contact'},
 ];
 
@@ -92,8 +134,8 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
       <div>
         <h4 style="color:#FFFFFF;font-weight:600;font-size:0.875rem;margin-bottom:16px">Contact</h4>
         <div class="space-y-2">
-          <p style="color:#8BB4CC;font-size:0.875rem">hello@processbi.com.au</p>
-          <p style="color:#8BB4CC;font-size:0.875rem">Melbourne, Australia</p>
+          <p style="color:#8BB4CC;font-size:0.875rem">info@processbi.com.au</p>
+          <p style="color:#8BB4CC;font-size:0.875rem">Sydney, Australia</p>
           <a href="https://linkedin.com/in/manish-sharma-processbi" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#8BB4CC;font-size:0.875rem;text-decoration:none;margin-top:8px;transition:color 0.2s" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
             LinkedIn
@@ -102,7 +144,7 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
       </div>
     </div>
     <div style="border-top:1px solid rgba(0,194,255,0.08);padding:28px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
-      <p style="color:#8BB4CC;font-size:0.8rem">&copy; 2026 ProcessBI. All rights reserved. ABN in progress.</p>
+      <p style="color:#8BB4CC;font-size:0.8rem">&copy; 2026 Process BI Pty Ltd &nbsp;|&nbsp; ABN 20 685 419 096 &nbsp;|&nbsp; ACN 685 419 096</p>
       <div style="display:flex;gap:20px">
         <a href="#" style="color:#8BB4CC;font-size:0.75rem;text-decoration:none" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">Privacy Policy</a>
         <a href="#" style="color:#8BB4CC;font-size:0.75rem;text-decoration:none" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">Terms of Service</a>
@@ -300,9 +342,4 @@ if(typeof THREE !== 'undefined'){
       camera.aspect=innerWidth/innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(innerWidth,innerHeight);
-    },{passive:true});
-  })();
-}
-
-})();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    },{p
