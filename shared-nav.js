@@ -40,13 +40,11 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
    3. Nav links config
 ─────────────────────────────────────────────── */
 const NAV_LINKS = [
-  {href:'index.html',    label:'Home'},
-  {href:'services.html', label:'Services'},
-  {href:'methodology.html', label:'Methodology'},
-  {href:'case-studies.html', label:'Case Studies'},
-  {href:'technology.html', label:'Technology'},
-  {href:'about.html',   label:'About'},
-  {href:'contact.html', label:'Contact'},
+  {href:'index.html',       label:'Home'},
+  {href:'services.html',    label:'Services'},
+  {href:'industries.html',  label:'Industries'},
+  {href:'case-studies.html',label:'Case Studies'},
+  {href:'about.html',       label:'About'},
 ];
 
 const currentPage = (location.pathname.split('/').pop()||'index.html');
