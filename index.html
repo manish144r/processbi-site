@@ -2,26 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-<link rel="preload" href="/shared-nav.js?v=13" as="script">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProcessBI — Business Process Consulting Australia | Microsoft Fabric & Power BI</title>
-<meta name="description" content="ProcessBI — Australia's process-first business intelligence consultancy. We design better processes, then build the Microsoft Fabric and Power BI layer that makes them measurable.">
-<link rel="canonical" href="https://processbi.com.au/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="ProcessBI">
-<meta property="og:title" content="ProcessBI — Microsoft Fabric & AI Consulting">
-<meta property="og:description" content="Purpose-built technology stack for Australian enterprise. Microsoft Fabric implementation, Power BI consulting, agentic AI — all process-first.">
-<meta property="og:url" content="https://processbi.com.au/">
-<meta property="og:image" content="https://processbi.com.au/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@processbi">
-<meta name="twitter:title" content="ProcessBI — Microsoft Fabric & AI Consulting">
-<meta name="twitter:description" content="Australia's process-first business intelligence consultancy. Microsoft Fabric, Power BI, and process automation.">
-<meta name="twitter:image" content="https://processbi.com.au/og-image.png">
+<title>ProcessBI — Business Process. Business Intelligence. Business Results.</title>
+<meta name="description" content="ProcessBI helps Australian organisations design better business processes, then builds the intelligence layer that turns process data into competitive advantage. Microsoft Fabric · Power BI · Lean Six Sigma.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,7 +54,7 @@
   .ib0{animation-delay:.35s}.ib1{animation-delay:.52s}.ib2{animation-delay:.69s}.ib3{animation-delay:.86s}
   .iline{stroke-dasharray:200;stroke-dashoffset:200;animation:iDraw 1.05s ease-in-out 1.1s forwards}
   .iarr{opacity:0;animation:iPop .5s cubic-bezier(.34,1.56,.64,1) 2.15s forwards}
-  .inode{transform-box:fill-box;transform-origin:center;opacity:0;animation:iPop .45s cubic-bezier(.34,1.56,.64,1) both}
+  .inode{transform-box:fill-box;transform-origin:center;opacity:0;animation:iPop .45s cubic-bezier(.34,1.56,.64,1) backwards forwards}
   .in0{animation-delay:1.25s}.in1{animation-delay:1.47s}.in2{animation-delay:1.69s}.in3{animation-delay:1.91s}
   .ihalo{transform-box:fill-box;transform-origin:center;animation:iPulse 4.4s ease-in-out infinite}
   @keyframes iRise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
@@ -108,11 +91,23 @@
   <div class="mesh-gradient" style="background:#0D2347;bottom:-100px;left:30%;opacity:0.4"></div>
 
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center" style="padding-top:100px">
+    <!-- Animated logo above headline -->
+    <div class="flex justify-center mb-8">
+      <object data="logo-animated.svg" type="image/svg+xml" width="100" height="100" aria-label="ProcessBI logo"></object>
+    </div>
+
+    <div class="brand-label mb-4">PROCESS × INTELLIGENCE</div>
+
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-electric-500/20 bg-electric-500/5 mb-8">
+      <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow"></div>
+      <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Intelligence · Australia</span>
+    </div>
+
     <h1 class="font-display text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow">
       Better Processes.<br>Fewer Surprises.<br><span class="gradient-text">Smarter Business.</span>
     </h1>
     <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-6 leading-relaxed">
-      Australia's specialist business process consulting and business intelligence practice. We map how your organisation actually works — end to end — find the waste, redesign the process, then build the Microsoft Fabric and Power BI analytics layer that keeps the gains visible and permanent.
+      We map how your business works, find the problems hiding in your processes before they surface, then build the intelligence layer that keeps them from coming back.
     </p>
     <p class="text-slate-500 text-base mb-10"><span class="hero-tagline-line"></span>Where process meets intelligence</p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -120,6 +115,12 @@
       <a href="case-studies.html" class="btn-outline">View Case Studies</a>
     </div>
 
+    <!-- Proof points -->
+    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 mt-16 text-sm text-slate-500">
+      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>15+ Enterprise Engagements</div>
+      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>Lean Six Sigma Certified</div>
+      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>Based in Australia</div>
+    </div>
   </div>
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
@@ -134,7 +135,7 @@
     <div class="text-center mb-20 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">What We Do</span>
       <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">From Process Design<br><span class="gradient-text">to Business Intelligence</span></h2>
-      <p class="text-slate-600 max-w-2xl mx-auto text-lg">Australia's only consultancy that combines Lean Six Sigma process design, process automation consulting, and Microsoft Fabric implementation under one engagement. We fix how your business works first. The technology follows.</p>
+      <p class="text-slate-600 max-w-2xl mx-auto text-lg">We fix how your business works first. The technology follows.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="glass-card p-8 reveal" style="transition-delay:0.1s">
@@ -142,7 +143,7 @@
           <svg width="26" height="26" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M9 8h6M6 11h.01M9 11h9"/></svg>
         </div>
         <h3 class="font-display text-xl font-semibold text-slate-900 mb-3">Business Process Design &amp; Mapping</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5">We analyse how your organisation actually works — end to end. Business process mapping, gap analysis, and redesign using Lean Six Sigma DMAIC and ISO 9001 frameworks. Swim lane diagrams, BPMN 2.0, value stream mapping, and process simulation — all before any technology is touched. This is process improvement consulting in Australia the way it should be done.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">We analyse how your organisation actually works — end to end. Process mapping, gap analysis, and redesign using Lean Six Sigma and ISO 9001 frameworks. Before any technology is touched.</p>
         <a href="services.html" class="text-electric-500 text-sm font-medium hover:text-electric-400 transition-colors">Explore services →</a>
       </div>
       <div class="glass-card p-8 reveal" style="transition-delay:0.2s">
@@ -150,15 +151,15 @@
           <svg width="26" height="26" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
         </div>
         <h3 class="font-display text-xl font-semibold text-slate-900 mb-3">Process Automation &amp; Efficiency</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5">Eliminate waste, remove bottlenecks, and automate repetitive steps using Power Automate, Copilot Studio AI agents, and RPA. Process automation consulting in Australia done right: every automation is grounded in a redesigned, validated process — never layered on a broken one.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">Eliminate waste, remove bottlenecks, and automate repetitive steps using Power Automate, AI agents, and RPA. Every automation is grounded in a redesigned process — not layered on a broken one.</p>
         <a href="services.html" class="text-electric-500 text-sm font-medium hover:text-electric-400 transition-colors">Explore services →</a>
       </div>
       <div class="glass-card p-8 reveal" style="transition-delay:0.3s">
         <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(16,185,129,0.05))">
-          <svg width="26" height="26" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg width="26" height="26" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3 class="font-display text-xl font-semibold text-slate-900 mb-3">Process Intelligence &amp; Analytics</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mb-5">Once your processes are optimised, we instrument them with Microsoft Fabric and Power BI — Australia's most capable business intelligence platform combination — so every business decision is driven by real process data. Fraud detection, risk analytics, and operational dashboards. Business intelligence consulting in Australia that starts with the process, not the tool.</p>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">Once your processes are optimised, we instrument them with Microsoft Fabric and Power BI so every business decision is driven by real process data — not gut feel. Fraud detection, risk analytics, and operational dashboards included.</p>
         <a href="services.html" class="text-accent-emerald text-sm font-medium hover:text-green-400 transition-colors">Explore services →</a>
       </div>
     </div>
@@ -168,7 +169,6 @@
   </div>
 </section>
 
-
 <!-- ── AI Research Engine ── -->
 <section class="py-32 relative" id="ai-research-engine" style="background:rgba(255,255,255,0.02)">
   <div class="max-w-7xl mx-auto px-6">
@@ -177,7 +177,7 @@
     </div>
     <div class="text-center mb-16 reveal">
       <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-2 mb-4">Process Intelligence<br><span class="gradient-text">at Scale</span></h2>
-      <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-8">Our AI Research Engine continuously processes industry benchmarks, Australian regulatory standards (APRA, AML/CTF, ISO), and process best-practices — so every recommendation arrives backed by current evidence rather than a consultant's memory of the last similar project. This is what agentic AI consulting in Australia looks like in practice: proprietary intelligence infrastructure running 24/7 so client engagements start with deeper insight than any traditional consulting firm can match. You get strategic insight in days, not weeks.</p>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-8">We analyse your end-to-end business processes, identify bottlenecks, benchmark against industry standards, and design the optimised future state — in hours, not months.</p>
       <div class="inline-flex items-center gap-5 px-8 py-5 rounded-2xl" style="background:rgba(0,194,255,0.06);border:1px solid rgba(0,194,255,0.2)">
         <div class="font-black font-display text-5xl md:text-6xl neon-glow" style="color:#00C2FF;letter-spacing:-2px" id="ai-ops-counter">35,247</div>
         <div class="text-left">
@@ -192,7 +192,7 @@
           <svg width="22" height="22" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h3 class="font-display text-lg font-semibold text-slate-900 mb-3">Process Mapping in Hours</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">During discovery, we model your end-to-end process landscape using AI-assisted analysis tools. What used to take weeks of consultant hours compresses to days — without sacrificing rigour.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">We model your complete business process landscape, map dependencies, and identify inefficiencies before recommending any technology. Clients get a complete picture in hours, not weeks.</p>
       </div>
       <div class="glass-card p-8 reveal" style="transition-delay:0.2s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(14,165,233,0.05))">
@@ -210,7 +210,7 @@
       </div>
     </div>
     <div class="text-center reveal">
-      <p class="text-slate-600 text-base">Backed by <span class="text-slate-900 font-semibold">50+ enterprise projects</span> across Australian government, financial services, utilities, and manufacturing — with production deployments under APRA, AML/CTF, and NSW Government frameworks.</p>
+      <p class="text-slate-600 text-base">Backed by <span class="text-slate-900 font-semibold">15+ enterprise engagements</span> across government, financial services, utilities, and manufacturing.</p>
     </div>
   </div>
   <script>
@@ -248,7 +248,7 @@
     <div class="text-center mb-16 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Proof of Build</span>
       <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-4">Agentic Systems Built</h2>
-      <p class="text-slate-600 text-lg max-w-2xl mx-auto">The same agentic patterns deployed for enterprise clients run ProcessBI's own operations — making every engagement an improvement on the last. Real counts, updated continuously.</p>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto">Every orchestration system we deploy for clients compounds into our own. Real counts, updated continuously.</p>
     </div>
     <!-- Counter cards -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 reveal">
@@ -256,28 +256,28 @@
         <div class="flex justify-center mb-4">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.5"><circle cx="12" cy="5" r="2.5"/><circle cx="4" cy="19" r="2.5"/><circle cx="20" cy="19" r="2.5"/><line x1="12" y1="7.5" x2="4" y2="16.5"/><line x1="12" y1="7.5" x2="20" y2="16.5"/><line x1="4" y1="21.5" x2="20" y2="21.5" opacity="0.35"/></svg>
         </div>
-        <div class="agent-counter-num" id="ag-total">1315</div>
+        <div class="agent-counter-num" id="ag-total">0</div>
         <div class="agent-counter-label">Agents &amp; Workers Built</div>
       </div>
       <div class="agent-counter-card">
         <div class="flex justify-center mb-4">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
         </div>
-        <div class="agent-counter-num" id="ag-jobs">75</div>
+        <div class="agent-counter-num" id="ag-jobs">0</div>
         <div class="agent-counter-label">Production Pipelines Running</div>
       </div>
       <div class="agent-counter-card">
         <div class="flex justify-center mb-4">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.5"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
         </div>
-        <div class="agent-counter-num" id="ag-skills">19</div>
+        <div class="agent-counter-num" id="ag-skills">0</div>
         <div class="agent-counter-label">Specialised Skills Deployed</div>
       </div>
       <div class="agent-counter-card">
         <div class="flex justify-center mb-4">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.5"><rect x="2" y="7" width="5" height="10" rx="1"/><rect x="9.5" y="4" width="5" height="16" rx="1"/><rect x="17" y="9" width="5" height="8" rx="1"/></svg>
         </div>
-        <div class="agent-counter-num" id="ag-companies">8</div>
+        <div class="agent-counter-num" id="ag-companies">0</div>
         <div class="agent-counter-label">Agentic Systems Delivered</div>
       </div>
     </div>
@@ -349,11 +349,11 @@
       <div class="reveal">
         <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Why ProcessBI</span>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-6">Process First.<br>Technology Second. Always.</h2>
-        <p class="text-slate-600 leading-relaxed mb-6">Most BI firms start with the technology. We start with your processes. When the process is right, the data tells a clear story. When it's broken, no dashboard can fix it. ProcessBI brings 15+ years of business process consulting and data intelligence expertise to every Australian enterprise engagement — from process mapping workshops through Microsoft Fabric implementation. When organisations across government, financial services, and manufacturing need a process improvement consultant in Australia who also understands the data platform, ProcessBI is the only firm that closes both gaps in one engagement.</p>
+        <p class="text-slate-600 leading-relaxed mb-6">Most BI firms start with the technology. We start with your processes. When the process is right, the data tells a clear story. When it's broken, no dashboard can fix it. ProcessBI brings 15+ years of business process and data expertise to every engagement.</p>
         <div class="space-y-4">
           <div class="flex items-start gap-4">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-slate-900 font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-sm mt-0.5">We identify process gaps, bottlenecks, and risk points before they become incidents. Our business process mapping surfaces what's going wrong — and what will go wrong — before it costs you. Every process audit begins with a structured baseline, not a blank whiteboard.</p></div>
+            <div><h4 class="text-slate-900 font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-sm mt-0.5">We identify process gaps, bottlenecks, and risk points before they become incidents. Our process mapping surfaces what's going wrong — and what will go wrong — before it costs you.</p></div>
           </div>
           <div class="flex items-start gap-4">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -365,7 +365,7 @@
           </div>
           <div class="flex items-start gap-4">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-slate-900 font-medium text-sm">AI Research Engine &amp; Agentic AI Consulting</h4><p class="text-slate-500 text-sm mt-0.5">12 autonomous agents continuously researching benchmarks, regulatory updates, and process standards — the same agentic AI patterns we deploy for clients, running ProcessBI's own operations. Australia's first truly AI-native process intelligence consultancy.</p></div>
+            <div><h4 class="text-slate-900 font-medium text-sm">AI Research Engine</h4><p class="text-slate-500 text-sm mt-0.5">12 autonomous agents working around the clock on research, proposals, and client intelligence.</p></div>
           </div>
         </div>
         <div class="flex gap-4 mt-10">
@@ -403,7 +403,7 @@
     <div class="text-center mb-16 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Industries We Serve</span>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">Every Industry Has Processes<br>Worth Improving</h2>
-      <p class="text-slate-600 max-w-2xl mx-auto">ProcessBI has redesigned processes and built data platforms across every major Australian industry sector. The methodology — process-first, then automation, then business intelligence — is the same. The regulatory context, systems, and business culture are always unique.</p>
+      <p class="text-slate-600 max-w-2xl mx-auto">We've redesigned processes across every sector. The methodology is the same. The business context is always unique.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
       <div class="glass-card p-6 reveal" style="transition-delay:0.05s">
@@ -411,130 +411,42 @@
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Government &amp; Public Sector</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">DTA-aligned analytics, procurement-compliant delivery, audit trails, and citizen-service intelligence for NSW, VIC, and QLD agencies.</p>
+        <p class="text-slate-500 text-xs leading-relaxed">Compliance-ready analytics, audit trails, and citizen-service intelligence platforms.</p>
       </div>
       <div class="glass-card p-6 reveal" style="transition-delay:0.1s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9" y1="14.5" x2="15" y2="14.5"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Financial Services &amp; Super</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">APRA CPS 234 and RG271-aligned risk dashboards, AML/CTF monitoring, fraud detection, and superannuation fund performance analytics.</p>
+        <p class="text-slate-500 text-xs leading-relaxed">APRA-aligned risk dashboards, fraud detection, and fund performance analytics.</p>
       </div>
       <div class="glass-card p-6 reveal" style="transition-delay:0.15s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Utilities &amp; Infrastructure</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Asset performance monitoring, outage prediction, operational efficiency dashboards, and AER regulatory reporting — from network operations centres to executive briefing packs.</p>
+        <p class="text-slate-500 text-xs leading-relaxed">Asset performance monitoring, outage prediction, and operational efficiency dashboards.</p>
       </div>
       <div class="glass-card p-6 reveal" style="transition-delay:0.2s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 1 4.93 19.07M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Manufacturing &amp; Supply Chain</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">End-to-end production visibility, ISO 9001-aligned quality analytics, and logistics intelligence — connecting planning, production, and distribution into a single governed data model.</p>
+        <p class="text-slate-500 text-xs leading-relaxed">End-to-end production visibility, quality analytics, and logistics intelligence.</p>
       </div>
       <div class="glass-card p-6 reveal" style="transition-delay:0.25s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Education &amp; Not-for-Profit</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">ACNC-compliant grant reporting, student outcome analytics, and mission-impact dashboards — data platforms that demonstrate value to funders, boards, and regulators, not just management.</p>
+        <p class="text-slate-500 text-xs leading-relaxed">Grant reporting, student outcome analytics, and mission-impact dashboards.</p>
       </div>
       <div class="glass-card p-6 reveal" style="transition-delay:0.3s">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
           <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         </div>
         <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Retail &amp; Consumer</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Customer lifetime value analytics, inventory intelligence, and omnichannel performance reporting — built on real-time transaction feeds, not end-of-day batch extracts.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── Testimonials / Social Proof ── -->
-<section class="py-24 relative" style="background:rgba(255,255,255,0.02)">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Client Outcomes</span>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">What Australian Organisations<br>Say About Working With Us</h2>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="glass-card p-8 reveal" style="transition-delay:0.1s">
-        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">"ProcessBI mapped our end-to-end billing process and found eleven handoff failures we didn't know existed. The redesign cut our disputes resolution time from 14 days to 3. The Power BI dashboard now flags emerging dispute clusters before they escalate."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
-            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div>
-            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">Head of Operations</div>
-            <div style="color:#8BB4CC;font-size:0.72rem">ASX-listed Utilities Group</div>
-          </div>
-        </div>
-      </div>
-      <div class="glass-card p-8 reveal" style="transition-delay:0.2s">
-        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">"We'd tried two other BI vendors. ProcessBI was the first firm that insisted on understanding how our grants assessment process actually worked before touching data. Six weeks later we had a Fabric lakehouse that our auditors actually trusted."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
-            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div>
-            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">Digital Transformation Lead</div>
-            <div style="color:#8BB4CC;font-size:0.72rem">NSW Government Agency</div>
-          </div>
-        </div>
-      </div>
-      <div class="glass-card p-8 reveal" style="transition-delay:0.3s">
-        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" class="mb-5" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 3.2C11.2 4.2667 8.5333 6.9333 8 11.2H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.6 32 0L33.6 3.2C28.8 4.2667 26.1333 6.9333 25.6 11.2H32V24H17.6Z" fill="rgba(0,194,255,0.25)"/></svg>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">"The DMAIC engagement surfaced significant process waste across our loan origination workflow — cycles that took 12 days were redesigned to complete in under 2. ProcessBI didn't just identify the problems — they co-designed the future-state process, automated the top five manual steps, and built the reporting layer to prove the gains held."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(26,127,255,0.1));border:1px solid rgba(0,194,255,0.2)">
-            <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div>
-            <div style="color:#FFFFFF;font-size:0.8rem;font-weight:600">CFO</div>
-            <div style="color:#8BB4CC;font-size:0.72rem">Mid-tier Financial Services Group</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-12 reveal">
-      <a href="case-studies.html" class="btn-outline">See Full Case Studies</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Technology Partners ── -->
-<section class="py-12 border-y border-slate-100">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-center text-slate-400 text-xs font-semibold tracking-widest uppercase mb-8">Built on enterprise-grade platforms</p>
-    <div class="flex flex-wrap items-center justify-center gap-10 opacity-60">
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 21 21" fill="none"><rect x="1" y="1" width="9" height="9" fill="#F25022"/><rect x="11" y="1" width="9" height="9" fill="#7FBA00"/><rect x="1" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Microsoft</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#2E6BF6"/><rect x="5" y="5" width="7" height="7" fill="white" opacity="0.9"/><rect x="14" y="5" width="7" height="7" fill="white" opacity="0.6"/><rect x="5" y="14" width="7" height="7" fill="white" opacity="0.6"/><rect x="14" y="14" width="7" height="7" fill="white" opacity="0.9"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Microsoft Fabric</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#F2C811"/><rect x="8" y="18" width="4" height="8" rx="1" fill="#1F1F1F"/><rect x="14" y="12" width="4" height="14" rx="1" fill="#1F1F1F"/><rect x="20" y="7" width="4" height="19" rx="1" fill="#1F1F1F"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Power BI</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#0078D4"/><path d="M16 6L6 24h8l2-4h8L16 6z" fill="white" opacity="0.9"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Azure</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#FF3621"/><path d="M16 9L23 13v6l-7 4-7-4v-6l7-4z" fill="white"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Databricks</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#1d4ed8"/><path d="M16 7l2.4 7.2H26l-6.1 4.5 2.3 7.3L16 21.5l-6.2 4.5 2.3-7.3L6 14.2h7.6L16 7z" fill="white"/></svg>
-        <span class="text-slate-600 font-semibold text-sm">Lean Six Sigma</span>
+        <p class="text-slate-500 text-xs leading-relaxed">Customer analytics, inventory intelligence, and omnichannel performance reporting.</p>
       </div>
     </div>
   </div>
@@ -546,7 +458,7 @@
     <div class="text-center mb-12 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">How We Work</span>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">The ProcessBI Method</h2>
-      <p class="text-slate-600 max-w-xl mx-auto">Three disciplines, sequenced in the right order. Fix the process using Lean Six Sigma. Then automate it with Power Automate and AI. Then instrument it with Microsoft Fabric and Power BI. Skip a step and the data lies to you.</p>
+      <p class="text-slate-600 max-w-xl mx-auto">Three disciplines. One outcome: processes that work better, cost less, and generate better data.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="glass-card p-7 reveal" style="transition-delay:0.1s">
@@ -589,135 +501,6 @@
   </div>
 </section>
 
-<!-- ── Practice Lead ── -->
-<section class="py-20 relative" style="background:rgba(255,255,255,0.02)">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="glass-card p-10 md:p-14 reveal" style="border-radius:16px">
-      <div class="grid md:grid-cols-3 gap-10 items-center">
-        <div class="md:col-span-2">
-          <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">The Practice</span>
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-5">Built by a Practitioner,<br>Not a Generalist Firm</h2>
-          <p class="text-slate-500 text-sm leading-relaxed mb-4">ProcessBI is a specialist practice, not a large generalist consultancy. That means every engagement is led by a senior practitioner with hands-on experience across process design, automation, and Microsoft Fabric — not handed to a junior analyst after the sales meeting.</p>
-          <p class="text-slate-500 text-sm leading-relaxed mb-6">The practice lead brings 15+ years designing and fixing enterprise processes across government, financial services, utilities, and manufacturing — and has personally delivered Microsoft Fabric and Power BI platforms under APRA, AML/CTF, and NSW Government frameworks. The AI Research Engine running behind every engagement is the same infrastructure we've built for clients.</p>
-          <div class="flex flex-wrap gap-3">
-            <span class="tag-badge">Lean Six Sigma Black Belt</span>
-            <span class="tag-badge">Microsoft Certified: Fabric Analytics</span>
-            <span class="tag-badge">BPMN 2.0</span>
-            <span class="tag-badge">ISO 9001</span>
-            <span class="tag-badge">APRA CPS 234</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-5 text-center">
-          <div class="glass-card p-6" style="border-radius:12px">
-            <div class="text-3xl font-black font-display gradient-text-blue mb-1">15+</div>
-            <div class="text-slate-500 text-xs uppercase tracking-wider">Years in Process &amp; BI</div>
-          </div>
-          <div class="glass-card p-6" style="border-radius:12px">
-            <div class="text-3xl font-black font-display" style="color:#0ea5e9">50+</div>
-            <div class="text-slate-500 text-xs uppercase tracking-wider">Enterprise Engagements</div>
-          </div>
-          <a href="about.html" class="btn-outline text-sm" style="padding:12px 20px">About the Practice &#8594;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
-<section class="py-32 relative">
-  <div class="max-w-3xl mx-auto px-6 text-center reveal">
-    <div class="mesh-gradient" style="background:#00C2FF;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06"></div>
-    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Get Started</span>
-    <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">Ready to Fix How<br>Your Business Works?</h2>
-    <p class="text-slate-600 text-lg mb-10">Tell us about a process that's costing you time, money, or accuracy — or a data platform that isn't delivering. We'll map it, benchmark it against industry standards, and come back with a concrete improvement plan. No obligation. One Australian business day.</p>
-    <a href="contact.html" class="btn-primary text-lg w-full sm:w-auto block sm:inline-block" style="padding:18px 48px">Book a Free Discovery Call</a>
-  </div>
-</section>
-
-<!-- ── FAQ Section ── -->
-<section class="py-20 relative" style="background:rgba(255,255,255,0.02)">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Common Questions</span>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">Process &amp; BI Consulting FAQ</h2>
-    </div>
-    <div class="space-y-3 reveal">
-      <details class="glass-card" style="border-radius:12px;overflow:hidden">
-        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#ffffff;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
-          What is business process mapping and why does it matter?
-          <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <div style="padding:0 24px 20px;color:#ffffff;font-size:0.875rem;line-height:1.75">
-          Business process mapping is the practice of documenting how work actually moves through an organisation — who does what, in what order, with what systems, and where it breaks down. A process map uses standardised notations like BPMN 2.0 or cross-functional swim lane diagrams to make the invisible visible. Most operational problems in Australian enterprise — missed SLAs, compliance gaps, rework, and handoff delays — are process problems wearing technology clothing. No software tool fixes a broken process. You have to map it first.
-        </div>
-      </details>
-      <details class="glass-card" style="border-radius:12px;overflow:hidden">
-        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#ffffff;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
-          What's the difference between process mapping and process design?
-          <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <div style="padding:0 24px 20px;color:#ffffff;font-size:0.875rem;line-height:1.75">
-          Process mapping documents the current state — the AS-IS. Process design creates the future state — the TO-BE. Both are necessary; skipping mapping and jumping straight to design produces a shiny new process built on misunderstood inputs. At ProcessBI, every engagement starts with current-state process mapping, then moves to gap analysis using Lean Six Sigma DMAIC, then to TO-BE process design. Only after the future state is signed off does any technology get specified.
-        </div>
-      </details>
-      <details class="glass-card" style="border-radius:12px;overflow:hidden">
-        <summary style="padding:20px 24px;cursor:pointer;list-style:none;color:#ffffff;font-weight:600;font-size:0.95rem;display:flex;align-items:center;justify-content:space-between">
-          How long does a business process consulting engagement take in Australia?
-          <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <div style="padding:0 24px 20px;color:#ffffff;font-size:0.875rem;line-height:1.75">
-          A process mapping and gap analysis workshop is typically 1–2 weeks. A full Lean Six Sigma DMAIC cycle with redesign runs 4–8 weeks for a single process domain. Adding process automation adds 2–6 weeks per automation domain. A Microsoft Fabric implementation runs 4–12 weeks depending on data estate complexity. Combined process-to-BI engagements across government and financial services typically run 3–6 months end to end. All engagements start with a free 30-minute discovery call and a written scope within 48 hours.
-        </div>
-      </details>
-    </div>
-    <div class="text-center mt-10 reveal">
-      <a href="services.html" class="btn-outline">See All Services &amp; FAQs</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── Partners Section ── -->
-<section class="py-20 relative" id="partners">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-12 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Ecosystem</span>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">Our Partners</h2>
-      <p class="text-slate-600 max-w-xl mx-auto">We work alongside specialist partners who extend ProcessBI's capabilities in design and enterprise data engineering.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6 reveal">
-      <!-- DesignersMeet -->
-      <div class="glass-card p-8" style="border-radius:16px;border:1px solid rgba(0,194,255,0.15)">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(46,107,246,0.1));border:1px solid rgba(0,194,255,0.2)">
-            <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <div>
-            <div class="font-display font-bold text-base" style="color:#FFFFFF">DesignersMeet</div>
-            <div class="brand-label" style="font-size:9px;opacity:0.7">DESIGN PARTNER</div>
-          </div>
-        </div>
-        <p class="text-slate-500 text-sm leading-relaxed mb-4">DesignersMeet brings design system thinking, brand identity, and UX expertise to enterprise B2B products. When a ProcessBI engagement involves a customer-facing portal, process dashboard, or rebranded reporting suite, DesignersMeet provides the design capability.</p>
-        <a href="partnerships.html#designersmeet" class="text-electric-500 text-sm font-semibold" style="text-decoration:none">Learn more &rarr;</a>
-      </div>
-      <!-- Analytics Creator -->
-      <div class="glass-card p-8" style="border-radius:16px;border:1px solid rgba(0,194,255,0.15)">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,194,255,0.2),rgba(46,107,246,0.1));border:1px solid rgba(0,194,255,0.2)">
-            <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          </div>
-          <div>
-            <div class="font-display font-bold text-base" style="color:#FFFFFF">Analytics Creator</div>
-            <div class="brand-label" style="font-size:9px;opacity:0.7">DATA ENGINEERING PARTNER</div>
-          </div>
-        </div>
-        <p class="text-slate-500 text-sm leading-relaxed mb-4">Analytics Creator is an enterprise data warehouse automation platform for SQL Server and SSIS environments. It automates Kimball-style dimensional models and Data Vault structures — reducing warehouse build time and ensuring every data model is auditable from the start.</p>
-        <a href="partnerships.html#analytics-creator" class="text-electric-500 text-sm font-semibold" style="text-decoration:none">Learn more &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── CTA ── -->
 <section class="py-32 relative">
   <div class="max-w-3xl mx-auto px-6 text-center reveal">
@@ -730,6 +513,6 @@
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="shared-nav.js?v=13" defer></script>
+<script src="shared-nav.js"></script>
 </body>
-</h
+</html>

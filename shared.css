@@ -40,11 +40,9 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:#8BB4CC !important}
 
 /* ── Nav ── */
 .nav-blur{
-  -webkit-backdrop-filter:blur(20px);
   backdrop-filter:blur(20px);
-  background:rgba(11,26,46,0.92);
-  border-bottom:2px solid rgba(0,194,255,0.25);
-  box-shadow:0 4px 32px rgba(0,0,0,0.4)
+  background:rgba(11,26,46,0.72);
+  border-bottom:1px solid rgba(0,194,255,0.1)
 }
 #navbar{transition:border-color 0.3s}
 
@@ -323,20 +321,22 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:#8BB4CC !important}
 
 /* ── Mobile responsiveness ── */
 @media (max-width: 768px) {
-  /* Hero sections */
   .page-hero { padding: 100px 16px 60px }
-  .page-hero h1 { font-size: 2.5rem; word-break: break-word }
-  /* Cards */
+  .page-hero h1 { font-size: 2.5rem }
   .glass-card { border-radius: 12px }
-  .glass-card:hover { transform: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25) }
-  .step-card { padding: 20px; overflow: hidden }
-  .step-card:hover { transform: none }
-  .service-card { padding: 20px }
-  .service-card:hover { transform: none }
-  .tech-badge:hover { transform: none }
-  /* Architecture flow */
-  .arch-flow { font-size: 11px; padding: 10px 12px; white-space: normal; overflow-x: auto }
+  .glass-card:hover { transform: none }
+  .arch-flow { font-size: 11px; padding: 10px 12px; white-space: normal }
   .arch-node { margin: 2px }
   .arch-arrow { display: none }
-  /* Buttons */
-  .btn-primary, .btn-outl
+  .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.9rem }
+  .metric-number { font-size: 2.2rem }
+  .step-number { font-size: 3.5rem }
+  .industry-icon { width: 40px; height: 40px }
+  .marquee-track { animation-duration: 20s }
+}
+@media (max-width: 480px) {
+  .page-hero { padding: 80px 12px 40px }
+  .page-hero h1 { font-size: 2rem }
+  .tag-badge, .tag-badge-blue, .tag-badge-green { font-size: 9px; padding: 2px 8px }
+  .step-card { padding: 20px 24px }
+}
