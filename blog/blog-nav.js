@@ -118,7 +118,7 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
       <div>
         <h4 style="color:#FFFFFF;font-weight:600;font-size:0.875rem;margin-bottom:16px">Contact</h4>
         <div class="space-y-2">
-          <p style="color:#8BB4CC;font-size:0.875rem">hello@processbi.com.au</p>
+          <p style="color:#8BB4CC;font-size:0.875rem">info@processbi.com.au</p>
           <p style="color:#8BB4CC;font-size:0.875rem">Melbourne, Australia</p>
           <a href="https://linkedin.com/in/manish-sharma-processbi" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#8BB4CC;font-size:0.875rem;text-decoration:none;margin-top:8px;transition:color 0.2s" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
@@ -128,7 +128,7 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
       </div>
     </div>
     <div style="border-top:1px solid rgba(0,194,255,0.08);padding:28px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
-      <p style="color:#8BB4CC;font-size:0.8rem">&copy; 2026 ProcessBI. All rights reserved. ABN in progress.</p>
+      <p style="color:#8BB4CC;font-size:0.8rem">&copy; 2026 Process BI Pty Ltd &nbsp;|&nbsp; ABN 20 685 419 096 &nbsp;|&nbsp; ACN 685 419 096</p>
       <div style="display:flex;gap:20px">
         <a href="#" style="color:#8BB4CC;font-size:0.75rem;text-decoration:none" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">Privacy Policy</a>
         <a href="#" style="color:#8BB4CC;font-size:0.75rem;text-decoration:none" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">Terms of Service</a>
@@ -216,8 +216,4 @@ if(typeof THREE!=='undefined'){
       renderer.render(scene,camera);
     }
     animate();
-    window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);},{passive:true});
-  })();
-}
-
-})();
+    window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);},{p
