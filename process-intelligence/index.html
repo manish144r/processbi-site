@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProcessBI — Process Intelligence Tool</title>
+<meta name="description" content="AI-powered business process mapping, RACI generation, SOP creation, and automation scoring.">
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root {
+    --navy-900: #06182F;
+    --navy-800: #0B1A2E;
+    --navy-700: #0D2347;
+    --navy-600: #0f2d5e;
+    --navy-500: #1a4a8a;
+    --teal-400: #46D5FF;
+    --teal-500: #1EAEFF;
+    --teal-600: #0078d4;
+    --emerald: #10b981;
+    --amber: #F59E0B;
+    --rose: #EF4444;
+    --white: #ffffff;
+    --grey-100: #f3f4f6;
+    --grey-200: #e5e7eb;
+    --grey-400: #9ca3af;
+    --grey-600: #4b5563;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy-900);
+    color: var(--white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  .font-display { font-family: var(--font-display); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy-800); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-500); border-radius: 3px; }
+
+  /* Animations */
+  @keyframes pulse-teal {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(30, 174, 255, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(30, 174, 255, 0); }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  @keyframes flow {
+    from { stroke-dashoffset: 30; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .animate-fadein { animation: fadeIn 0.4s ease both; }
+  .animate-spin { animation: spin 1s linear infinite; }
+  .animate-pulse-teal { animation: pulse-teal 2s infinite; }
+
+  /* Card */
+  .card {
+    background: var(--navy-700);
+    border: 1px solid rgba(30, 174, 255, 0.15);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card:hover { border-color: rgba(30, 174, 255, 0.35); transition: border-color 0.2s; }
+
+  /* Button */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal-600), var(--teal-500));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(30, 174, 255, 0.4); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .btn-secondary {
+    background: rgba(30, 174, 255, 0.1);
+    color: var(--teal-400);
+    border: 1px solid rgba(30, 174, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(30, 174, 255, 0.2); }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge-auto { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+  .badge-assisted { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .badge-human { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .badge-teal { background: rgba(30, 174, 255, 0.12); color: var(--teal-400); border: 1px solid rgba(30,174,255,0.25); }
+
+  /* Score bar */
+  .score-bar-bg { background: rgba(255,255,255,0.1); border-radius: 4px; height: 6px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+
+  /* Textarea */
+  textarea, input[type="text"], select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: white;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    width: 100%;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  textarea:focus, input:focus, select:focus {
+    outline: none;
+    border-color: var(--teal-500);
+    box-shadow: 0 0 0 3px rgba(30, 174, 255, 0.1);
+  }
+  select option { background: var(--navy-700); color: white; }
+
+  label { font-size: 13px; font-weight: 500; color: var(--grey-400); display: block; margin-bottom: 6px; }
+
+  /* Step card */
+  .step-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.2s;
+  }
+  .step-card:hover { background: rgba(30, 174, 255, 0.06); border-color: rgba(30, 174, 255, 0.2); }
+
+  /* Tab */
+  .tab { padding: 8px 18px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s; }
+  .tab-active { background: var(--teal-600); color: white; }
+  .tab-inactive { background: transparent; color: var(--grey-400); }
+  .tab-inactive:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+
+  /* Divider */
+  .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 20px 0; }
+
+  /* Stat card */
+  .stat-card {
+    background: rgba(30, 174, 255, 0.08);
+    border: 1px solid rgba(30, 174, 255, 0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .stat-value { font-size: 28px; font-weight: 700; color: var(--teal-400); font-family: var(--font-display); }
+  .stat-label { font-size: 12px; color: var(--grey-400); margin-top: 4px; }
+
+  /* Progress step indicator */
+  .stage-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .stage-dot-done { background: var(--emerald); color: white; }
+  .stage-dot-active { background: var(--teal-600); color: white; animation: pulse-teal 2s infinite; }
+  .stage-dot-pending { background: rgba(255,255,255,0.08); color: var(--grey-400); }
+  .stage-line { flex: 1; height: 2px; background: rgba(255,255,255,0.1); }
+  .stage-line-done { background: var(--emerald); }
+
+  /* Spinner */
+  .spinner { width: 24px; height: 24px; border: 3px solid rgba(30,174,255,0.2); border-top-color: var(--teal-500); border-radius: 50%; display: inline-block; }
+
+  /* Swimlane mini preview */
+  .swimlane-preview { overflow-x: auto; padding-bottom: 8px; }
+
+  /* ROI highlight */
+  .roi-highlight {
+    background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(30,174,255,0.1));
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 12px;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useCallback, useRef } = React;
+
+// ── Constants ───────────────────────────────────────────────────────────────
+const INDUSTRIES = [
+  "Finance & Banking", "Insurance", "Superannuation", "Government",
+  "Healthcare", "Retail & eCommerce", "Manufacturing", "Technology",
+  "Professional Services", "Education", "General"
+];
+
+const SAMPLE_PROCESSES = {
+  invoice_approval: {
+    name: "Invoice Approval Process",
+    industry: "Finance & Banking",
+    text: `Invoice Approval Process - Finance Department
+
+1. Invoice Receipt
+The Accounts Payable team receives supplier invoices via email or post. Invoices are logged into SAP with a unique reference number. The AP team checks that the invoice includes ABN, GST amount, and PO number.
+
+2. PO Matching
+The AP team checks SAP to match the invoice against the corresponding Purchase Order. If the invoice matches the PO (within 5% tolerance), it progresses. If there is a discrepancy, the AP team contacts the supplier via email to request a corrected invoice.
+
+3. Three-Way Match
+The AP team performs a three-way match: Purchase Order vs Goods Receipt Note vs Invoice. If all three match, the invoice is approved for payment. If there is a discrepancy between GRN and invoice, the AP team escalates to the Procurement Manager.
+
+4. Manager Approval
+Invoices over $10,000 are routed to the Finance Manager for approval via Power Automate approval flow in Microsoft Teams. The Finance Manager reviews and approves or rejects within 48 hours. Approved invoices move to payment processing.
+
+5. Payment Processing
+The AP team schedules the payment in SAP according to the supplier's payment terms (typically 30 days). Payment runs are executed weekly every Thursday by the Treasury team. Payment remittances are automatically emailed to suppliers via SAP.
+
+6. Reconciliation
+At month end, the Finance Manager reconciles AP ledger against bank statements in SAP. Discrepancies are investigated and resolved before month-end close. Reconciled data is exported to Excel for CFO reporting.`
+  },
+  employee_onboarding: {
+    name: "Employee Onboarding Process",
+    industry: "General",
+    text: `Employee Onboarding Process - Human Resources
+
+Step 1: Offer Acceptance
+The Recruitment team sends the employment offer letter via DocuSign to the successful candidate. The candidate reviews and signs the letter electronically. The HR system (Workday) is updated with the candidate's status to "Offer Accepted".
+
+Step 2: Background Check Initiation
+HR initiates a background check through the third-party provider (Sterling) by submitting the candidate's details via the Sterling portal. The background check covers employment history, education, and police check. Results are received within 5 business days.
+
+Step 3: Background Check Review
+If the background check returns clear, onboarding proceeds. If adverse results are returned, the HR Director reviews the results and makes a hiring decision in consultation with the hiring manager. Candidates with disqualifying findings are notified by HR.
+
+Step 4: System Access Provisioning
+IT creates the employee's Active Directory account 5 days before start date. IT provisions access to required systems based on the role template in ServiceNow. A welcome email with credentials is sent to the employee's personal email.
+
+Step 5: Equipment Setup
+IT prepares the laptop, monitors, and peripherals based on the equipment request submitted by the hiring manager. Equipment is set up with standard software image. New starter kit (security pass, business cards) is prepared by Facilities.
+
+Step 6: Day 1 Orientation
+HR conducts a 2-hour induction session covering company policies, values, and compliance training. The new employee completes mandatory online compliance modules in the LMS (Cornerstone). Completion is tracked automatically in Workday.
+
+Step 7: 30-Day Check-in
+The HR Business Partner schedules a 30-day check-in meeting with the new employee and their manager. The manager completes a 30-day onboarding survey in Workday. Any issues are escalated to the HR Director.`
+  }
+};
+
+// ── Score bar component ──────────────────────────────────────────────────────
+function ScoreBar({ score }) {
+  const colour = score >= 80 ? '#34d399' : score >= 50 ? '#fbbf24' : '#f87171';
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="score-bar-bg" style={{ flex: 1 }}>
+        <div className="score-bar-fill" style={{ width: `${score}%`, background: colour }} />
+      </div>
+      <span style={{ fontSize: 13, fontWeight: 700, color: colour, minWidth: 32 }}>{score}</span>
+    </div>
+  );
+}
+
+// ── Automation badge ─────────────────────────────────────────────────────────
+function AutoBadge({ cls }) {
+  if (!cls) return null;
+  const map = {
+    FULLY_AUTOMATABLE: { label: '✓ Automatable', cn: 'badge-auto' },
+    HUMAN_ASSISTED:    { label: '⚡ Assisted',    cn: 'badge-assisted' },
+    HUMAN_ONLY:        { label: '👤 Human Only', cn: 'badge-human' },
+  };
+  const { label, cn } = map[cls] || { label: cls, cn: 'badge-teal' };
+  return <span className={`badge ${cn}`}>{label}</span>;
+}
+
+// ── Stage header ─────────────────────────────────────────────────────────────
+function StageHeader({ stage, currentStage }) {
+  const stages = [
+    { n: 1, label: 'Map Process' },
+    { n: 2, label: 'Automation Score' },
+    { n: 3, label: 'Improvement' },
+    { n: 4, label: 'Report' },
+  ];
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 32 }}>
+      {stages.map((s, i) => (
+        <React.Fragment key={s.n}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className={`stage-dot ${
+              s.n < currentStage ? 'stage-dot-done' :
+              s.n === currentStage ? 'stage-dot-active' : 'stage-dot-pending'
+            }`}>
+              {s.n < currentStage ? '✓' : s.n}
+            </div>
+            <span style={{ fontSize: 11, color: s.n === currentStage ? 'var(--teal-400)' : 'var(--grey-400)', whiteSpace: 'nowrap' }}>
+              {s.label}
+            </span>
+          </div>
+          {i < stages.length - 1 && (
+            <div className={`stage-line ${s.n < currentStage ? 'stage-line-done' : ''}`} style={{ margin: '0 8px', marginBottom: 18 }} />
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+// ── Step detail card ─────────────────────────────────────────────────────────
+function StepCard({ step, index }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="step-card animate-fadein" style={{ animationDelay: `${index * 0.04}s` }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, cursor: 'pointer' }} onClick={() => setExpanded(!expanded)}>
+        <div style={{
+          width: 32, height: 32, borderRadius: '50%',
+          background: 'rgba(30,174,255,0.15)',
+          border: '1px solid rgba(30,174,255,0.3)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 12, fontWeight: 700, color: 'var(--teal-400)', flexShrink: 0
+        }}>
+          {step.step_id || index + 1}
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
+            <span style={{ fontSize: 14, fontWeight: 600 }}>{step.step_name}</span>
+            <AutoBadge cls={step.automation_class} />
+            {step.compliance_flags?.length > 0 && (
+              <span className="badge" style={{ background: 'rgba(239,68,68,0.12)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.3)', fontSize: 10 }}>
+                ⚠ {step.compliance_flags.length} flag{step.compliance_flags.length > 1 ? 's' : ''}
+              </span>
+            )}
+          </div>
+          <div style={{ fontSize: 13, color: 'var(--grey-400)', marginBottom: 8 }}>
+            <span style={{ color: 'var(--teal-400)', fontWeight: 500 }}>{step.actor}</span>
+            {step.systems_used?.length > 0 && <span> · {step.systems_used.slice(0,2).join(', ')}</span>}
+          </div>
+          {step.automation_score !== undefined && (
+            <ScoreBar score={step.automation_score} />
+          )}
+        </div>
+        <span style={{ color: 'var(--grey-400)', fontSize: 18, flexShrink: 0 }}>{expanded ? '▲' : '▼'}</span>
+      </div>
+
+      {expanded && (
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.08)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, fontSize: 13 }} className="animate-fadein">
+          <div>
+            <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Description</div>
+            <div>{step.description || '—'}</div>
+          </div>
+          <div>
+            <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Recommended Tool</div>
+            <div style={{ color: 'var(--teal-400)', fontWeight: 500 }}>{step.automation_tool_rec || '—'}</div>
+          </div>
+          {step.data_in?.length > 0 && (
+            <div>
+              <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Data In</div>
+              <div>{step.data_in.join(', ')}</div>
+            </div>
+          )}
+          {step.data_out?.length > 0 && (
+            <div>
+              <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Data Out</div>
+              <div>{step.data_out.join(', ')}</div>
+            </div>
+          )}
+          {step.automation_tool_reason && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Rationale</div>
+              <div style={{ color: 'var(--grey-400)', fontSize: 12 }}>{step.automation_tool_reason}</div>
+            </div>
+          )}
+          {step.compliance_flags?.length > 0 && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ color: 'var(--grey-400)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', marginBottom: 4 }}>Compliance Flags</div>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                {step.compliance_flags.map(f => (
+                  <span key={f} className="badge" style={{ background: 'rgba(239,68,68,0.1)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.2)', fontSize: 10 }}>{f}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Mini swimlane preview ────────────────────────────────────────────────────
+function SwimlanePreview({ steps }) {
+  if (!steps?.length) return null;
+
+  // Group by actor
+  const actorOrder = [];
+  const actorSteps = {};
+  steps.forEach(s => {
+    if (!actorSteps[s.actor]) { actorOrder.push(s.actor); actorSteps[s.actor] = []; }
+    actorSteps[s.actor].push(s);
+  });
+
+  const classColour = { FULLY_AUTOMATABLE: '#10b981', HUMAN_ASSISTED: '#f59e0b', HUMAN_ONLY: '#ef4444' };
+  const laneH = 72;
+  const stepW = 120;
+  const stepH = 44;
+  const gap = 20;
+  const labelW = 120;
+  const svgW = labelW + steps.length * (stepW + gap) + gap * 2;
+  const svgH = actorOrder.length * (laneH + 8) + 20;
+
+  return (
+    <div className="swimlane-preview">
+      <svg width={svgW} height={svgH} style={{ minWidth: svgW }}>
+        {actorOrder.map((actor, aIdx) => {
+          const y = aIdx * (laneH + 8);
+          return (
+            <g key={actor}>
+              <rect x={0} y={y} width={svgW} height={laneH}
+                fill={aIdx % 2 === 0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.015)'}
+                stroke="rgba(255,255,255,0.08)" />
+              <text x={8} y={y + laneH / 2 + 5} fill="rgba(255,255,255,0.5)" fontSize={11} fontWeight={600}>
+                {actor.length > 15 ? actor.slice(0, 14) + '…' : actor}
+              </text>
+            </g>
+          );
+        })}
+        {steps.map((step, sIdx) => {
+          const actorIdx = actorOrder.indexOf(step.actor);
+          if (actorIdx < 0) return null;
+          const x = labelW + sIdx * (stepW + gap) + gap;
+          const y = actorIdx * (laneH + 8) + (laneH - stepH) / 2;
+          const col = classColour[step.automation_class] || '#1EAEFF';
+          const isDiamond = step.decision_point;
+          return (
+            <g key={step.step_id || sIdx}>
+              {sIdx > 0 && (() => {
+                const prevStep = steps[sIdx - 1];
+                const prevActorIdx = actorOrder.indexOf(prevStep.actor);
+                const px = labelW + (sIdx - 1) * (stepW + gap) + gap + stepW;
+                const py = prevActorIdx * (laneH + 8) + laneH / 2;
+                const cy = actorIdx * (laneH + 8) + laneH / 2;
+                return (
+                  <path d={`M${px},${py} L${x},${cy}`}
+                    stroke="rgba(255,255,255,0.25)" strokeWidth={1.5} fill="none"
+                    markerEnd="url(#arrowhead)" strokeDasharray="4,2">
+                    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" repeatCount="indefinite" />
+                  </path>
+                );
+              })()}
+              {isDiamond ? (
+                <polygon points={`${x + stepW/2},${y} ${x + stepW},${y + stepH/2} ${x + stepW/2},${y + stepH} ${x},${y + stepH/2}`}
+                  fill="rgba(245,158,11,0.15)" stroke="#f59e0b" strokeWidth={1.5} />
+              ) : (
+                <rect x={x} y={y} width={stepW} height={stepH} rx={6}
+                  fill={`${col}20`} stroke={col} strokeWidth={1.5} />
+              )}
+              <text x={x + stepW / 2} y={y + stepH / 2 + 4} textAnchor="middle"
+                fill="white" fontSize={10} fontWeight={500}>
+                {(step.step_name || '').length > 16 ? (step.step_name || '').slice(0, 15) + '…' : step.step_name}
+              </text>
+            </g>
+          );
+        })}
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="rgba(255,255,255,0.4)" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+// ── ROI Dashboard ────────────────────────────────────────────────────────────
+function ROIDashboard({ roi, process }) {
+  if (!roi || !roi.total_steps) return null;
+  const quickWins = process?.quick_wins || [];
+  const compFlags = Object.keys(process?.compliance_summary || {});
+
+  return (
+    <div className="animate-fadein">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 16, marginBottom: 24 }}>
+        <div className="stat-card">
+          <div className="stat-value">{roi.automation_coverage_pct}%</div>
+          <div className="stat-label">Automation Coverage</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">{roi.avg_automation_score}</div>
+          <div className="stat-label">Avg Score (0–100)</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">{roi.automatable_step_count}</div>
+          <div className="stat-label">Automatable Steps</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value" style={{ fontSize: 22 }}>
+            ${(roi.estimated_annual_saving_aud || 0).toLocaleString()}
+          </div>
+          <div className="stat-label">Est. Annual Saving (AUD)</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">{roi.estimated_payback_months}mo</div>
+          <div className="stat-label">Payback Period</div>
+        </div>
+      </div>
+
+      {quickWins.length > 0 && (
+        <div className="roi-highlight" style={{ marginBottom: 20 }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#34d399', marginBottom: 12 }}>🏆 Top 3 Automation Quick Wins</div>
+          {quickWins.map((w, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, fontSize: 13 }}>
+              <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#34d399', flexShrink: 0 }}>{i + 1}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600 }}>{w.step_name}</div>
+                <div style={{ color: 'var(--grey-400)', fontSize: 12 }}>{w.tool} · Score {w.automation_score}/100</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {compFlags.length > 0 && (
+        <div style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 10, padding: 16 }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#fca5a5', marginBottom: 10 }}>⚠ Compliance Flags Detected</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {compFlags.map(f => (
+              <span key={f} className="badge" style={{ background: 'rgba(239,68,68,0.1)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.25)', fontSize: 11 }}>{f}</span>
+            ))}
+          </div>
+          <div style={{ fontSize: 12, color: 'var(--grey-400)', marginTop: 10 }}>
+            These are pattern-based indicators only — not legal or regulatory advice. Review with your compliance team.
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── RACI Matrix ──────────────────────────────────────────────────────────────
+function RACITable({ process }) {
+  const steps = process?.steps || [];
+  const actors = process?.actors || [];
+  if (!steps.length || !actors.length) return <div style={{ color: 'var(--grey-400)' }}>No RACI data available.</div>;
+
+  const raciColour = { R: '#10b981', A: '#f59e0b', C: '#60a5fa', I: '#9ca3af' };
+
+  const assignRaci = (actorName, step) => {
+    if (actorName === step.actor) return 'R';
+    const isManager = /manager|director|head|cfo|coo|ceo|lead/i.test(actorName);
+    if (isManager && actorName !== step.actor) return 'A';
+    return '';
+  };
+
+  return (
+    <div style={{ overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+        <thead>
+          <tr>
+            <th style={{ background: 'var(--navy-700)', padding: '10px 12px', textAlign: 'left', borderBottom: '2px solid rgba(30,174,255,0.3)', fontWeight: 600, minWidth: 160 }}>Step</th>
+            {actors.map(a => (
+              <th key={a.actor_id} style={{ background: 'var(--navy-700)', padding: '10px 12px', textAlign: 'center', borderBottom: '2px solid rgba(30,174,255,0.3)', fontWeight: 600, minWidth: 90, color: 'var(--teal-400)' }}>
+                {a.actor_name.split(' ').slice(0, 2).join(' ')}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {steps.map((step, i) => (
+            <tr key={step.step_id} style={{ background: i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
+              <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.06)', fontWeight: 500 }}>
+                <span style={{ color: 'var(--teal-400)', fontSize: 11, marginRight: 6 }}>{step.step_id}</span>
+                {step.step_name}
+              </td>
+              {actors.map(a => {
+                const code = assignRaci(a.actor_name, step);
+                return (
+                  <td key={a.actor_id} style={{ textAlign: 'center', padding: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                    {code && (
+                      <span style={{
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                        width: 26, height: 26, borderRadius: '50%',
+                        background: `${raciColour[code]}25`,
+                        border: `1.5px solid ${raciColour[code]}60`,
+                        color: raciColour[code], fontWeight: 700, fontSize: 12
+                      }}>{code}</span>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div style={{ marginTop: 12, display: 'flex', gap: 16, fontSize: 12 }}>
+        {[['R', '#10b981', 'Responsible'], ['A', '#f59e0b', 'Accountable'], ['C', '#60a5fa', 'Consulted'], ['I', '#9ca3af', 'Informed']].map(([code, col, label]) => (
+          <div key={code} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, borderRadius: '50%', background: `${col}25`, border: `1px solid ${col}60`, color: col, fontWeight: 700, fontSize: 11 }}>{code}</span>
+            <span style={{ color: 'var(--grey-400)' }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Main App ─────────────────────────────────────────────────────────────────
+function App() {
+  const [stage, setStage] = useState(1);
+  const [activeTab, setActiveTab] = useState('steps');
+
+  // Form state
+  const [processText, setProcessText] = useState('');
+  const [processName, setProcessName] = useState('');
+  const [industry, setIndustry] = useState('Finance & Banking');
+  const [apiKey, setApiKey] = useState('');
+  const [apiMode, setApiMode] = useState('demo'); // 'demo' | 'live'
+
+  // Result state
+  const [process, setProcess] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingMsg, setLoadingMsg] = useState('');
+  const [error, setError] = useState('');
+
+  const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:7792' : '';
+
+  const loadSample = (key) => {
+    const s = SAMPLE_PROCESSES[key];
+    setProcessText(s.text);
+    setProcessName(s.name);
+    setIndustry(s.industry);
+  };
+
+  // Demo mode: run a local simulation without API
+  const runDemo = async () => {
+    setLoading(true);
+    setError('');
+
+    const stages_msgs = [
+      'Extracting process steps…',
+      'Resolving actors and systems…',
+      'Scoring automation potential…',
+      'Detecting compliance flags…',
+      'Calculating ROI estimate…',
+      'Generating artefacts…',
+    ];
+
+    for (const msg of stages_msgs) {
+      setLoadingMsg(msg);
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    // Generate a realistic demo process
+    const demo = generateDemoProcess(processText, processName, industry);
+    setProcess(demo);
+    setLoading(false);
+    setStage(2);
+  };
+
+  const runLive = async () => {
+    if (!apiKey && !processText) return;
+    setLoading(true);
+    setError('');
+    setLoadingMsg('Connecting to ProcessBI API…');
+
+    try {
+      setLoadingMsg('Extracting process from text (Claude AI)…');
+      const extractRes = await fetch(`${API_BASE}/process/extract`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: processText, process_name: processName, industry, api_key: apiKey || undefined }),
+      });
+      if (!extractRes.ok) throw new Error(await extractRes.text());
+      let proc = await extractRes.json();
+
+      setLoadingMsg('Scoring automation potential…');
+      const scoreRes = await fetch(`${API_BASE}/process/score`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ process: proc }),
+      });
+      if (!scoreRes.ok) throw new Error(await scoreRes.text());
+      proc = await scoreRes.json();
+
+      setProcess(proc);
+      setStage(2);
+    } catch (e) {
+      setError(`API error: ${e.message}. Switch to Demo Mode to preview without an API connection.`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!processText.trim()) { setError('Please enter process text or load a sample.'); return; }
+    if (!processName.trim()) { setError('Please enter a process name.'); return; }
+    setError('');
+    if (apiMode === 'live') runLive();
+    else runDemo();
+  };
+
+  const downloadPack = async () => {
+    if (!process) return;
+    if (apiMode === 'live') {
+      try {
+        const res = await fetch(`${API_BASE}/process/report`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ process }),
+        });
+        if (!res.ok) throw new Error(await res.text());
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${processName.replace(/\s+/g,'_')}_artefact_pack.zip`;
+        a.click();
+      } catch (e) {
+        setError(`Download error: ${e.message}`);
+      }
+    } else {
+      // Demo: download process JSON
+      const blob = new Blob([JSON.stringify(process, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${processName.replace(/\s+/g,'_')}_process.json`;
+      a.click();
+    }
+  };
+
+  const roi = process?.roi_estimate;
+
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--navy-900)' }}>
+      {/* Header */}
+      <header style={{
+        background: 'rgba(13, 35, 71, 0.95)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(30, 174, 255, 0.15)',
+        position: 'sticky', top: 0, zIndex: 100,
+        padding: '0 24px',
+      }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <svg width="32" height="32" viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="lg1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#1A4AC2"/><stop offset="1" stopColor="#2E6BF6"/></linearGradient>
+                <linearGradient id="lg2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stopColor="#2E6BF6"/><stop offset="1" stopColor="#46D5FF"/></linearGradient>
+              </defs>
+              <rect x="12" y="78" width="17" height="26" rx="4" fill="url(#lg1)"/>
+              <rect x="37" y="60" width="17" height="44" rx="4" fill="url(#lg1)"/>
+              <rect x="62" y="38" width="17" height="66" rx="4" fill="url(#lg1)"/>
+              <rect x="87" y="16" width="17" height="88" rx="4" fill="url(#lg2)"/>
+              <path d="M20.5 78 L45.5 60 L70.5 38 L95.5 16 L115 8" fill="none" stroke="url(#lg2)" strokeWidth="3.5" strokeLinecap="round"/>
+            </svg>
+            <div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, letterSpacing: '-0.3px' }}>ProcessBI</div>
+              <div style={{ fontSize: 11, color: 'var(--teal-400)', fontWeight: 500 }}>Process Intelligence Tool</div>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ fontSize: 12, color: 'var(--grey-400)' }}>v1.0 MVP</span>
+            <span className="badge badge-teal">Beta</span>
+          </div>
+        </div>
+      </header>
+
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 24px' }}>
+
+        {/* Stage 1: Input */}
+        {stage === 1 && (
+          <div className="animate-fadein">
+            <StageHeader stage={stage} currentStage={stage} />
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24, alignItems: 'start' }}>
+              {/* Main input */}
+              <div>
+                <div className="card">
+                  <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, marginBottom: 6 }}>
+                    Map Your Business Process
+                  </h2>
+                  <p style={{ color: 'var(--grey-400)', fontSize: 14, marginBottom: 24 }}>
+                    Paste a process transcript, meeting notes, or description. Claude AI will extract a structured process map with automation scores and compliance flags.
+                  </p>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                    <div>
+                      <label>Process Name</label>
+                      <input type="text" value={processName}
+                        onChange={e => setProcessName(e.target.value)}
+                        placeholder="e.g. Invoice Approval Process" />
+                    </div>
+                    <div>
+                      <label>Industry</label>
+                      <select value={industry} onChange={e => setIndustry(e.target.value)}>
+                        {INDUSTRIES.map(i => <option key={i} value={i}>{i}</option>)}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: 16 }}>
+                    <label>Process Text</label>
+                    <textarea
+                      value={processText}
+                      onChange={e => setProcessText(e.target.value)}
+                      placeholder="Paste your process transcript, interview notes, meeting minutes, or process description here...&#10;&#10;Tip: Include actor names, systems used, inputs/outputs, and any decision points for best results."
+                      rows={14}
+                      style={{ fontFamily: 'var(--font-body)', lineHeight: 1.6 }}
+                    />
+                    <div style={{ fontSize: 12, color: 'var(--grey-400)', marginTop: 6 }}>
+                      {processText.split(/\s+/).filter(Boolean).length} words
+                    </div>
+                  </div>
+
+                  {error && (
+                    <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 8, padding: 12, fontSize: 13, color: '#fca5a5', marginBottom: 16 }}>
+                      {error}
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <button className="btn-primary" onClick={handleSubmit} disabled={loading}>
+                      {loading ? (
+                        <>
+                          <span className="spinner animate-spin" style={{ width: 16, height: 16, borderWidth: 2 }} />
+                          {loadingMsg || 'Processing…'}
+                        </>
+                      ) : (
+                        <>🔍 Analyse Process</>
+                      )}
+                    </button>
+                    {apiMode === 'live' && (
+                      <span style={{ fontSize: 12, color: 'var(--grey-400)' }}>~30–60 sec</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right panel */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {/* API mode toggle */}
+                <div className="card">
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Mode</div>
+                  <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                    <button className={`tab ${apiMode === 'demo' ? 'tab-active' : 'tab-inactive'}`} onClick={() => setApiMode('demo')}>Demo</button>
+                    <button className={`tab ${apiMode === 'live' ? 'tab-active' : 'tab-inactive'}`} onClick={() => setApiMode('live')}>Live API</button>
+                  </div>
+                  {apiMode === 'demo' ? (
+                    <p style={{ fontSize: 12, color: 'var(--grey-400)' }}>
+                      Demo mode generates a realistic preview without API calls. Switch to <strong style={{ color: 'var(--white)' }}>Live API</strong> for actual Claude AI extraction.
+                    </p>
+                  ) : (
+                    <div>
+                      <label>Anthropic API Key</label>
+                      <input type="text" value={apiKey} onChange={e => setApiKey(e.target.value)}
+                        placeholder="sk-ant-..." style={{ fontFamily: 'monospace' }} />
+                      <p style={{ fontSize: 11, color: 'var(--grey-400)', marginTop: 6 }}>
+                        Or configure via API server env. Key is sent only to your local API server.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Sample processes */}
+                <div className="card">
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Load Sample</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <button className="btn-secondary" style={{ textAlign: 'left' }} onClick={() => loadSample('invoice_approval')}>
+                      📄 Invoice Approval (Finance)
+                    </button>
+                    <button className="btn-secondary" style={{ textAlign: 'left' }} onClick={() => loadSample('employee_onboarding')}>
+                      👤 Employee Onboarding (HR)
+                    </button>
+                  </div>
+                </div>
+
+                {/* What you get */}
+                <div className="card">
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Artefact Pack Includes</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 13 }}>
+                    {[
+                      ['🗺️', 'Swimlane diagram', '.drawio'],
+                      ['🔄', 'Data flow map', '.drawio'],
+                      ['📊', 'RACI matrix', '.xlsx'],
+                      ['📝', 'SOP document', '.docx'],
+                      ['📦', 'Process JSON', '.json'],
+                      ['📈', 'ROI estimate', 'in report'],
+                    ].map(([icon, label, fmt]) => (
+                      <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span>{icon}</span>
+                        <span>{label}</span>
+                        <span style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--teal-400)', fontFamily: 'monospace' }}>{fmt}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Stages 2–4: Results */}
+        {stage >= 2 && process && (
+          <div className="animate-fadein">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
+              <StageHeader stage={stage} currentStage={stage} />
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button className="btn-secondary" onClick={() => { setStage(1); setProcess(null); }}>
+                  ← New Process
+                </button>
+                <button className="btn-primary" onClick={downloadPack}>
+                  ⬇ Download Pack {apiMode === 'demo' ? '(JSON)' : '(ZIP)'}
+                </button>
+              </div>
+            </div>
+
+            {/* Process summary banner */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(13,35,71,0.9), rgba(15,45,94,0.9))',
+              border: '1px solid rgba(30,174,255,0.2)',
+              borderRadius: 12, padding: '20px 24px', marginBottom: 24,
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
+            }}>
+              <div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700 }}>{process.process_name}</div>
+                <div style={{ color: 'var(--grey-400)', fontSize: 13, marginTop: 4 }}>
+                  {process.industry} · {process.steps?.length} steps · {process.actors?.length} actors
+                  {process.systems?.length > 0 && ` · ${process.systems.length} systems`}
+                </div>
+              </div>
+              {roi && (
+                <div style={{ display: 'flex', gap: 20 }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 22, fontWeight: 700, color: '#34d399' }}>{roi.automation_coverage_pct}%</div>
+                    <div style={{ fontSize: 11, color: 'var(--grey-400)' }}>Automatable</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--teal-400)' }}>
+                      ${(roi.estimated_annual_saving_aud || 0).toLocaleString()}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--grey-400)' }}>Est. Annual Saving</div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Stage nav */}
+            <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+              {[
+                { n: 2, label: '🗺️ Process Map' },
+                { n: 3, label: '📊 Improvement' },
+                { n: 4, label: '📈 Reports' },
+              ].map(s => (
+                <button key={s.n} className={`tab ${stage === s.n ? 'tab-active' : 'tab-inactive'}`}
+                  onClick={() => setStage(s.n)}>{s.label}</button>
+              ))}
+            </div>
+
+            {/* Stage 2: Process Map */}
+            {stage === 2 && (
+              <div className="animate-fadein">
+                <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+                  {['steps', 'swimlane', 'dataflow'].map(t => (
+                    <button key={t} className={`tab ${activeTab === t ? 'tab-active' : 'tab-inactive'}`}
+                      style={{ fontSize: 13 }} onClick={() => setActiveTab(t)}>
+                      {t === 'steps' ? 'Step Details' : t === 'swimlane' ? 'Swimlane Preview' : 'Data Flow'}
+                    </button>
+                  ))}
+                </div>
+
+                {activeTab === 'steps' && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {process.steps?.map((step, i) => <StepCard key={step.step_id || i} step={step} index={i} />)}
+                  </div>
+                )}
+
+                {activeTab === 'swimlane' && (
+                  <div className="card">
+                    <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Swimlane Preview</div>
+                    <div style={{ fontSize: 12, color: 'var(--grey-400)', marginBottom: 16 }}>
+                      Live preview — full draw.io XML included in artefact pack (importable to Lucidchart/Confluence)
+                    </div>
+                    <SwimlanePreview steps={process.steps} />
+                    <div style={{ display: 'flex', gap: 16, marginTop: 16, fontSize: 12 }}>
+                      {[['#10b981', 'Fully Automatable'], ['#f59e0b', 'Human-Assisted'], ['#ef4444', 'Human Only']].map(([col, label]) => (
+                        <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <div style={{ width: 12, height: 12, borderRadius: 3, background: `${col}30`, border: `1.5px solid ${col}` }} />
+                          <span style={{ color: 'var(--grey-400)' }}>{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'dataflow' && (
+                  <div className="card">
+                    <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Systems Involved</div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
+                      {process.systems?.map(s => (
+                        <span key={s} className="badge badge-teal">{s}</span>
+                      ))}
+                      {!process.systems?.length && <span style={{ color: 'var(--grey-400)', fontSize: 13 }}>No systems detected</span>}
+                    </div>
+                    <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Data Flows</div>
+                    <div style={{ overflowX: 'auto' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+                        <thead>
+                          <tr>
+                            {['Step', 'Actor', 'Systems', 'Data In', 'Data Out'].map(h => (
+                              <th key={h} style={{ padding: '8px 12px', textAlign: 'left', borderBottom: '1px solid rgba(30,174,255,0.3)', color: 'var(--teal-400)', fontWeight: 600, fontSize: 12 }}>{h}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {process.steps?.map((step, i) => (
+                            <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                              <td style={{ padding: '8px 12px', fontWeight: 500 }}>{step.step_name}</td>
+                              <td style={{ padding: '8px 12px', color: 'var(--grey-400)' }}>{step.actor}</td>
+                              <td style={{ padding: '8px 12px' }}>{step.systems_used?.slice(0, 2).join(', ') || '—'}</td>
+                              <td style={{ padding: '8px 12px', color: '#60a5fa' }}>{step.data_in?.join(', ') || '—'}</td>
+                              <td style={{ padding: '8px 12px', color: '#34d399' }}>{step.data_out?.join(', ') || '—'}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Stage 3: Improvement */}
+            {stage === 3 && (
+              <div className="animate-fadein" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                <div className="card" style={{ gridColumn: '1 / -1' }}>
+                  <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, fontFamily: 'var(--font-display)' }}>RACI Matrix</div>
+                  <RACITable process={process} />
+                </div>
+
+                <div className="card">
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>Automation Scores by Step</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {process.steps?.map((step, i) => (
+                      <div key={i}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 6 }}>
+                          <span style={{ color: 'var(--grey-400)' }}>{step.step_id}</span>
+                          <span style={{ fontWeight: 500 }}>{step.step_name}</span>
+                          <AutoBadge cls={step.automation_class} />
+                        </div>
+                        <ScoreBar score={step.automation_score || 50} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="card">
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>Compliance Flags</div>
+                  {process.compliance_summary && Object.keys(process.compliance_summary).length > 0 ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      {Object.entries(process.compliance_summary).map(([code, desc]) => (
+                        <div key={code} style={{ background: 'rgba(239,68,68,0.08)', borderLeft: '3px solid #ef4444', padding: '10px 14px', borderRadius: '0 8px 8px 0' }}>
+                          <div style={{ fontWeight: 600, fontSize: 13, color: '#fca5a5', marginBottom: 4 }}>{code}</div>
+                          <div style={{ fontSize: 12, color: 'var(--grey-400)' }}>{desc}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ color: 'var(--grey-400)', fontSize: 13 }}>No compliance flags detected for this process.</div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Stage 4: Reports */}
+            {stage === 4 && (
+              <div className="animate-fadein">
+                <ROIDashboard roi={roi} process={process} />
+
+                <div className="divider" />
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
+                  {[
+                    { icon: '🗺️', label: 'Swimlane Diagram', format: 'draw.io XML', desc: 'Import into Lucidchart, draw.io, or Confluence' },
+                    { icon: '🔄', label: 'Data Flow Diagram', format: 'draw.io XML', desc: 'Shows data movement between systems and steps' },
+                    { icon: '📊', label: 'RACI Matrix', format: 'Excel .xlsx', desc: 'Full responsibility matrix with workload summary' },
+                    { icon: '📝', label: 'SOP Document', format: 'Word .docx', desc: 'ProcessBI-branded SOP with all step details' },
+                    { icon: '📦', label: 'Process JSON', format: 'JSON', desc: 'Machine-readable format, load into Power BI' },
+                  ].map(a => (
+                    <div key={a.label} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 24 }}>{a.icon}</div>
+                      <div style={{ fontWeight: 600 }}>{a.label}</div>
+                      <span className="badge badge-teal" style={{ alignSelf: 'flex-start' }}>{a.format}</span>
+                      <div style={{ fontSize: 12, color: 'var(--grey-400)' }}>{a.desc}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: 24, textAlign: 'center' }}>
+                  <button className="btn-primary" onClick={downloadPack} style={{ fontSize: 16, padding: '14px 32px' }}>
+                    ⬇ Download Full Artefact Pack
+                  </button>
+                  <div style={{ fontSize: 12, color: 'var(--grey-400)', marginTop: 10 }}>
+                    {apiMode === 'demo' ? 'Demo mode: downloads Process JSON. Connect live API for full ZIP pack.' : 'Includes all artefacts as a ZIP archive.'}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '24px', textAlign: 'center', fontSize: 12, color: 'var(--grey-400)', marginTop: 60 }}>
+        <div>ProcessBI Process Intelligence Tool · MVP v1.0 · <a href="https://processbi.com.au" target="_blank" style={{ color: 'var(--teal-400)', textDecoration: 'none' }}>processbi.com.au</a></div>
+        <div style={{ marginTop: 6 }}>AI-generated outputs require human review. Compliance flags are indicators only — not legal advice.</div>
+      </footer>
+    </div>
+  );
+}
+
+// ── Demo process generator ───────────────────────────────────────────────────
+function generateDemoProcess(text, processName, industry) {
+  // Parse numbered steps from text
+  const lines = text.split('\n').filter(l => l.trim());
+  const rawSteps = [];
+
+  for (const line of lines) {
+    const m = line.match(/^(?:Step\s+)?(\d+)[.:)]\s+(.+)/i);
+    if (m) rawSteps.push({ num: parseInt(m[1]), text: m[2] });
+  }
+
+  // If no numbered steps found, split by numbered paragraphs
+  if (rawSteps.length === 0) {
+    const paras = text.split(/\n\n+/).filter(p => p.trim().length > 20);
+    paras.slice(0, 8).forEach((p, i) => rawSteps.push({ num: i + 1, text: p.trim() }));
+  }
+
+  const actorPatterns = [
+    { re: /accounts payable|ap team/i, actor: 'Accounts Payable', dept: 'Finance', role: 'Processor' },
+    { re: /finance manager|cfo|treasurer/i, actor: 'Finance Manager', dept: 'Finance', role: 'Approver' },
+    { re: /hr|human resources|recruitment/i, actor: 'HR Team', dept: 'HR', role: 'Coordinator' },
+    { re: /it|system admin|sysadmin/i, actor: 'IT Team', dept: 'IT', role: 'Administrator' },
+    { re: /procurement|purchasing/i, actor: 'Procurement', dept: 'Procurement', role: 'Buyer' },
+    { re: /manager|director|head/i, actor: 'Manager', dept: 'Management', role: 'Approver' },
+    { re: /treasury/i, actor: 'Treasury Team', dept: 'Finance', role: 'Executor' },
+    { re: /facilities/i, actor: 'Facilities', dept: 'Operations', role: 'Coordinator' },
+  ];
+
+  const systemPatterns = [
+    { re: /sap/i, sys: 'SAP' }, { re: /workday/i, sys: 'Workday' },
+    { re: /servicenow/i, sys: 'ServiceNow' }, { re: /power automate|teams/i, sys: 'Power Automate' },
+    { re: /docusign/i, sys: 'DocuSign' }, { re: /sharepoint/i, sys: 'SharePoint' },
+    { re: /excel/i, sys: 'Microsoft Excel' }, { re: /email|outlook/i, sys: 'Email (Outlook)' },
+    { re: /sterling/i, sys: 'Sterling' }, { re: /active directory/i, sys: 'Active Directory' },
+    { re: /cornerstone|lms/i, sys: 'LMS (Cornerstone)' },
+  ];
+
+  const allSystems = new Set();
+  const allActors = {};
+
+  const steps = rawSteps.slice(0, 10).map((s, i) => {
+    const stepText = s.text;
+
+    // Determine actor
+    let actor = 'Operations Team', actorRole = 'Participant', dept = 'Operations';
+    for (const ap of actorPatterns) {
+      if (ap.re.test(stepText)) { actor = ap.actor; actorRole = ap.role; dept = ap.dept; break; }
+    }
+    if (!allActors[actor]) allActors[actor] = { actor_id: `A${Object.keys(allActors).length+1:03}`.replace(':03}','0'+(Object.keys(allActors).length+1)).slice(-4), actor_name: actor, department: dept, raci_role: 'R' };
+
+    // Systems
+    const systems = [];
+    for (const sp of systemPatterns) { if (sp.re.test(stepText)) { systems.push(sp.sys); allSystems.add(sp.sys); } }
+
+    // Score
+    const isApproval = /approv|review|sign.off|authoris/i.test(stepText);
+    const isAuto = /generat|send email|notify|log|archive|update|trigger|sync|schedul/i.test(stepText);
+    const isPhysical = /physical|in.person|equipment|prepare|set up/i.test(stepText);
+    let score = isPhysical ? 25 + Math.floor(Math.random() * 20) :
+                isApproval ? 55 + Math.floor(Math.random() * 20) :
+                isAuto ? 80 + Math.floor(Math.random() * 18) :
+                45 + Math.floor(Math.random() * 35);
+
+    const cls = score >= 80 ? 'FULLY_AUTOMATABLE' : score >= 50 ? 'HUMAN_ASSISTED' : 'HUMAN_ONLY';
+
+    const toolMap = {
+      FULLY_AUTOMATABLE: ['Power Automate (Outlook connector)', 'Power Automate (SharePoint connector)', 'Power Automate (Approvals connector)'],
+      HUMAN_ASSISTED: ['Power Automate + Human Approval Gate', 'ServiceNow Workflow', 'UiPath RPA'],
+      HUMAN_ONLY: ['Process Optimisation — optimise SLA and handoff clarity'],
+    };
+    const tool = toolMap[cls][Math.floor(Math.random() * toolMap[cls].length)];
+
+    // Compliance flags
+    const flags = [];
+    if (/payment|invoice|ledger|reconcil/i.test(stepText)) flags.push('CPS230_MATERIAL_STEP');
+    if (/approv|sign.off/i.test(stepText) && /payment|invoice|\$10/i.test(stepText)) flags.push('SOX_FINANCIAL_CONTROL');
+    if (/personal|email address|employee|candidate/i.test(stepText)) flags.push('GDPR_PERSONAL_DATA');
+    if (/third.party|vendor|outsourc|sterling|provider/i.test(stepText)) flags.push('CPS230_OUTSOURCING');
+
+    // Decision
+    const isDecision = /if .*(match|approv|clear|pass|reject)|discrepanc/i.test(stepText);
+
+    return {
+      step_id: `S${String(i+1).padStart(3,'0')}`,
+      step_name: extractStepName(stepText),
+      description: stepText.slice(0, 180),
+      actor, actor_role: actorRole,
+      systems_used: systems,
+      data_in: extractDataEntities(stepText, 'in'),
+      data_out: extractDataEntities(stepText, 'out'),
+      decision_point: isDecision,
+      decision_options: isDecision ? ['Approved', 'Rejected'] : [],
+      automation_score: score,
+      automation_class: cls,
+      automation_tool_rec: tool,
+      automation_tool_reason: `Based on step characteristics: ${cls.toLowerCase().replace('_',' ')}.`,
+      compliance_flags: flags,
+      hitl_notes: cls === 'HUMAN_ONLY' ? 'Requires human judgement — focus on SLA clarity.' :
+                  cls === 'HUMAN_ASSISTED' ? 'Automate data gathering; human validates outcome.' :
+                  'Can be fully automated with appropriate connector.',
+    };
+  });
+
+  // Build ROI
+  const totalSteps = steps.length;
+  const autoCount = steps.filter(s => s.automation_class === 'FULLY_AUTOMATABLE').length;
+  const assistedCount = steps.filter(s => s.automation_class === 'HUMAN_ASSISTED').length;
+  const automatableCount = autoCount + assistedCount;
+  const autoPct = Math.round(automatableCount / totalSteps * 100);
+  const annualSaving = Math.round(automatableCount * 15 * 260 / 60 * 95000 / 2080);
+
+  // Actors
+  const actorList = Object.values(allActors);
+  if (actorList.length === 0) actorList.push({ actor_id: 'A001', actor_name: 'Operations Team', department: 'Operations', raci_role: 'R' });
+
+  const compSummary = {};
+  steps.forEach(s => s.compliance_flags.forEach(f => {
+    if (!compSummary[f]) compSummary[f] = { CPS230_MATERIAL_STEP: 'Part of a Material Business Service', SOX_FINANCIAL_CONTROL: 'Financial reporting control', GDPR_PERSONAL_DATA: 'Personal data processing', CPS230_OUTSOURCING: 'Third-party / outsourcing obligations' }[f] || f;
+  }));
+
+  return {
+    process_id: `demo-${Date.now()}`,
+    process_name: processName,
+    industry,
+    version: '1.0',
+    steps,
+    actors: actorList,
+    systems: [...allSystems],
+    roi_estimate: {
+      total_steps: totalSteps,
+      automatable_step_count: automatableCount,
+      fully_automatable_count: autoCount,
+      human_assisted_count: assistedCount,
+      human_only_count: totalSteps - automatableCount,
+      automation_coverage_pct: autoPct,
+      avg_automation_score: Math.round(steps.reduce((a, s) => a + s.automation_score, 0) / totalSteps),
+      estimated_fte_hours_saved_per_cycle: Math.round(automatableCount * 15 * 0.7 / 60 * 10) / 10,
+      estimated_annual_hours_saved: Math.round(automatableCount * 15 * 0.7 * 260 / 60),
+      estimated_fte_saved: Math.round(annualSaving / 95000 * 100) / 100,
+      estimated_annual_saving_aud: annualSaving,
+      estimated_implementation_cost_aud: automatableCount * 3500,
+      estimated_payback_months: annualSaving > 0 ? Math.round(automatableCount * 3500 / annualSaving * 12 * 10) / 10 : 0,
+      assumptions: { note: 'Demo estimates — indicative only.' }
+    },
+    quick_wins: steps.filter(s => s.automation_class === 'FULLY_AUTOMATABLE').slice(0, 3).map(s => ({
+      step_id: s.step_id, step_name: s.step_name,
+      automation_score: s.automation_score, tool: s.automation_tool_rec, rationale: s.automation_tool_reason
+    })),
+    compliance_summary: compSummary,
+  };
+}
+
+function extractStepName(text) {
+  // First sentence up to 50 chars
+  const first = text.split(/[.\n]/)[0].trim();
+  return first.length > 50 ? first.slice(0, 48) + '…' : first;
+}
+
+function extractDataEntities(text, direction) {
+  const inPatterns = ['invoice', 'purchase order', 'po', 'request', 'form', 'application', 'document', 'details', 'data'];
+  const outPatterns = ['report', 'notification', 'email', 'approval', 'record', 'credentials', 'receipt', 'remittance'];
+  const patterns = direction === 'in' ? inPatterns : outPatterns;
+  const textL = text.toLowerCase();
+  return patterns.filter(p => textL.includes(p)).slice(0, 2);
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

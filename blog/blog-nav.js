@@ -40,7 +40,6 @@ const NAV_LINKS = [
   {href:'../services.html',     label:'Services'},
   {href:'../methodology.html',  label:'Methodology'},
   {href:'../case-studies.html', label:'Case Studies'},
-  {href:'../technology.html',   label:'Technology'},
   {href:'../about.html',        label:'About'},
   {href:'index.html',           label:'Insights'},
   {href:'../contact.html',      label:'Contact'},

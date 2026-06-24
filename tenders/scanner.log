@@ -1,0 +1,10 @@
+2026-06-23 21:34:41,997  INFO      === ProcessBI Tender Scanner v2.0 — 2026-06-23 ===
+2026-06-23 21:34:42,000  INFO      Active sources (20): ['AusTender', 'Buy NSW', 'QTenders', 'SA Tenders', 'WA Tenders', 'VIC Tenders', 'ACT Procurement', 'NT Tenders', 'TasTenders', 'VendorPanel', 'ICN Gateway', 'NZ GETS', 'UNGM', 'ADB Tenders', 'TenderLink', 'Tenderboard', 'Tenders Online', 'Tenders ANZ', 'Cordell Connect', 'BCI Central']
+2026-06-23 21:34:49,311  INFO      === ProcessBI Tender Scanner v2.0 — 2026-06-23 ===
+2026-06-23 21:34:49,316  INFO      Active sources (14): ['AusTender', 'Buy NSW', 'QTenders', 'SA Tenders', 'WA Tenders', 'VIC Tenders', 'ACT Procurement', 'NT Tenders', 'TasTenders', 'VendorPanel', 'ICN Gateway', 'NZ GETS', 'UNGM', 'ADB Tenders']
+2026-06-23 21:34:49,795  INFO      === ProcessBI Tender Scanner v2.0 — 2026-06-23 ===
+2026-06-23 21:34:49,797  INFO      Active sources (6): ['TenderLink', 'Tenderboard', 'Tenders Online', 'Tenders ANZ', 'Cordell Connect', 'BCI Central']
+2026-06-23 21:34:50,229  INFO      === ProcessBI Tender Scanner v2.0 — 2026-06-23 ===
+2026-06-23 21:34:50,231  INFO      Active sources (3): ['AusTender', 'NZ GETS', 'TenderLink']
+2026-06-23 22:56:04,136  INFO      === ProcessBI Tender Scanner v2.0 — 2026-06-23 ===
+2026-06-23 22:56:04,139  INFO      Active sources (14): ['AusTender', 'Buy NSW', 'QTenders', 'SA Tenders', 'WA Tenders', 'VIC Tenders', 'ACT Procurement', 'NT Tenders', 'TasTenders', 'VendorPanel', 'ICN Gateway', 'NZ GETS', 'UNGM', 'ADB Tenders']
