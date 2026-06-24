@@ -321,22 +321,57 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:#8BB4CC !important}
 
 /* ── Mobile responsiveness ── */
 @media (max-width: 768px) {
+  /* Hero — inner pages */
   .page-hero { padding: 100px 16px 60px }
-  .page-hero h1 { font-size: 2.5rem }
+  .page-hero h1 { font-size: 2.5rem; word-break: break-word }
+  /* Hero — home page */
+  #hero h1 { font-size: 2.25rem !important; line-height: 1.15 }
+  #hero .hero-badge-text { font-size: 10px }
+  /* Cards */
   .glass-card { border-radius: 12px }
-  .glass-card:hover { transform: none }
-  .arch-flow { font-size: 11px; padding: 10px 12px; white-space: normal }
+  .glass-card:hover { transform: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25) }
+  .step-card { padding: 20px; overflow: hidden }
+  .step-card:hover { transform: none }
+  .service-card { padding: 20px }
+  .service-card:hover { transform: none }
+  .tech-badge:hover { transform: none }
+  /* Architecture flow */
+  .arch-flow { font-size: 11px; padding: 10px 12px; white-space: normal; overflow-x: auto }
   .arch-node { margin: 2px }
   .arch-arrow { display: none }
-  .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.9rem }
+  /* Buttons */
+  .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.9rem; width: 100%; text-align: center; box-sizing: border-box }
+  /* Counters */
   .metric-number { font-size: 2.2rem }
   .step-number { font-size: 3.5rem }
+  /* Icons */
   .industry-icon { width: 40px; height: 40px }
+  /* Marquee */
   .marquee-track { animation-duration: 20s }
+  /* Mesh blobs — contain them to avoid horizontal scroll */
+  .mesh-gradient { opacity: 0.04 }
+  /* Nav fallback — ensure hamburger shows if Tailwind CDN is slow */
+  #navbar .hidden { display: none }
+}
+/* Allow sm:flex-row to still override btn width on wider phones */
+@media (min-width: 640px) {
+  .btn-primary, .btn-outline { width: auto }
 }
 @media (max-width: 480px) {
+  /* Hero — inner pages */
   .page-hero { padding: 80px 12px 40px }
-  .page-hero h1 { font-size: 2rem }
+  .page-hero h1 { font-size: 2rem; word-break: break-word }
+  /* Hero — home page: even smaller */
+  #hero h1 { font-size: 1.875rem !important }
+  /* Tags */
   .tag-badge, .tag-badge-blue, .tag-badge-green { font-size: 9px; padding: 2px 8px }
+  /* Cards */
   .step-card { padding: 20px 24px }
+  .glass-card { padding: 1.25rem }
+  /* Grid overrides — only force single-col on 3+ column grids, not explicit 2-col ones */
+  .grid.sm\:grid-cols-2 { grid-template-columns: 1fr !important }
+  .grid.md\:grid-cols-3 { grid-template-columns: 1fr 1fr !important }
+  .grid.lg\:grid-cols-4 { grid-template-columns: 1fr 1fr !important }
+  /* Images */
+  img { max-width: 100%; height: auto }
 }

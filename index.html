@@ -81,7 +81,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared.css?v=2">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -206,21 +206,21 @@
 
     <div class="brand-label mb-4">PROCESS × INTELLIGENCE</div>
 
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-electric-500/20 bg-electric-500/5 mb-8">
-      <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow"></div>
-      <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Intelligence · Australia</span>
+    <div class="inline-flex flex-wrap justify-center items-center gap-2 px-4 py-2 rounded-full border border-electric-500/20 bg-electric-500/5 mb-8">
+      <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow flex-shrink-0"></div>
+      <span class="hero-badge-text text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Intelligence · Australia</span>
     </div>
 
-    <h1 class="font-display text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow hero-float">
+    <h1 class="font-display text-3xl sm:text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow hero-float">
       Better Processes.<br>Fewer Surprises.<br><span class="gradient-text">Smarter Business.</span>
     </h1>
-    <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-6 leading-relaxed hero-float-delay">
+    <p class="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto mb-6 leading-relaxed hero-float-delay">
       We map how your business works, find the problems hiding in your processes before they surface, then build the intelligence layer that keeps them from coming back.
     </p>
     <p class="text-slate-500 text-base mb-10"><span class="hero-tagline-line"></span>Where process meets intelligence</p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="contact.html" class="btn-primary">Start a Conversation</a>
-      <a href="case-studies.html" class="btn-outline">View Case Studies</a>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
+      <a href="contact.html" class="btn-primary w-full sm:w-auto text-center">Start a Conversation</a>
+      <a href="case-studies.html" class="btn-outline w-full sm:w-auto text-center">View Case Studies</a>
     </div>
 
     <!-- Proof points -->
@@ -551,10 +551,4 @@
     cx3=lerp(cx3,-mxN*RANGE*0.4,LERP);
     cy3=lerp(cy3,-myN*RANGE*0.4,LERP);
     b1.style.transform='translate3d('+cx1.toFixed(2)+'px,'+cy1.toFixed(2)+'px,0)';
-    b2.style.transform='translate3d('+cx2.toFixed(2)+'px,'+cy2.toFixed(2)+'px,0)';
-    b3.style.transform='translate3d('+cx3.toFixed(2)+'px,'+cy3.toFixed(2)+'px,0)';
-  })();
-})();
-</script>
-</body>
-</html>
+    b2.style.transform='translate3d('+cx2.toFixed(2)+'p
