@@ -3,20 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProcessBI — Business Process. Business Intelligence. Business Results.</title>
-<meta name="description" content="ProcessBI helps Australian organisations design better business processes, then builds the intelligence layer that turns process data into competitive advantage. Microsoft Fabric · Power BI · Lean Six Sigma.">
+<title>Process Consulting &amp; Microsoft Fabric Experts Australia | ProcessBI</title>
+<meta name="description" content="ProcessBI delivers business process consulting, Microsoft Fabric implementation, and Power BI analytics for Australian enterprise. Process first, technology second. Melbourne-based.">
 <link rel="canonical" href="https://processbi.com.au/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "LocalBusiness"],
+      "@id": "https://processbi.com.au/#organisation",
+      "name": "ProcessBI",
+      "url": "https://processbi.com.au",
+      "logo": { "@type": "ImageObject", "url": "https://processbi.com.au/og-image.png" },
+      "description": "Business process consulting, Microsoft Fabric implementation, and Power BI analytics for Australian enterprise. Process first, technology second.",
+      "founder": { "@type": "Person", "name": "Manish Sharma" },
+      "foundingDate": "2023",
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "VIC", "addressCountry": "AU" },
+      "serviceType": ["Business Process Consulting", "Microsoft Fabric Implementation", "Power BI Consulting", "Process Automation", "Data Warehouse Migration", "Business Intelligence Analytics", "Technology Consulting"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "ProcessBI Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Process & Workflow Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Microsoft Fabric Implementation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Power BI Consulting" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Process Automation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Data Warehouse Migration" } }
+        ]
+      },
+      "sameAs": ["https://www.linkedin.com/company/processbi", "https://processbi.com.au"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://processbi.com.au/#website",
+      "url": "https://processbi.com.au",
+      "name": "ProcessBI",
+      "description": "Business process consulting and Microsoft data analytics for Australian enterprise",
+      "publisher": { "@id": "https://processbi.com.au/#organisation" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is business process consulting?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Business process consulting is the practice of analysing, designing, and optimising how an organisation's operations flow — from the people and decisions involved to the data they generate. ProcessBI combines Lean Six Sigma methodology with Microsoft Fabric and Power BI to deliver measurable improvements in efficiency, accuracy, and visibility." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does ProcessBI do?",
+          "acceptedAnswer": { "@type": "Answer", "text": "ProcessBI provides business process consulting, Microsoft Fabric implementation, Power BI consulting, and process automation services for Australian enterprise organisations. We start with the process — not the technology — to ensure data solutions are built on a solid operational foundation." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ProcessBI based in Melbourne?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, ProcessBI is Melbourne-based but delivers engagements nationally across all Australian states and territories, including federal and state government agencies." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ProcessBI">
-<meta property="og:title" content="ProcessBI — Business Process. Business Intelligence. Business Results.">
-<meta property="og:description" content="ProcessBI helps Australian organisations design better business processes, then builds the intelligence layer that turns process data into competitive advantage. Microsoft Fabric · Power BI · Lean Six Sigma.">
+<meta property="og:title" content="Process Consulting &amp; Microsoft Fabric Experts Australia | ProcessBI">
+<meta property="og:description" content="ProcessBI delivers business process consulting, Microsoft Fabric implementation, and Power BI analytics for Australian enterprise. Process first, technology second.">
 <meta property="og:url" content="https://processbi.com.au/">
 <meta property="og:image" content="https://processbi.com.au/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ProcessBI — Business Process & BI Consulting Australia">
-<meta name="twitter:description" content="Process design, Microsoft Fabric, Power BI, and AI-native consulting for Australian enterprise. Melbourne-based.">
+<meta name="twitter:title" content="Process Consulting &amp; Microsoft Fabric Experts Australia | ProcessBI">
+<meta name="twitter:description" content="Business process consulting, Microsoft Fabric implementation, and Power BI analytics for Australian enterprise. Process first, technology second.">
 <meta name="twitter:image" content="https://processbi.com.au/og-image.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
@@ -25,6 +85,40 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* ── Hero blob parallax ── */
+.mesh-gradient{will-change:transform;transition:none}
+
+/* ── Cursor glow ── */
+#cursor-glow{
+  position:absolute;
+  width:320px;height:320px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,194,255,0.15) 0%,transparent 70%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity 0.4s ease;
+  will-change:left,top;
+  z-index:1;
+}
+
+/* ── Hero float animation ── */
+@keyframes heroFloat{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(0,-3px,0)}
+}
+.hero-float{
+  animation:heroFloat 3s ease-in-out infinite;
+  will-change:transform;
+}
+.hero-float-delay{
+  animation:heroFloat 3s ease-in-out 1.5s infinite;
+  will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-float,.hero-float-delay{animation:none}
+}
 </style>
 </head>
 <body>
@@ -99,9 +193,10 @@
 
 <!-- ── Hero ── -->
 <section id="hero">
-  <div class="mesh-gradient" style="background:#00C2FF;top:-200px;left:-100px"></div>
-  <div class="mesh-gradient" style="background:#1A7FFF;top:200px;right:-200px"></div>
-  <div class="mesh-gradient" style="background:#0D2347;bottom:-100px;left:30%;opacity:0.4"></div>
+  <div id="hero-blob-1" class="mesh-gradient" style="background:#00C2FF;top:-200px;left:-100px"></div>
+  <div id="hero-blob-2" class="mesh-gradient" style="background:#1A7FFF;top:200px;right:-200px"></div>
+  <div id="hero-blob-3" class="mesh-gradient" style="background:#0D2347;bottom:-100px;left:30%;opacity:0.4"></div>
+  <div id="cursor-glow" aria-hidden="true"></div>
 
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center" style="padding-top:100px">
     <!-- Animated logo above headline -->
@@ -116,10 +211,10 @@
       <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Intelligence · Australia</span>
     </div>
 
-    <h1 class="font-display text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow">
+    <h1 class="font-display text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow hero-float">
       Better Processes.<br>Fewer Surprises.<br><span class="gradient-text">Smarter Business.</span>
     </h1>
-    <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-6 leading-relaxed">
+    <p class="text-slate-600 text-xl max-w-2xl mx-auto mb-6 leading-relaxed hero-float-delay">
       We map how your business works, find the problems hiding in your processes before they surface, then build the intelligence layer that keeps them from coming back.
     </p>
     <p class="text-slate-500 text-base mb-10"><span class="hero-tagline-line"></span>Where process meets intelligence</p>
@@ -148,9 +243,9 @@
     <div class="text-center mb-16 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">What We Do</span>
       <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-4">End-to-End Consulting.<br><span class="gradient-text">From Process to Insight.</span></h2>
-      <p class="text-slate-600 max-w-2xl mx-auto text-lg">Seven distinct services. One connected framework. Process first, technology second.</p>
+      <p class="text-slate-600 max-w-2xl mx-auto text-lg">Seven connected services — four highlighted below. Process first, technology second.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="glass-card p-7 reveal" style="transition-delay:0.05s">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
           <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M9 8h6M6 11h.01M9 11h9"/></svg>
@@ -161,29 +256,13 @@
       </div>
       <div class="glass-card p-7 reveal" style="transition-delay:0.1s">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
-          <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Business Applications Design</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Blueprint business applications — CRM, ERP, case management, custom apps — designed around your optimised processes, not vendor templates.</p>
-        <a href="services.html#app-design" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
-      </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.15s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
-          <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Database &amp; Data Warehouse Design</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Architect scalable data foundations — dimensional modelling, star schema, SQL Server, Azure SQL — optimised for reporting, analytics, and long-term growth.</p>
-        <a href="services.html#db-design" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
-      </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.2s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
           <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
         </div>
         <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Process Automation</h3>
         <p class="text-slate-500 text-sm leading-relaxed">Automate optimised processes — not broken ones. Power Automate, Copilot Studio, AI agents, and RPA deployed on a solid process foundation.</p>
         <a href="services.html#automation" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.25s">
+      <div class="glass-card p-7 reveal" style="transition-delay:0.15s">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
           <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
@@ -191,7 +270,7 @@
         <p class="text-slate-500 text-sm leading-relaxed">Migrate legacy warehouses to Microsoft Fabric — SSIS to ADF, Synapse or on-prem SQL Server to OneLake — with zero data loss and minimal downtime.</p>
         <a href="services.html#dw-migration" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.3s">
+      <div class="glass-card p-7 reveal" style="transition-delay:0.2s">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(16,185,129,0.08)">
           <svg width="20" height="20" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         </div>
@@ -199,17 +278,9 @@
         <p class="text-slate-500 text-sm leading-relaxed">Build the intelligence layer with Microsoft Fabric and Power BI — dashboards that answer real business questions, not just display data.</p>
         <a href="services.html#bi-analytics" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
-      <div class="glass-card p-7 reveal sm:col-span-2 lg:col-span-1 lg:col-start-2" style="transition-delay:0.35s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
-          <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Business &amp; Technology Consulting</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Strategic advisory on digital transformation, technology selection, architecture design, and governance — independent and vendor-agnostic.</p>
-        <a href="services.html#consulting" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
-      </div>
     </div>
     <div class="text-center mt-12 reveal">
-      <a href="services.html" class="btn-outline">View Full Service Details</a>
+      <a href="services.html" class="btn-outline">See All 7 Services →</a>
     </div>
   </div>
 </section>
@@ -324,6 +395,62 @@
   </div>
 </section>
 
+<!-- ── Technologies We Work With ── -->
+<section id="technologies" class="py-16 relative" style="background:rgba(255,255,255,0.015)">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-10 reveal">
+      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Technology Stack</span>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-2">AI &amp; Analytics Platforms</h2>
+      <p class="text-slate-500 text-sm">Platform-agnostic expertise across the modern data stack.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.0s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><rect x="2" y="2" width="9" height="9" rx="2" fill="#0078D4"/><rect x="13" y="2" width="9" height="9" rx="2" fill="#00BCF2"/><rect x="2" y="13" width="9" height="9" rx="2" fill="#50E6FF"/><rect x="13" y="13" width="9" height="9" rx="2" fill="#0078D4"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Microsoft Fabric</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.04s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M12 3L21 8V16L12 21L3 16V8Z" stroke="#FF3621" stroke-width="1.5" fill="rgba(255,54,33,0.12)" stroke-linejoin="round"/><path d="M12 7.5L16.5 10V14.5L12 17L7.5 14.5V10Z" fill="#FF3621" opacity="0.7"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Databricks</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.08s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="12" cy="12" r="4" fill="#0078D4"/><circle cx="12" cy="3" r="2" fill="#0078D4" opacity="0.55"/><circle cx="12" cy="21" r="2" fill="#0078D4" opacity="0.55"/><circle cx="3" cy="12" r="2" fill="#0078D4" opacity="0.55"/><circle cx="21" cy="12" r="2" fill="#0078D4" opacity="0.55"/><circle cx="5.5" cy="5.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="18.5" cy="5.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="5.5" cy="18.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="18.5" cy="18.5" r="1.5" fill="#00BCF2" opacity="0.5"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Azure OpenAI</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.12s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><rect x="2" y="15" width="5" height="7" rx="1.5" fill="#F2C811"/><rect x="9.5" y="10" width="5" height="12" rx="1.5" fill="#F2C811" opacity="0.8"/><rect x="17" y="4" width="5" height="18" rx="1.5" fill="#F2C811"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Power BI</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.16s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><line x1="12" y1="2" x2="12" y2="22" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="12" x2="22" y2="12" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="4.9" y1="4.9" x2="19.1" y2="19.1" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="4.9" y1="19.1" x2="19.1" y2="4.9" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="2.5" fill="#29B5E8"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Snowflake</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.2s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M4 8.5H15L19 12L15 15.5H4L8 12Z" stroke="#FF694A" stroke-width="1.5" fill="rgba(255,105,74,0.12)" stroke-linejoin="round"/><circle cx="19" cy="7" r="2.5" fill="#FF694A" opacity="0.8"/><circle cx="19" cy="17" r="2.5" fill="#FF694A"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">dbt</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.24s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M15 2L7 13H12L10 22L17 11H12L15 2Z" fill="#E25A1C" stroke="#E25A1C" stroke-width="0.5" stroke-linejoin="round"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Apache Spark</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.28s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="6" cy="6" r="2.5" fill="#00B4D8"/><circle cx="18" cy="6" r="2.5" fill="#00B4D8"/><circle cx="12" cy="15" r="3" fill="#00B4D8"/><circle cx="6" cy="21" r="2" fill="#00B4D8" opacity="0.55"/><circle cx="18" cy="21" r="2" fill="#00B4D8" opacity="0.55"/><line x1="6" y1="6" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.5"/><line x1="18" y1="6" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.5"/><line x1="6" y1="21" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.4"/><line x1="18" y1="21" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.4"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Azure Synapse</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.32s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="10" cy="10" r="7" stroke="#4285F4" stroke-width="2" fill="none"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round"/><circle cx="10" cy="10" r="3" fill="#4285F4" opacity="0.25"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Looker / BigQuery</span>
+      </div>
+      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.36s">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><line x1="12" y1="2" x2="12" y2="22" stroke="#1F77B4" stroke-width="2.5" stroke-linecap="round"/><line x1="2" y1="12" x2="22" y2="12" stroke="#1F77B4" stroke-width="2.5" stroke-linecap="round"/><line x1="5.5" y1="5.5" x2="18.5" y2="18.5" stroke="#1F77B4" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="#1F77B4" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="#1F77B4"/><circle cx="5.5" cy="12" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="18.5" cy="12" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="12" cy="5.5" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="12" cy="18.5" r="1.8" fill="#1F77B4" opacity="0.55"/></svg>
+        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Tableau</span>
+      </div>
+    </div>
+    <div class="text-center mt-8 reveal">
+      <a href="services.html#ai-platforms" class="text-electric-500 text-sm font-medium hover:text-electric-400" style="text-decoration:none">Explore platform expertise →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ── Standards & Methodology ── -->
 <section class="py-20 relative">
   <div class="max-w-6xl mx-auto px-6">
@@ -386,5 +513,48 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="shared-nav.js"></script>
+<script>
+/* ── Hero interactive effects: mouse parallax blobs + cursor glow ── */
+(function(){
+  'use strict';
+  var hero=document.getElementById('hero');
+  if(!hero)return;
+  var b1=document.getElementById('hero-blob-1');
+  var b2=document.getElementById('hero-blob-2');
+  var b3=document.getElementById('hero-blob-3');
+  var gl=document.getElementById('cursor-glow');
+  var mxN=0,myN=0;
+  var cx1=0,cy1=0,cx2=0,cy2=0,cx3=0,cy3=0;
+  var mobile=window.matchMedia('(max-width:767px)').matches;
+  var LERP=0.05,RANGE=12;
+  function lerp(a,b,t){return a+(b-a)*t;}
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    mxN=(e.clientX-r.left)/r.width*2-1;
+    myN=(e.clientY-r.top)/r.height*2-1;
+    if(gl){
+      gl.style.left=(e.clientX-r.left)+'px';
+      gl.style.top=(e.clientY-r.top)+'px';
+      gl.style.opacity='1';
+    }
+  },{passive:true});
+  hero.addEventListener('mouseleave',function(){
+    if(gl)gl.style.opacity='0';
+  },{passive:true});
+  (function raf(){
+    requestAnimationFrame(raf);
+    if(mobile||!b1)return;
+    cx1=lerp(cx1,-mxN*RANGE,LERP);
+    cy1=lerp(cy1,-myN*RANGE,LERP);
+    cx2=lerp(cx2,-mxN*RANGE*0.7,LERP);
+    cy2=lerp(cy2,-myN*RANGE*0.7,LERP);
+    cx3=lerp(cx3,-mxN*RANGE*0.4,LERP);
+    cy3=lerp(cy3,-myN*RANGE*0.4,LERP);
+    b1.style.transform='translate3d('+cx1.toFixed(2)+'px,'+cy1.toFixed(2)+'px,0)';
+    b2.style.transform='translate3d('+cx2.toFixed(2)+'px,'+cy2.toFixed(2)+'px,0)';
+    b3.style.transform='translate3d('+cx3.toFixed(2)+'px,'+cy3.toFixed(2)+'px,0)';
+  })();
+})();
+</script>
 </body>
 </html>

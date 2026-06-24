@@ -40,11 +40,12 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
    3. Nav links config
 ─────────────────────────────────────────────── */
 const NAV_LINKS = [
-  {href:'index.html',       label:'Home'},
-  {href:'services.html',    label:'Services'},
-  {href:'industries.html',  label:'Industries'},
-  {href:'case-studies.html',label:'Case Studies'},
-  {href:'about.html',       label:'About'},
+  {href:'index.html',                    label:'Home'},
+  {href:'services.html',                 label:'Services'},
+  {href:'industries.html',               label:'Industries'},
+  {href:'case-studies.html',             label:'Case Studies'},
+  {href:'about.html',                    label:'About'},
+  {href:'blog/index.html',               label:'Insights'},
 ];
 
 const currentPage = (location.pathname.split('/').pop()||'index.html');
@@ -58,7 +59,45 @@ function navLinkClass(href){
 /* ───────────────────────────────────────────────
    4. Inject Nav
 ─────────────────────────────────────────────── */
-const desktopLinks = NAV_LINKS.map(l=>`<a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${currentPage===l.href?'#00C2FF':'#CBD5E1'}'">${l.label}</a>`).join('');
+/* Services mega-dropdown (4 practice areas) */
+const SVC_DROPDOWN = `<div id="svc-drop" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:480px;background:#0B1A2E;border:1px solid rgba(0,194,255,0.15);border-radius:16px;padding:20px;box-shadow:0 24px 48px rgba(0,0,0,0.4);z-index:200">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <a href="services.html#process-design" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
+      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Process Excellence</div>
+      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Process &amp; Workflow Design</div>
+      <div style="color:#8BB4CC;font-size:11px">Business Applications Design</div>
+    </a>
+    <a href="services.html#db-design" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
+      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Data Engineering</div>
+      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Database &amp; DW Design</div>
+      <div style="color:#8BB4CC;font-size:11px">DW Migration to Fabric</div>
+    </a>
+    <a href="services.html#automation" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
+      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Automation &amp; AI</div>
+      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Process Automation</div>
+      <div style="color:#8BB4CC;font-size:11px">BI &amp; Analytics</div>
+    </a>
+    <a href="services.html#consulting" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,120,212,0.2);background:rgba(0,120,212,0.06);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,120,212,0.15)'" onmouseout="this.style.background='rgba(0,120,212,0.06)'">
+      <div style="color:#1EAEFF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Strategic Advisory</div>
+      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Business &amp; Tech Consulting</div>
+      <div style="color:#8BB4CC;font-size:11px">Architecture · AI Governance</div>
+    </a>
+  </div>
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,194,255,0.1);text-align:center">
+    <a href="services.html" style="color:#00C2FF;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.color='#1EAEFF'" onmouseout="this.style.color='#00C2FF'">View all 7 services →</a>
+  </div>
+</div>`;
+
+const desktopLinks = NAV_LINKS.map(l=>{
+  if(l.href==='services.html'){
+    const isActive = currentPage===l.href;
+    return `<div id="svc-drop-wrap" style="position:relative;display:inline-flex;align-items:center">` +
+      `<a href="${l.href}" class="${navLinkClass(l.href)}" style="${isActive?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${isActive?'#00C2FF':'#CBD5E1'}'">` +
+      `${l.label}<svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="margin-left:4px;display:inline;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>` +
+      SVC_DROPDOWN + `</div>`;
+  }
+  return `<a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${currentPage===l.href?'#00C2FF':'#CBD5E1'}'">${l.label}</a>`;
+}).join('');
 const mobileLinks  = NAV_LINKS.map(l=>`<a href="${l.href}" style="color:${currentPage===l.href?'#00C2FF':'#CBD5E1'}" class="block py-2 transition-colors text-sm font-medium">${l.label}</a>`).join('');
 
 const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transition-all duration-300">
@@ -151,6 +190,18 @@ window.addEventListener('scroll',()=>{
 const mmbtn = document.getElementById('mobile-menu-btn');
 const mmenu = document.getElementById('mobile-menu');
 if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
+
+/* ───────────────────────────────────────────────
+   8b. Services dropdown (desktop hover)
+─────────────────────────────────────────────── */
+(function(){
+  var wrap = document.getElementById('svc-drop-wrap');
+  var drop = document.getElementById('svc-drop');
+  if(!wrap || !drop) return;
+  var timer;
+  wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
+  wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
+})();
 
 /* ───────────────────────────────────────────────
    9. Counter animation (home page metrics)
