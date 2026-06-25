@@ -45,7 +45,8 @@ const NAV_LINKS = [
   {href:'industries.html',               label:'Industries'},
   {href:'case-studies.html',             label:'Case Studies'},
   {href:'about.html',                    label:'About'},
-  {href:'blog/index.html',               label:'Insights'},
+  {href:'contact.html',                  label:'Get a Quote'},
+  {href:'blog/index.html',               label:'Blog'},
 ];
 
 const currentPage = (location.pathname.split('/').pop()||'index.html');
@@ -343,9 +344,4 @@ if(typeof THREE !== 'undefined'){
     window.addEventListener('resize',()=>{
       camera.aspect=innerWidth/innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(innerWidth,innerHeight);
-    },{passive:true});
-  })();
-}
-
-})();
+      renderer.setSize(innerWidth,
