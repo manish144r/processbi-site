@@ -185,97 +185,97 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
 })();
 
 /* ───────────────────────────────────────────────
-   6. Scroll reveal
+   6-11. DOM interactions — wrapped in DOMContentLoaded so they work
+   whether shared-nav.js loads at top or bottom of <body>
 ─────────────────────────────────────────────── */
-const revealObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+function _pbInitDOM(){
 
-/* ───────────────────────────────────────────────
-   7. Navbar scroll
-─────────────────────────────────────────────── */
-window.addEventListener('scroll',()=>{
-  const nb = document.getElementById('navbar');
-  if(nb) nb.style.borderBottomColor = scrollY>50 ? 'rgba(0,194,255,0.25)' : 'rgba(0,194,255,0.1)';
-},{passive:true});
+  /* 6. Scroll reveal */
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
-/* ───────────────────────────────────────────────
-   8. Mobile menu
-─────────────────────────────────────────────── */
-const mmbtn = document.getElementById('mobile-menu-btn');
-const mmenu = document.getElementById('mobile-menu');
-if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
+  /* 7. Navbar scroll border */
+  window.addEventListener('scroll',()=>{
+    const nb = document.getElementById('navbar');
+    if(nb) nb.style.borderBottomColor = scrollY>50 ? 'rgba(0,194,255,0.25)' : 'rgba(0,194,255,0.1)';
+  },{passive:true});
 
-/* ───────────────────────────────────────────────
-   8b. Services dropdown (desktop hover)
-─────────────────────────────────────────────── */
-(function(){
-  var wrap = document.getElementById('svc-drop-wrap');
-  var drop = document.getElementById('svc-drop');
-  if(!wrap || !drop) return;
-  var timer;
-  wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
-  wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
-})();
+  /* 8. Mobile menu */
+  const mmbtn = document.getElementById('mobile-menu-btn');
+  const mmenu = document.getElementById('mobile-menu');
+  if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
 
-/* ───────────────────────────────────────────────
-   9. Counter animation (home page metrics)
-─────────────────────────────────────────────── */
-function animateCounters(){
-  document.querySelectorAll('.metric-number[data-target]').forEach(el=>{
-    const target = parseFloat(el.dataset.target);
-    const suffix = el.dataset.suffix || el.textContent.replace(/[\d.]/g,'');
-    const dec    = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
-    let current  = 0, start = null;
-    const duration = 1800;
-    function step(ts){
-      if(!start) start=ts;
-      const progress = Math.min((ts-start)/duration,1);
-      const ease = 1 - Math.pow(1-progress,3);
-      current = target * ease;
-      el.textContent = (dec ? current.toFixed(dec) : Math.floor(current)) + suffix;
-      if(progress<1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  });
-}
-const counterTarget = document.querySelector('.metric-number[data-target]');
-if(counterTarget){
-  const cObserver = new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){ animateCounters(); cObserver.disconnect(); }
-  },{threshold:0.3});
-  cObserver.observe(counterTarget);
-}
+  /* 8b. Services dropdown */
+  (function(){
+    var wrap = document.getElementById('svc-drop-wrap');
+    var drop = document.getElementById('svc-drop');
+    if(!wrap || !drop) return;
+    var timer;
+    wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
+    wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
+  })();
 
-/* ───────────────────────────────────────────────
-   10. Case study expand toggle
-─────────────────────────────────────────────── */
-document.querySelectorAll('.expand-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const body = btn.previousElementSibling;
-    const icon = btn.querySelector('.expand-icon');
-    if(!body) return;
-    body.classList.toggle('open');
-    icon && icon.classList.toggle('rotated');
-    btn.querySelector('span').textContent = body.classList.contains('open') ? 'Show less' : 'Read more';
-  });
-});
+  /* 9. Counter animation */
+  function animateCounters(){
+    document.querySelectorAll('.metric-number[data-target]').forEach(el=>{
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || el.textContent.replace(/[\d.]/g,'');
+      const dec    = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
+      let current  = 0, start = null;
+      const duration = 1800;
+      function step(ts){
+        if(!start) start=ts;
+        const progress = Math.min((ts-start)/duration,1);
+        const ease = 1 - Math.pow(1-progress,3);
+        current = target * ease;
+        el.textContent = (dec ? current.toFixed(dec) : Math.floor(current)) + suffix;
+        if(progress<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const counterTarget = document.querySelector('.metric-number[data-target]');
+  if(counterTarget){
+    const cObserver = new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){ animateCounters(); cObserver.disconnect(); }
+    },{threshold:0.3});
+    cObserver.observe(counterTarget);
+  }
 
-/* ───────────────────────────────────────────────
-   11. Case study filter
-─────────────────────────────────────────────── */
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.case-card').forEach(card=>{
-      const industry = card.dataset.industry || '';
-      card.style.display = (filter==='all' || industry.includes(filter)) ? '' : 'none';
+  /* 10. Case study expand */
+  document.querySelectorAll('.expand-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const body = btn.previousElementSibling;
+      const icon = btn.querySelector('.expand-icon');
+      if(!body) return;
+      body.classList.toggle('open');
+      icon && icon.classList.toggle('rotated');
+      btn.querySelector('span').textContent = body.classList.contains('open') ? 'Show less' : 'Read more';
     });
   });
-});
+
+  /* 11. Case study filter */
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.case-card').forEach(card=>{
+        const industry = card.dataset.industry || '';
+        card.style.display = (filter==='all' || industry.includes(filter)) ? '' : 'none';
+      });
+    });
+  });
+
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', _pbInitDOM, {once:true});
+} else {
+  _pbInitDOM();
+}
 
 /* ───────────────────────────────────────────────
    12. Three.js particle background — dark navy palette
