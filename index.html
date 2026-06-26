@@ -91,6 +91,18 @@
 .hero-float{animation:heroFloat 3s ease-in-out infinite;will-change:transform}
 .hero-float-delay{animation:heroFloat 3s ease-in-out 1.5s infinite;will-change:transform}
 @media(prefers-reduced-motion:reduce){.hero-float,.hero-float-delay{animation:none}}
+/* ── Compact global sizing ── */
+html{font-size:14px}
+.tab-nav{border-bottom:1px solid rgba(0,194,255,0.1);margin-bottom:28px;overflow-x:auto;white-space:nowrap}
+.tab-btn{display:inline-block;padding:10px 20px;border:none;background:none;color:rgba(139,180,204,0.5);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px}
+.tab-btn:hover{color:#8BB4CC}
+.tab-btn.active{color:#00C2FF;border-bottom-color:#00C2FF}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.tech-pill{display:inline-block;background:rgba(0,194,255,0.07);border:1px solid rgba(0,194,255,0.18);border-radius:20px;padding:4px 12px;font-size:11px;color:#8BB4CC;font-weight:500;white-space:nowrap;margin:2px}
+.tech-pill-green{display:inline-block;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:20px;padding:4px 12px;font-size:11px;color:#10b981;font-weight:500;white-space:nowrap;margin:2px}
+.tech-pill-blue{display:inline-block;background:rgba(46,107,246,0.07);border:1px solid rgba(46,107,246,0.2);border-radius:20px;padding:4px 12px;font-size:11px;color:#6B9AFF;font-weight:500;white-space:nowrap;margin:2px}
+.tech-pill-purple{display:inline-block;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:20px;padding:4px 12px;font-size:11px;color:#c084fc;font-weight:500;white-space:nowrap;margin:2px}
 </style>
 </head>
 <body>
@@ -183,13 +195,13 @@
           <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow flex-shrink-0"></div>
           <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Enterprise Consulting · Australia</span>
         </div>
-        <h1 class="font-display font-black text-white leading-none mb-6 glow-text" style="font-size:clamp(2.4rem,5.5vw,4rem);letter-spacing:-0.03em">
+        <h1 class="font-display font-black text-white leading-none mb-6 glow-text" style="font-size:clamp(1.6rem,3.2vw,2.6rem);letter-spacing:-0.03em">
           Smarter Processes.<br><span class="gradient-text">Better Intelligence.</span>
         </h1>
-        <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+        <p class="text-slate-400 text-sm leading-relaxed mb-6 max-w-lg">
           We redesign how your business operates — then build the data and AI layer that keeps it performing. Process first. Technology second. Always.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+        <div class="flex flex-col sm:flex-row gap-4 mb-7">
           <a href="contact.html" class="btn-primary text-center">Start a Conversation ↗</a>
           <a href="case-studies.html" class="btn-outline text-center">View Case Studies ↗</a>
         </div>
@@ -402,12 +414,12 @@
 <!-- ══════════════════════════════════════════
      THREE PILLARS — BP / BI / AI
 ══════════════════════════════════════════ -->
-<section class="py-24 relative" style="background:rgba(0,0,0,0.15)">
+<section class="py-12 relative" style="background:rgba(0,0,0,0.15)">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-14 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Our Disciplines</span>
-      <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4 mb-3">Three Disciplines.<br><span class="gradient-text">One Outcome.</span></h2>
-      <p class="text-slate-500 text-base max-w-xl mx-auto">ProcessBI sits at the intersection of process excellence, data intelligence, and AI capability. Each discipline is meaningless without the others.</p>
+    <div class="text-center mb-8 reveal">
+      <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Our Disciplines</span>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-white mt-3 mb-2">Three Disciplines. <span class="gradient-text">One Outcome.</span></h2>
+      <p class="text-slate-500 text-sm max-w-xl mx-auto">ProcessBI sits at the intersection of process excellence, data intelligence, and AI capability.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
 
@@ -417,7 +429,7 @@
           <svg width="28" height="28" fill="none" stroke="#2E6BF6" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="6" rx="2"/><rect x="2" y="15" width="9" height="6" rx="2"/><rect x="13" y="9" width="9" height="6" rx="2"/><path d="M11 6h1a2 2 0 012 2v1M11 18h1a2 2 0 002-2v-1"/></svg>
         </div>
         <div class="pillar-tag">01 — Foundation</div>
-        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Business<br>Process</h3>
+        <h3 class="font-display text-lg font-bold text-white mt-2 mb-2">Business Process</h3>
         <p class="text-slate-400 text-sm leading-relaxed mb-5">Every engagement starts here. We map how your business actually works, find the waste, the risk, and the bottlenecks — then redesign the process before touching any technology.</p>
         <div class="flex flex-wrap gap-2">
           <span class="pillar-tag-badge">Lean Six Sigma</span>
@@ -434,7 +446,7 @@
           <svg width="28" height="28" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/><path d="M3 20h18"/></svg>
         </div>
         <div class="pillar-tag" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">02 — Intelligence</div>
-        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Business<br>Intelligence</h3>
+        <h3 class="font-display text-lg font-bold text-white mt-2 mb-2">Business Intelligence</h3>
         <p class="text-slate-400 text-sm leading-relaxed mb-5">Once the process is right, we build the data layer on top of it. Microsoft Fabric as the platform, Power BI as the lens — dashboards built on clean, structured, trusted data.</p>
         <div class="flex flex-wrap gap-2">
           <span class="pillar-tag-badge" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">Microsoft Fabric</span>
@@ -450,7 +462,7 @@
           <svg width="28" height="28" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M6.343 6.343a8 8 0 000 11.314M17.657 6.343a8 8 0 010 11.314M3 12h1M20 12h1M12 3v1M12 20v1"/></svg>
         </div>
         <div class="pillar-tag" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">03 — Automation</div>
-        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Artificial<br>Intelligence</h3>
+        <h3 class="font-display text-lg font-bold text-white mt-2 mb-2">Artificial Intelligence</h3>
         <p class="text-slate-400 text-sm leading-relaxed mb-5">The automation layer that runs on top of process and intelligence. AI agents, Copilot Studio, knowledge graphs, and LLM orchestration — deployed on a solid foundation, not a broken one.</p>
         <div class="flex flex-wrap gap-2">
           <span class="pillar-tag-badge" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">AI Agents</span>
@@ -464,65 +476,164 @@
   </div>
 </section>
 
-
 <!-- ══════════════════════════════════════════
-     WHY PROCESSBI
+     CAPABILITIES — TABBED
 ══════════════════════════════════════════ -->
-<section class="py-24 relative">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-14 items-center">
-      <div class="reveal">
-        <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Why ProcessBI</span>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-4 mb-5">Process First.<br>Technology Second. Always.</h2>
-        <p class="text-slate-400 leading-relaxed mb-7">Most BI firms start with the tool. We start with your process. When the process is right, the data tells a clear story. When it's broken, no dashboard can fix it.</p>
-        <div class="space-y-4">
-          <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(46,107,246,0.08)"><svg width="14" height="14" fill="#2E6BF6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-white font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-sm mt-0.5">We surface process gaps and risk points before they become incidents — not after.</p></div>
+<section class="py-14 relative" style="background:rgba(0,0,0,0.1)">
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-8 reveal">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">Everything you need. <span class="gradient-text">One team.</span></h2>
+      <p class="text-slate-500 text-sm">Why we are different, who we serve, what we use, and how we work.</p>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('why',this)">Why ProcessBI</button>
+      <button class="tab-btn" onclick="switchTab('industries',this)">Industries</button>
+      <button class="tab-btn" onclick="switchTab('tech',this)">Technology</button>
+      <button class="tab-btn" onclick="switchTab('method',this)">Methodology</button>
+    </div>
+
+    <div id="tab-why" class="tab-panel active">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">Most BI firms start with the tool. We start with your process. When the process is right, the data tells a clear story. When it is broken, no dashboard can fix it.</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(46,107,246,0.08)"><svg width="12" height="12" fill="#2E6BF6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><h4 class="text-white font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-xs mt-0.5">We surface process gaps and risk points before they become incidents.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,194,255,0.06)"><svg width="12" height="12" fill="#00C2FF" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><h4 class="text-white font-medium text-sm">Dual expertise</h4><p class="text-slate-500 text-xs mt-0.5">15+ years spanning both operations consulting and enterprise data platforms.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(16,185,129,0.06)"><svg width="12" height="12" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><h4 class="text-white font-medium text-sm">Measurable outcomes</h4><p class="text-slate-500 text-xs mt-0.5">Cycle time, error rates, automation coverage. We measure what moves the needle.</p></div>
+            </div>
           </div>
-          <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,194,255,0.06)"><svg width="14" height="14" fill="#00C2FF" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-white font-medium text-sm">Dual expertise</h4><p class="text-slate-500 text-sm mt-0.5">15+ years spanning both operations consulting and enterprise data platforms — rare in a single firm.</p></div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(16,185,129,0.06)"><svg width="14" height="14" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-white font-medium text-sm">Measurable outcomes</h4><p class="text-slate-500 text-sm mt-0.5">Cycle time, error rates, automation coverage — we measure what moves the needle, not just dashboard aesthetics.</p></div>
+          <div class="flex gap-3 mt-7">
+            <a href="about.html" class="btn-primary" style="padding:10px 22px;font-size:13px">Our Approach</a>
+            <a href="services.html" class="btn-outline" style="padding:10px 22px;font-size:13px">View Services</a>
           </div>
         </div>
-        <div class="flex gap-4 mt-9">
-          <a href="about.html" class="btn-primary">Our Approach ↗</a>
-          <a href="services.html" class="btn-outline">View Services ↗</a>
-        </div>
-      </div>
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="grid grid-cols-2 gap-4">
-          <div class="glass-card p-6 text-center">
-            <div class="font-display font-black gradient-text-blue" style="font-size:2.6rem">15+</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="glass-card p-5 text-center">
+            <div class="font-display font-black gradient-text-blue" style="font-size:2rem">15+</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Years Experience</div>
           </div>
-          <div class="glass-card p-6 text-center">
-            <div class="font-display font-black text-white" style="font-size:2.6rem;color:#0ea5e9!important">50+</div>
+          <div class="glass-card p-5 text-center">
+            <div class="font-display font-black" style="font-size:2rem;color:#0ea5e9">50+</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Process Engagements</div>
           </div>
-          <div class="glass-card p-6 text-center">
-            <div class="font-display font-black gradient-text" style="font-size:2.6rem">7</div>
+          <div class="glass-card p-5 text-center">
+            <div class="font-display font-black gradient-text" style="font-size:2rem">7</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Core Services</div>
           </div>
-          <div class="glass-card p-6 text-center">
-            <div class="font-display font-black text-white" style="font-size:2.6rem;color:#10b981!important">6+</div>
+          <div class="glass-card p-5 text-center">
+            <div class="font-display font-black" style="font-size:2rem;color:#10b981">6+</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Industries Served</div>
           </div>
         </div>
       </div>
     </div>
+
+    <div id="tab-industries" class="tab-panel">
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Financial Services</h3>
+          <p class="text-slate-400 text-xs">Fund administration, lending, registry, and wealth management operations.</p>
+        </div>
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Government &amp; Education</h3>
+          <p class="text-slate-400 text-xs">State and federal agencies, education authorities, and compliance-heavy environments.</p>
+        </div>
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Construction &amp; Building</h3>
+          <p class="text-slate-400 text-xs">Project tracking, supplier management, and compliance reporting.</p>
+        </div>
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Retail &amp; Manufacturing</h3>
+          <p class="text-slate-400 text-xs">Supply chain visibility, inventory analytics, and operational dashboards.</p>
+        </div>
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Insurance &amp; Superannuation</h3>
+          <p class="text-slate-400 text-xs">Policy administration, claims processing, and regulatory data reporting.</p>
+        </div>
+        <div class="glass-card p-5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:rgba(0,194,255,0.1)"><svg width="18" height="18" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Professional Services</h3>
+          <p class="text-slate-400 text-xs">Advisory, legal, and consulting firms optimising delivery and knowledge management.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-tech" class="tab-panel">
+      <p class="text-slate-400 text-sm mb-6">Enterprise-grade platforms your team already knows, and specialist tools that scale with your data maturity.</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color:#00C2FF">Analytics &amp; Intelligence</div>
+          <div class="flex flex-wrap">
+            <span class="tech-pill">Microsoft Fabric</span><span class="tech-pill">Power BI</span><span class="tech-pill">OneLake</span><span class="tech-pill">Synapse Analytics</span><span class="tech-pill">AnalyticsCreator</span><span class="tech-pill">SQL Server</span>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color:#10b981">Automation &amp; AI</div>
+          <div class="flex flex-wrap">
+            <span class="tech-pill-green">Power Automate</span><span class="tech-pill-green">Copilot Studio</span><span class="tech-pill-green">Azure AI</span><span class="tech-pill-green">OpenAI / GPT</span><span class="tech-pill-green">Azure AI Foundry</span><span class="tech-pill-green">RPA</span>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color:#2E6BF6">Process &amp; Design</div>
+          <div class="flex flex-wrap">
+            <span class="tech-pill-blue">Visio</span><span class="tech-pill-blue">Lucidchart</span><span class="tech-pill-blue">Bizagi</span><span class="tech-pill-blue">BPMN 2.0</span><span class="tech-pill-blue">Lean / Six Sigma</span><span class="tech-pill-blue">DMAIC</span>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color:#a855f7">Cloud &amp; Data Platform</div>
+          <div class="flex flex-wrap">
+            <span class="tech-pill-purple">Azure</span><span class="tech-pill-purple">Microsoft 365</span><span class="tech-pill-purple">SharePoint</span><span class="tech-pill-purple">Data Factory</span><span class="tech-pill-purple">Databricks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-method" class="tab-panel">
+      <p class="text-slate-400 text-sm mb-6">We map and fix the process before we touch the technology, preventing expensive rework and ensuring every tool solves the right problem.</p>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="glass-card p-5" style="border-top:2px solid #2E6BF6">
+          <div class="text-2xl font-display font-bold mb-2" style="color:#2E6BF6">01</div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Discover</h3>
+          <p class="text-slate-400 text-xs">Map current-state processes, data flows, and pain points through structured workshops.</p>
+        </div>
+        <div class="glass-card p-5" style="border-top:2px solid #00C2FF">
+          <div class="text-2xl font-display font-bold mb-2" style="color:#00C2FF">02</div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Design</h3>
+          <p class="text-slate-400 text-xs">Redesign the process first. Then architect the data and technology layer to support it.</p>
+        </div>
+        <div class="glass-card p-5" style="border-top:2px solid #10b981">
+          <div class="text-2xl font-display font-bold mb-2" style="color:#10b981">03</div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Build</h3>
+          <p class="text-slate-400 text-xs">Implement with agile sprints, stakeholder checkpoints, and change management built in.</p>
+        </div>
+        <div class="glass-card p-5" style="border-top:2px solid #a855f7">
+          <div class="text-2xl font-display font-bold mb-2" style="color:#a855f7">04</div>
+          <h3 class="font-display font-bold text-white text-sm mb-1">Run</h3>
+          <p class="text-slate-400 text-xs">Embed Night Factory agents for autonomous monitoring, so value compounds over time.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
-
 
 <!-- ══════════════════════════════════════════
      NIGHT FACTORY
 ══════════════════════════════════════════ -->
-<section class="py-24 relative night-factory-section">
+<section class="py-12 relative night-factory-section">
   <div class="night-factory-glow" aria-hidden="true"></div>
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -531,8 +642,8 @@
           <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-glow flex-shrink-0"></div>
           <span class="text-emerald-400 text-xs font-semibold tracking-widest uppercase">Night Factory™ — Autonomous AI</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-5">Your business doesn't<br>sleep. Neither do our agents.</h2>
-        <p class="text-slate-400 leading-relaxed mb-7">Night Factory™ is ProcessBI's autonomous AI layer. While your team rests, our agents run: refreshing data, detecting exceptions, generating reports, and surfacing intelligent alerts — so your morning briefing is already done at 7am.</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-5">Your business doesn't sleep.<br><span style="color:#10b981">Neither do our agents.</span></h2>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">Night Factory™ is ProcessBI's autonomous AI layer. While your team rests, our agents run: refreshing data, detecting exceptions, generating reports, and surfacing intelligent alerts — so your morning briefing is already done at 7am.</p>
         <div class="space-y-3 mb-8">
           <div class="flex items-center gap-3 text-sm text-slate-400">
             <div class="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.1)"><svg width="11" height="11" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -545,104 +656,46 @@
       <!-- Right: Agent activity card -->
       <div class="reveal">
         <div class="night-factory-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-            <span style="color:#10b981;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Live Agent Activity</span>
-            <span style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.4);font-size:11px"><span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse-glow 2s infinite"></span>Running</span>
+          <div style="margin-bottom:18px">
+            <span style="color:#10b981;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Autonomous Agent Capabilities</span>
           </div>
           <div class="nf-activity-row">
-            <div class="nf-dot" style="background:#10b981"></div>
-            <div style="flex:1">
-              <div style="color:#fff;font-size:13px;font-weight:500">Data Refresh Agent</div>
-              <div style="color:rgba(139,180,204,0.6);font-size:11px">Reconciled 3 source systems · 2 min ago</div>
+            <div style="width:32px;height:32px;border-radius:10px;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
             </div>
-            <span class="nf-status-badge" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2)">Complete</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-size:13px;font-weight:500">Data Refresh &amp; Reconciliation</div>
+              <div style="color:rgba(139,180,204,0.6);font-size:11px">Nightly sync across all connected source systems</div>
+            </div>
           </div>
           <div class="nf-activity-row">
-            <div class="nf-dot" style="background:#f59e0b;animation-delay:0.5s"></div>
-            <div style="flex:1">
-              <div style="color:#fff;font-size:13px;font-weight:500">Exception Monitor</div>
-              <div style="color:rgba(139,180,204,0.6);font-size:11px">Scanning for anomalies · Running</div>
+            <div style="width:32px;height:32px;border-radius:10px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
-            <span class="nf-status-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2)">Active</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-size:13px;font-weight:500">Exception &amp; Anomaly Detection</div>
+              <div style="color:rgba(139,180,204,0.6);font-size:11px">Surfaces outliers and threshold breaches automatically</div>
+            </div>
           </div>
           <div class="nf-activity-row">
-            <div class="nf-dot" style="background:#00C2FF;animation-delay:1s"></div>
-            <div style="flex:1">
-              <div style="color:#fff;font-size:13px;font-weight:500">Report Generator</div>
-              <div style="color:rgba(139,180,204,0.6);font-size:11px">Morning pack queued · 6:55 AM</div>
+            <div style="width:32px;height:32px;border-radius:10px;background:rgba(0,194,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </div>
-            <span class="nf-status-badge" style="background:rgba(0,194,255,0.1);color:#00C2FF;border:1px solid rgba(0,194,255,0.2)">Queued</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-size:13px;font-weight:500">Automated Report Generation</div>
+              <div style="color:rgba(139,180,204,0.6);font-size:11px">Morning briefing packs ready before your team starts</div>
+            </div>
           </div>
           <div class="nf-activity-row" style="border-bottom:none">
-            <div class="nf-dot" style="background:#a855f7;animation-delay:1.5s"></div>
-            <div style="flex:1">
-              <div style="color:#fff;font-size:13px;font-weight:500">Knowledge Agent</div>
-              <div style="color:rgba(139,180,204,0.6);font-size:11px">Indexed 14 new documents · Idle</div>
+            <div style="width:32px;height:32px;border-radius:10px;background:rgba(168,85,247,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" fill="none" stroke="#a855f7" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
             </div>
-            <span class="nf-status-badge" style="background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2)">Idle</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-size:13px;font-weight:500">Knowledge &amp; Document Indexing</div>
+              <div style="color:rgba(139,180,204,0.6);font-size:11px">Continuously updates your AI knowledge base overnight</div>
+            </div>
           </div>
-          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:space-between">
-            <span style="color:rgba(139,180,204,0.5);font-size:11px">4 agents · Next run 07:00 AEST</span>
-            <span style="color:#10b981;font-size:11px;font-weight:600">All systems nominal</span>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Industries ─────────────────────────────────────── -->
-<section class="py-24 relative">
-  <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-16 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5" style="background:rgba(0,194,255,0.06);border:1px solid rgba(0,194,255,0.15)">
-        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Industries</span>
-      </div>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Sectors we serve</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">Deep domain knowledge across regulated, data-intensive industries.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Financial Services</h3>
-        <p class="text-slate-400 text-sm">Fund administration, lending, registry, and wealth management operations.</p>
-      </div>
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Government &amp; Education</h3>
-        <p class="text-slate-400 text-sm">State and federal agencies, education authorities, and compliance-heavy environments.</p>
-      </div>
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Construction &amp; Building</h3>
-        <p class="text-slate-400 text-sm">Project tracking, supplier management, and compliance reporting for construction firms.</p>
-      </div>
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Retail &amp; Manufacturing</h3>
-        <p class="text-slate-400 text-sm">Supply chain visibility, inventory analytics, and operational dashboards.</p>
-      </div>
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Insurance &amp; Superannuation</h3>
-        <p class="text-slate-400 text-sm">Policy administration, claims processing, and regulatory data reporting.</p>
-      </div>
-      <div class="glass-card p-6 reveal">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(0,194,255,0.1)">
-          <svg width="20" height="20" fill="none" stroke="#00C2FF" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-white mb-2">Professional Services</h3>
-        <p class="text-slate-400 text-sm">Advisory, legal, and consulting firms optimising delivery and knowledge management.</p>
       </div>
     </div>
   </div>
@@ -679,82 +732,12 @@
   </div>
 </section>
 
-<!-- ── Technologies ───────────────────────────────────── -->
-<section class="py-24 relative">
-  <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5" style="background:rgba(0,194,255,0.06);border:1px solid rgba(0,194,255,0.15)">
-        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Technology Stack</span>
-      </div>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Built on enterprise-grade platforms</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">We work with the tools your team already knows — and the platforms that scale.</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="glass-card p-5 text-center reveal">
-        <div style="color:#00C2FF;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Analytics</div>
-        <p class="text-white font-semibold text-sm">Microsoft Fabric</p>
-        <p class="text-slate-500 text-xs mt-1">Power BI · OneLake · Synapse</p>
-      </div>
-      <div class="glass-card p-5 text-center reveal">
-        <div style="color:#00C2FF;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Automation</div>
-        <p class="text-white font-semibold text-sm">Power Platform</p>
-        <p class="text-slate-500 text-xs mt-1">Power Automate · Copilot Studio</p>
-      </div>
-      <div class="glass-card p-5 text-center reveal">
-        <div style="color:#00C2FF;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">AI &amp; Agents</div>
-        <p class="text-white font-semibold text-sm">Azure AI · OpenAI</p>
-        <p class="text-slate-500 text-xs mt-1">GPT · Foundry · Custom agents</p>
-      </div>
-      <div class="glass-card p-5 text-center reveal">
-        <div style="color:#00C2FF;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Process</div>
-        <p class="text-white font-semibold text-sm">Visio · Lucid · Bizagi</p>
-        <p class="text-slate-500 text-xs mt-1">BPMN 2.0 · Lean frameworks</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Methodology ───────────────────────────────────── -->
-<section class="py-24 relative">
-  <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5" style="background:rgba(0,194,255,0.06);border:1px solid rgba(0,194,255,0.15)">
-        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">How We Work</span>
-      </div>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Process first. Technology second. Always.</h2>
-      <p class="text-slate-400 max-w-2xl mx-auto">We map and fix the process before we touch the technology. This prevents expensive rework and ensures every tool we implement actually solves the right problem.</p>
-    </div>
-    <div class="grid md:grid-cols-4 gap-4">
-      <div class="glass-card p-6 reveal" style="border-top:2px solid #2E6BF6">
-        <div class="text-3xl font-display font-bold mb-3" style="color:#2E6BF6">01</div>
-        <h3 class="font-display font-bold text-white mb-2">Discover</h3>
-        <p class="text-slate-400 text-sm">Map current-state processes, data flows, and pain points through structured workshops.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="border-top:2px solid #00C2FF">
-        <div class="text-3xl font-display font-bold mb-3" style="color:#00C2FF">02</div>
-        <h3 class="font-display font-bold text-white mb-2">Design</h3>
-        <p class="text-slate-400 text-sm">Redesign the process first. Then architect the data and technology layer to support it.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="border-top:2px solid #10b981">
-        <div class="text-3xl font-display font-bold mb-3" style="color:#10b981">03</div>
-        <h3 class="font-display font-bold text-white mb-2">Build</h3>
-        <p class="text-slate-400 text-sm">Implement with agile sprints, stakeholder checkpoints, and change management built in.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="border-top:2px solid #a855f7">
-        <div class="text-3xl font-display font-bold mb-3" style="color:#a855f7">04</div>
-        <h3 class="font-display font-bold text-white mb-2">Run</h3>
-        <p class="text-slate-400 text-sm">Embed Night Factory agents for autonomous monitoring, so value compounds over time.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── CTA ───────────────────────────────────────────── -->
-<section class="py-28 relative overflow-hidden">
+<section class="py-16 relative overflow-hidden">
   <div class="absolute inset-0" style="background:radial-gradient(ellipse at center,rgba(0,194,255,0.06) 0%,transparent 70%)"></div>
   <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal">
-    <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Ready to redesign<br><span style="color:#00C2FF">how your business runs?</span></h2>
-    <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">Start with a no-obligation process audit. We'll identify your biggest operational bottlenecks and map a clear path forward.</p>
+    <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">Ready to redesign<br><span style="color:#00C2FF">how your business runs?</span></h2>
+    <p class="text-slate-400 text-sm mb-7 max-w-xl mx-auto">Start with a no-obligation process audit. We'll identify your biggest operational bottlenecks and map a clear path forward.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="contact.html" class="btn-primary px-10 py-4 text-base font-semibold rounded-xl">Book a Free Process Audit</a>
       <a href="case-studies.html" class="px-10 py-4 text-base font-semibold rounded-xl border text-slate-300 hover:text-white transition-colors" style="border-color:rgba(255,255,255,0.15)">See Our Work</a>
@@ -825,6 +808,36 @@ if(hero && cursorGlow){
   });
   hero.addEventListener('mouseleave',()=>{cursorGlow.style.opacity='0';});
 }
+/* ── Tab switcher ── */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  var panel=document.getElementById('tab-'+id);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
 /* ── Scroll reveal ── */
 const revealEls=document.querySelectorAll('.reveal');
-const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');ro.unob
+/* ── Tab switcher ── */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  var panel=document.getElementById('tab-'+id);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+/* ── Tab switcher ── */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  var panel=document.getElementById('tab-'+id);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+/* ── Scroll reveal ── */
+const revealEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.08});
+revealEls.forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
