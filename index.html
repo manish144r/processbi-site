@@ -314,18 +314,29 @@ html{font-size:14px}
 
         <!-- Animated CSS for hero chart -->
         <style>
-          .hb-bar{transform-box:fill-box;transform-origin:bottom;animation:hbRise .7s cubic-bezier(.2,.8,.25,1) backwards}
-          .hb-b0{animation-delay:.3s}.hb-b1{animation-delay:.48s}.hb-b2{animation-delay:.66s}.hb-b3{animation-delay:.84s}
-          .hb-line{stroke-dasharray:300;stroke-dashoffset:300;animation:hbDraw 1s ease-in-out 1.05s forwards}
-          .hb-arrow{opacity:0;animation:hbPop .5s cubic-bezier(.34,1.56,.64,1) 2.05s forwards}
-          .hb-node{transform-box:fill-box;transform-origin:center;opacity:0;animation:hbPop .45s cubic-bezier(.34,1.56,.64,1) backwards forwards}
-          .hb-n0{animation-delay:1.2s}.hb-n1{animation-delay:1.42s}.hb-n2{animation-delay:1.64s}.hb-n3{animation-delay:1.86s}
-          .hb-halo{transform-box:fill-box;transform-origin:center;animation:hbPulse 4.4s ease-in-out infinite}
-          @keyframes hbRise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+          /* Bars: visible immediately, rise from bottom */
+          .hb-bar{transform-box:fill-box;transform-origin:bottom center;animation:hbRise .8s cubic-bezier(.2,.8,.25,1) both}
+          .hb-b0{animation-delay:.1s}.hb-b1{animation-delay:.25s}.hb-b2{animation-delay:.4s}.hb-b3{animation-delay:.55s}
+          /* Trend line draw */
+          .hb-line{stroke-dasharray:320;stroke-dashoffset:320;animation:hbDraw 1s ease-in-out .8s both}
+          /* Arrow */
+          .hb-arrow{opacity:0;animation:hbFade .4s ease 1.8s forwards}
+          /* Node circles pop in */
+          .hb-node{transform-box:fill-box;transform-origin:center;animation:hbPop .4s cubic-bezier(.34,1.56,.64,1) both}
+          .hb-n0{animation-delay:.9s}.hb-n1{animation-delay:1.05s}.hb-n2{animation-delay:1.2s}.hb-n3{animation-delay:1.35s}
+          /* Halo pulse */
+          .hb-halo{animation:hbPulse 3.5s ease-in-out 1.5s infinite}
+          @keyframes hbRise{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
           @keyframes hbDraw{to{stroke-dashoffset:0}}
-          @keyframes hbPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-          @keyframes hbPulse{0%,100%{opacity:.12}50%{opacity:.38}}
-          @media(prefers-reduced-motion:reduce){.hb-bar,.hb-line,.hb-arrow,.hb-node{animation:none;opacity:1;stroke-dashoffset:0;transform:none}}
+          @keyframes hbFade{to{opacity:1}}
+          @keyframes hbPop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+          @keyframes hbPulse{0%,100%{opacity:.1}50%{opacity:.35}}
+          @media(prefers-reduced-motion:reduce){
+            .hb-bar{animation:none;transform:scaleY(1);opacity:1}
+            .hb-line{animation:none;stroke-dashoffset:0}
+            .hb-arrow{opacity:1;animation:none}
+            .hb-node{animation:none;transform:scale(1);opacity:1}
+          }
         </style>
 
       </div>
