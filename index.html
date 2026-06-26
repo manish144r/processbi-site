@@ -76,7 +76,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=6">
+<link rel="stylesheet" href="shared.css?v=3">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -92,7 +92,7 @@
 .hero-float-delay{animation:heroFloat 3s ease-in-out 1.5s infinite;will-change:transform}
 @media(prefers-reduced-motion:reduce){.hero-float,.hero-float-delay{animation:none}}
 /* ── Compact global sizing ── */
-html{font-size:14px}
+html{font-size:15.5px}
 .tab-nav{border-bottom:1px solid rgba(0,194,255,0.1);margin-bottom:28px;overflow-x:auto;white-space:nowrap}
 .tab-btn{display:inline-block;padding:10px 20px;border:none;background:none;color:rgba(139,180,204,0.5);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px}
 .tab-btn:hover{color:#8BB4CC}
@@ -224,31 +224,106 @@ html{font-size:14px}
       <div class="hero-float-delay flex items-center justify-center" style="position:relative">
         <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 65% at 50% 48%,rgba(46,107,246,0.14) 0%,transparent 70%);pointer-events:none;z-index:0"></div>
         <div style="position:relative;z-index:1;width:100%;display:flex;justify-content:center">
-          <svg viewBox="0 0 500 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;position:relative;z-index:1" aria-label="ProcessBI capability ring">
-          <defs><filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-          <circle cx="250" cy="230" r="165" fill="none" stroke="rgba(46,107,246,0.18)" stroke-width="1" class="pb-orbit-dash"/>
-          <circle cx="250" cy="230" r="60" fill="none" stroke="rgba(0,194,255,0.06)" stroke-width="1"/>
-          <circle cx="250" cy="230" r="38" fill="rgba(5,16,34,0.4)" stroke="rgba(46,107,246,0.1)" stroke-width="1"/>
-          <g stroke="rgba(46,107,246,0.15)" stroke-width="1" fill="none">
-            <line x1="250" y1="70" x2="402" y2="179"/><line x1="250" y1="70" x2="353" y2="359"/>
-            <line x1="250" y1="70" x2="147" y2="359"/><line x1="250" y1="70" x2="98" y2="179"/>
-            <line x1="402" y1="179" x2="353" y2="359"/><line x1="402" y1="179" x2="147" y2="359"/>
-            <line x1="402" y1="179" x2="98" y2="179"/><line x1="353" y1="359" x2="147" y2="359"/>
-            <line x1="353" y1="359" x2="98" y2="179"/><line x1="147" y1="359" x2="98" y2="179"/>
+          <!-- Business Process Cycle — clean curved flow, no crossing lines -->
+        <svg viewBox="0 0 500 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;position:relative;z-index:1;overflow:visible" aria-label="ProcessBI business process cycle">
+          <defs>
+            <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="dot-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <marker id="arr0" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="rgba(46,107,246,0.85)"/></marker>
+            <marker id="arr1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="rgba(0,194,255,0.85)"/></marker>
+            <marker id="arr2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="rgba(70,213,255,0.85)"/></marker>
+            <marker id="arr3" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="rgba(14,165,233,0.85)"/></marker>
+            <marker id="arr4" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="rgba(168,85,247,0.85)"/></marker>
+          </defs>
+
+          <!-- Outer orbit ring — single subtle dashed circle -->
+          <circle cx="250" cy="230" r="165" fill="none" stroke="rgba(46,107,246,0.14)" stroke-width="1" stroke-dasharray="4 9"/>
+
+          <!-- Center label -->
+          <text x="250" y="219" fill="rgba(46,107,246,0.7)" font-size="9" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.14em">PROCESS</text>
+          <text x="250" y="233" fill="rgba(46,107,246,0.7)" font-size="9" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.14em">CYCLE</text>
+
+          <!-- ── Curved arrows (clockwise, adjacent nodes only — no crossing) ── -->
+          <!-- DISCOVER → DESIGN -->
+          <path id="a01" d="M 266,76 Q 379,52 393,165" fill="none" stroke="rgba(46,107,246,0.6)" stroke-width="1.8" marker-end="url(#arr0)"/>
+          <!-- DESIGN → BUILD -->
+          <path id="a12" d="M 403,195 Q 459,298 362,342" fill="none" stroke="rgba(0,194,255,0.6)" stroke-width="1.8" marker-end="url(#arr1)"/>
+          <!-- BUILD → AUTOMATE -->
+          <path id="a23" d="M 336,361 Q 250,450 164,361" fill="none" stroke="rgba(70,213,255,0.6)" stroke-width="1.8" marker-end="url(#arr2)"/>
+          <!-- AUTOMATE → OPTIMISE -->
+          <path id="a34" d="M 138,342 Q 41,298 97,195" fill="none" stroke="rgba(14,165,233,0.6)" stroke-width="1.8" marker-end="url(#arr3)"/>
+          <!-- OPTIMISE → DISCOVER -->
+          <path id="a40" d="M 107,165 Q 121,52 234,76" fill="none" stroke="rgba(168,85,247,0.6)" stroke-width="1.8" marker-end="url(#arr4)"/>
+
+          <!-- ── Animated flow particles ── -->
+          <circle r="4" fill="#2E6BF6" filter="url(#dot-glow)"><animateMotion dur="3s" begin="0s" repeatCount="indefinite"><mpath href="#a01"/></animateMotion></circle>
+          <circle r="4" fill="#00C2FF" filter="url(#dot-glow)"><animateMotion dur="3s" begin="-0.6s" repeatCount="indefinite"><mpath href="#a12"/></animateMotion></circle>
+          <circle r="4" fill="#46D5FF" filter="url(#dot-glow)"><animateMotion dur="3s" begin="-1.2s" repeatCount="indefinite"><mpath href="#a23"/></animateMotion></circle>
+          <circle r="4" fill="#0ea5e9" filter="url(#dot-glow)"><animateMotion dur="3s" begin="-1.8s" repeatCount="indefinite"><mpath href="#a34"/></animateMotion></circle>
+          <circle r="4" fill="#a855f7" filter="url(#dot-glow)"><animateMotion dur="3s" begin="-2.4s" repeatCount="indefinite"><mpath href="#a40"/></animateMotion></circle>
+
+          <!-- ── NODE 0: DISCOVER (top) cx=250 cy=65 ── -->
+          <g filter="url(#node-glow)">
+            <circle cx="250" cy="65" r="30" fill="rgba(46,107,246,0.14)" class="pb-halo-0"/>
+            <circle cx="250" cy="65" r="21" fill="#05101f" stroke="#2E6BF6" stroke-width="2"/>
+            <g stroke="#2E6BF6" stroke-width="1.5" fill="none" transform="translate(241,56)">
+              <circle cx="9" cy="8" r="5"/>
+              <line x1="12.5" y1="11.5" x2="17" y2="16" stroke-linecap="round" stroke-width="2"/>
+              <circle cx="9" cy="8" r="1.8" fill="#2E6BF6" stroke="none"/>
+            </g>
           </g>
-          <g filter="url(#node-glow)"><circle cx="250" cy="70" r="28" fill="rgba(46,107,246,0.12)" class="pb-halo-0"/><circle cx="250" cy="70" r="20" fill="#05101f" stroke="#2E6BF6" stroke-width="2"/><g stroke="#2E6BF6" stroke-width="1.5" fill="none" transform="translate(241,61)"><rect x="0" y="0" width="7" height="5" rx="1"/><rect x="0" y="9" width="7" height="5" rx="1"/><rect x="11" y="4" width="7" height="5" rx="1"/><line x1="7" y1="2.5" x2="9.5" y2="4.5"/><line x1="7" y1="11.5" x2="9.5" y2="8.5"/></g></g>
-          <text x="250" y="44" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Process Design</text>
-          <g filter="url(#node-glow)"><circle cx="402" cy="179" r="28" fill="rgba(0,194,255,0.12)" class="pb-halo-1"/><circle cx="402" cy="179" r="20" fill="#05101f" stroke="#00C2FF" stroke-width="2"/><g stroke="#00C2FF" stroke-width="1.5" fill="none" transform="translate(393,170)"><ellipse cx="9" cy="3" rx="8" ry="3"/><path d="M1 3v5c0 1.66 3.58 3 8 3s8-1.34 8-3V3"/><path d="M1 8v5c0 1.66 3.58 3 8 3s8-1.34 8-3V8"/></g></g>
-          <text x="436" y="176" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="start">Microsoft</text>
-          <text x="436" y="188" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="start">Fabric</text>
-          <g filter="url(#node-glow)"><circle cx="353" cy="359" r="28" fill="rgba(70,213,255,0.12)" class="pb-halo-2"/><circle cx="353" cy="359" r="20" fill="#05101f" stroke="#46D5FF" stroke-width="2"/><g stroke="#46D5FF" stroke-width="1.5" fill="none" transform="translate(344,350)"><path d="M0 18h18"/><path d="M3 18V11M8 18V7M13 18V3"/></g></g>
-          <text x="353" y="396" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Analytics &amp; BI</text>
-          <g filter="url(#node-glow)"><circle cx="147" cy="359" r="28" fill="rgba(14,165,233,0.12)" class="pb-halo-3"/><circle cx="147" cy="359" r="20" fill="#05101f" stroke="#0ea5e9" stroke-width="2"/><g stroke="#0ea5e9" stroke-width="1.5" fill="none" transform="translate(138,350)"><path d="M8 3H5a2 2 0 00-2 2v3m0 4v3a2 2 0 002 2h3m4 0h3a2 2 0 002-2v-3m0-4V5a2 2 0 00-2-2h-3"/><path d="M9 9l3 3-3 3"/></g></g>
-          <text x="147" y="392" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Process</text>
-          <text x="147" y="404" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Automation</text>
-          <g filter="url(#node-glow)"><circle cx="98" cy="179" r="28" fill="rgba(168,85,247,0.12)" class="pb-halo-4"/><circle cx="98" cy="179" r="20" fill="#05101f" stroke="#a855f7" stroke-width="2"/><g stroke="#a855f7" stroke-width="1.5" fill="none" transform="translate(89,170)"><path d="M0 5h6a2 2 0 012 2v4a2 2 0 002 2h8"/><path d="M0 13h4"/><circle cx="16" cy="13" r="2"/><circle cx="2" cy="5" r="2"/></g></g>
-          <text x="55" y="176" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Data</text>
-          <text x="55" y="188" fill="#8BB4CC" font-size="9.5" font-family="Inter,sans-serif" font-weight="600" text-anchor="middle">Engineering</text>
+          <text x="250" y="22" fill="#EAF2FF" font-size="10" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.09em">DISCOVER</text>
+          <text x="250" y="36" fill="#6B8FAD" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Map &amp; Analyse</text>
+
+          <!-- ── NODE 1: DESIGN (top-right) cx=409 cy=176 ── -->
+          <g filter="url(#node-glow)">
+            <circle cx="409" cy="176" r="30" fill="rgba(0,194,255,0.14)" class="pb-halo-1"/>
+            <circle cx="409" cy="176" r="21" fill="#05101f" stroke="#00C2FF" stroke-width="2"/>
+            <g stroke="#00C2FF" stroke-width="1.5" fill="none" transform="translate(400,167)">
+              <rect x="0" y="0" width="10" height="14" rx="1.5"/>
+              <line x1="2.5" y1="4" x2="7.5" y2="4"/><line x1="2.5" y1="7" x2="7.5" y2="7"/><line x1="2.5" y1="10" x2="5.5" y2="10"/>
+              <path d="M13 2l4 4-5 6H8v-4z" stroke-linejoin="round"/>
+            </g>
+          </g>
+          <text x="438" y="171" fill="#EAF2FF" font-size="10" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="start" letter-spacing="0.09em">DESIGN</text>
+          <text x="438" y="184" fill="#6B8FAD" font-size="8.5" font-family="Inter,sans-serif" text-anchor="start">Architect</text>
+
+          <!-- ── NODE 2: BUILD (bottom-right) cx=356 cy=361 ── -->
+          <g filter="url(#node-glow)">
+            <circle cx="356" cy="361" r="30" fill="rgba(70,213,255,0.14)" class="pb-halo-2"/>
+            <circle cx="356" cy="361" r="21" fill="#05101f" stroke="#46D5FF" stroke-width="2"/>
+            <g stroke="#46D5FF" stroke-width="1.5" fill="none" transform="translate(347,352)">
+              <circle cx="9" cy="9" r="3.5"/>
+              <path d="M9 1v2M9 15v2M1 9h2M15 9h2" stroke-linecap="round"/>
+              <path d="M2.6 2.6l1.5 1.5M13.9 13.9l1.5 1.5M2.6 15.4l1.5-1.5M13.9 4.1l1.5-1.5" stroke-linecap="round"/>
+            </g>
+          </g>
+          <text x="356" y="399" fill="#EAF2FF" font-size="10" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.09em">BUILD</text>
+          <text x="356" y="412" fill="#6B8FAD" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Implement &amp; Integrate</text>
+
+          <!-- ── NODE 3: AUTOMATE (bottom-left) cx=144 cy=361 ── -->
+          <g filter="url(#node-glow)">
+            <circle cx="144" cy="361" r="30" fill="rgba(14,165,233,0.14)" class="pb-halo-3"/>
+            <circle cx="144" cy="361" r="21" fill="#05101f" stroke="#0ea5e9" stroke-width="2"/>
+            <g stroke="#0ea5e9" stroke-width="1.5" fill="none" transform="translate(135,352)">
+              <path d="M13 2L4 11h7l-4 9 9-9H9z" stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+          </g>
+          <text x="144" y="399" fill="#EAF2FF" font-size="10" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.09em">AUTOMATE</text>
+          <text x="144" y="412" fill="#6B8FAD" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Deploy &amp; Scale</text>
+
+          <!-- ── NODE 4: OPTIMISE (left) cx=91 cy=176 ── -->
+          <g filter="url(#node-glow)">
+            <circle cx="91" cy="176" r="30" fill="rgba(168,85,247,0.14)" class="pb-halo-4"/>
+            <circle cx="91" cy="176" r="21" fill="#05101f" stroke="#a855f7" stroke-width="2"/>
+            <g stroke="#a855f7" stroke-width="1.5" fill="none" transform="translate(82,167)">
+              <path d="M1 16h16" stroke-linecap="round"/>
+              <path d="M3 12l4-4 3 3 5-7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 4h5v5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </g>
+          <text x="60" y="171" fill="#EAF2FF" font-size="10" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" text-anchor="middle" letter-spacing="0.09em">OPTIMISE</text>
+          <text x="60" y="184" fill="#6B8FAD" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Measure &amp; Improve</text>
         </svg>
         </div>
       </div>
@@ -657,71 +732,4 @@ html{font-size:14px}
         <p class="text-slate-500 text-sm">Business process consulting and Microsoft Fabric analytics for Australian enterprise.</p>
       </div>
       <div>
-        <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-4">Services</div>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="services.html" class="hover:text-white transition-colors">Process Design</a></li>
-          <li><a href="services.html" class="hover:text-white transition-colors">Data &amp; Analytics</a></li>
-          <li><a href="services.html" class="hover:text-white transition-colors">AI Automation</a></li>
-          <li><a href="services.html" class="hover:text-white transition-colors">Night Factory™</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-4">Company</div>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="case-studies.html" class="hover:text-white transition-colors">Case Studies</a></li>
-          <li><a href="industries.html" class="hover:text-white transition-colors">Industries</a></li>
-          <li><a href="blog/index.html" class="hover:text-white transition-colors">Blog</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-4">Contact</div>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="contact.html" class="hover:text-white transition-colors">Get a Quote</a></li>
-          <li><a href="mailto:hello@processbi.com.au" class="hover:text-white transition-colors">hello@processbi.com.au</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(0,194,255,0.08)">
-      <p class="text-slate-600 text-xs">© 2025 ProcessBI. All rights reserved.</p>
-      <p class="text-slate-600 text-xs">ABN: Available on request</p>
-    </div>
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="shared-nav.js?v=6"></script>
-<script>
-/* ── Hero interactive effects ── */
-const hero = document.getElementById('hero');
-const cursorGlow = document.getElementById('cursor-glow');
-if(hero && cursorGlow){
-  hero.addEventListener('mousemove',e=>{
-    const r=hero.getBoundingClientRect();
-    cursorGlow.style.left=(e.clientX-r.left)+'px';
-    cursorGlow.style.top=(e.clientY-r.top)+'px';
-    cursorGlow.style.opacity='1';
-    const mx=(e.clientX-r.width/2)/r.width;
-    const my=(e.clientY-r.height/2)/r.height;
-    const blob1=document.getElementById('hero-blob-1');
-    const blob2=document.getElementById('hero-blob-2');
-    if(blob1) blob1.style.transform=`translate(${mx*18}px,${my*18}px)`;
-    if(blob2) blob2.style.transform=`translate(${-mx*14}px,${-my*14}px)`;
-  });
-  hero.addEventListener('mouseleave',()=>{cursorGlow.style.opacity='0';});
-}
-/* ── Tab switcher ── */
-function switchTab(id,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  var panel=document.getElementById('tab-'+id);
-  if(panel) panel.classList.add('active');
-  if(btn) btn.classList.add('active');
-}
-/* ── Scroll reveal ── */
-const revealEls=document.querySelectorAll('.reveal');
-const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.08});
-revealEls.forEach(el=>ro.observe(el));
-</script>
-</body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        <div class="text-xs
