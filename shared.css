@@ -1,4 +1,4 @@
-/* ── ProcessBI shared styles — Dark Premium Theme ── */
+/* ── ProcessBI shared styles — Dark Premium Theme — v5 ── */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -12,6 +12,17 @@ body{
 h1,h2,h3,h4,h5,h6{letter-spacing:-0.02em;line-height:1.1}
 section{background:transparent}
 .section-alt{background:rgba(255,255,255,0.02)}
+
+
+/* ── Layout width — widen containers globally ── */
+.max-w-7xl { max-width: 1440px !important; }
+.max-w-6xl { max-width: 1360px !important; }
+.max-w-5xl { max-width: 1280px !important; }
+/* Extra breathing room on wide screens */
+@media (min-width: 1600px) {
+  .max-w-7xl { max-width: 1520px !important; }
+  .max-w-6xl { max-width: 1440px !important; }
+}
 
 /* ── Tailwind slate / color overrides for dark theme ── */
 .text-slate-950,.text-slate-900{color:#FFFFFF !important}
