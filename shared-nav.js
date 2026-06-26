@@ -45,7 +45,7 @@ const NAV_LINKS = [
   {href:'industries.html',               label:'Industries'},
   {href:'case-studies.html',             label:'Case Studies'},
   {href:'about.html',                    label:'About'},
-  {href:'contact.html',                  label:'Get a Quote'},
+  {href:'contact.html',                  label:'Contact'},
   {href:'blog/index.html',               label:'Blog'},
 ];
 
