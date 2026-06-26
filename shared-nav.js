@@ -61,31 +61,40 @@ function navLinkClass(href){
    4. Inject Nav
 ─────────────────────────────────────────────── */
 /* Services mega-dropdown (4 practice areas) */
-const SVC_DROPDOWN = `<div id="svc-drop" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:480px;background:#0B1A2E;border:1px solid rgba(0,194,255,0.15);border-radius:16px;padding:20px;box-shadow:0 24px 48px rgba(0,0,0,0.4);z-index:200">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <a href="services.html#process-design" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
-      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Process Excellence</div>
-      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Process &amp; Workflow Design</div>
-      <div style="color:#8BB4CC;font-size:11px">Business Applications Design</div>
+const SVC_DROPDOWN = `<div id="svc-drop" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:360px;background:#0B1A2E;border:1px solid rgba(0,194,255,0.15);border-radius:16px;padding:16px 12px 12px;box-shadow:0 24px 48px rgba(0,0,0,0.4);z-index:200">
+  <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(139,180,204,0.5);padding:0 8px 10px;border-bottom:1px solid rgba(0,194,255,0.08);margin-bottom:8px">Our Services</div>
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <a href="service-business-process.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(46,107,246,0.12)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#2E6BF6;box-shadow:0 0 8px #2E6BF688;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Business Process Design</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Map and redesign end-to-end operations</div></div>
     </a>
-    <a href="services.html#db-design" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
-      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Data Engineering</div>
-      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Database &amp; DW Design</div>
-      <div style="color:#8BB4CC;font-size:11px">DW Migration to Fabric</div>
+    <a href="service-fabric.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(0,194,255,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#00C2FF;box-shadow:0 0 8px #00C2FF88;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Microsoft Fabric</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Unified data platform implementation</div></div>
     </a>
-    <a href="services.html#automation" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,194,255,0.1);background:rgba(0,194,255,0.04);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,194,255,0.1)'" onmouseout="this.style.background='rgba(0,194,255,0.04)'">
-      <div style="color:#00C2FF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Automation &amp; AI</div>
-      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Process Automation</div>
-      <div style="color:#8BB4CC;font-size:11px">BI &amp; Analytics</div>
+    <a href="service-powerbi.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(242,200,17,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#F2C811;box-shadow:0 0 8px #F2C81188;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Power BI Consulting</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Reports that answer real business questions</div></div>
     </a>
-    <a href="services.html#consulting" style="display:block;padding:14px;border-radius:10px;border:1px solid rgba(0,120,212,0.2);background:rgba(0,120,212,0.06);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(0,120,212,0.15)'" onmouseout="this.style.background='rgba(0,120,212,0.06)'">
-      <div style="color:#1EAEFF;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Strategic Advisory</div>
-      <div style="color:#FFFFFF;font-size:13px;font-weight:600;margin-bottom:3px">Business &amp; Tech Consulting</div>
-      <div style="color:#8BB4CC;font-size:11px">Architecture · AI Governance</div>
+    <a href="service-automation.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(14,165,233,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#0ea5e9;box-shadow:0 0 8px #0ea5e988;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Process Automation</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Automate repetitive workflows at scale</div></div>
+    </a>
+    <a href="service-dw-migration.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(99,102,241,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#6366f1;box-shadow:0 0 8px #6366f188;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Data Warehouse Migration</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Legacy warehouse to Microsoft Fabric</div></div>
+    </a>
+    <a href="service-bi-analytics.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(70,213,255,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#46D5FF;box-shadow:0 0 8px #46D5FF88;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Analytics &amp; BI</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Dashboards built on trusted data</div></div>
+    </a>
+    <a href="service-data-engineering.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(168,85,247,0.08)'" onmouseout="this.style.background='transparent'">
+      <span style="width:8px;height:8px;border-radius:50%;background:#a855f7;box-shadow:0 0 8px #a855f788;flex:none"></span>
+      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Data Engineering</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Pipelines, integrations &amp; transformation</div></div>
     </a>
   </div>
-  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,194,255,0.1);text-align:center">
-    <a href="services.html" style="color:#00C2FF;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.color='#1EAEFF'" onmouseout="this.style.color='#00C2FF'">View all 7 services →</a>
+  <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,194,255,0.08);text-align:center">
+    <a href="services.html" style="color:#00C2FF;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.color='#1EAEFF'" onmouseout="this.style.color='#00C2FF'">View all services →</a>
   </div>
 </div>`;
 
