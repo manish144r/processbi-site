@@ -121,7 +121,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
     </a>
     <div class="hidden md:flex items-center gap-7">${desktopLinks}</div>
     <div class="flex items-center gap-4">
-      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Book a Call</a>
+      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Contact</a>
       <button id="mobile-menu-btn" class="md:hidden transition-colors" style="color:#8BB4CC" aria-label="Menu">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
@@ -129,7 +129,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
   </div>
   <div id="mobile-menu" class="hidden md:hidden" style="background:rgba(11,26,46,0.98);border-top:1px solid rgba(0,194,255,0.1)">
     <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">${mobileLinks}
-      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Book a Call</a>
+      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Contact</a>
     </div>
   </div>
 </nav>`;
