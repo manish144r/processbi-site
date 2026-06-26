@@ -81,49 +81,26 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=2">
+<link rel="stylesheet" href="shared.css?v=3">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-
-/* ── Hero blob parallax ── */
 .mesh-gradient{will-change:transform;transition:none}
-
-/* ── Cursor glow ── */
 #cursor-glow{
-  position:absolute;
-  width:320px;height:320px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(0,194,255,0.15) 0%,transparent 70%);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  opacity:0;
-  transition:opacity 0.4s ease;
-  will-change:left,top;
-  z-index:1;
+  position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,194,255,0.12) 0%,transparent 70%);
+  pointer-events:none;transform:translate(-50%,-50%);opacity:0;
+  transition:opacity 0.4s ease;will-change:left,top;z-index:1
 }
-
-/* ── Hero float animation ── */
-@keyframes heroFloat{
-  0%,100%{transform:translate3d(0,0,0)}
-  50%{transform:translate3d(0,-3px,0)}
-}
-.hero-float{
-  animation:heroFloat 3s ease-in-out infinite;
-  will-change:transform;
-}
-.hero-float-delay{
-  animation:heroFloat 3s ease-in-out 1.5s infinite;
-  will-change:transform;
-}
-@media(prefers-reduced-motion:reduce){
-  .hero-float,.hero-float-delay{animation:none}
-}
+@keyframes heroFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-3px,0)}}
+.hero-float{animation:heroFloat 3s ease-in-out infinite;will-change:transform}
+.hero-float-delay{animation:heroFloat 3s ease-in-out 1.5s infinite;will-change:transform}
+@media(prefers-reduced-motion:reduce){.hero-float,.hero-float-delay{animation:none}}
 </style>
 </head>
 <body>
 
-<!-- ── Brand Reveal Intro (motion graphic) ── -->
+<!-- ── Brand Reveal Intro ── -->
 <div id="pb-intro" aria-hidden="true">
   <div class="pb-intro-inner">
     <svg class="pb-intro-mark" viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -191,144 +168,350 @@
 })();
 </script>
 
-<!-- ── Hero ── -->
+
+<!-- ══════════════════════════════════════════
+     HERO — split layout
+══════════════════════════════════════════ -->
 <section id="hero">
-  <div id="hero-blob-1" class="mesh-gradient" style="background:#00C2FF;top:-200px;left:-100px"></div>
-  <div id="hero-blob-2" class="mesh-gradient" style="background:#1A7FFF;top:200px;right:-200px"></div>
-  <div id="hero-blob-3" class="mesh-gradient" style="background:#0D2347;bottom:-100px;left:30%;opacity:0.4"></div>
+  <div id="hero-blob-1" class="mesh-gradient" style="background:#00C2FF;top:-200px;left:-150px"></div>
+  <div id="hero-blob-2" class="mesh-gradient" style="background:#1A7FFF;top:150px;right:-250px"></div>
+  <div id="hero-blob-3" class="mesh-gradient" style="background:#0D2347;bottom:-100px;left:30%;opacity:0.3"></div>
   <div id="cursor-glow" aria-hidden="true"></div>
 
-  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center" style="padding-top:100px">
-    <!-- Animated logo above headline -->
-    <div class="flex justify-center mb-8">
-      <object data="logo-animated.svg" type="image/svg+xml" width="100" height="100" aria-label="ProcessBI logo"></object>
-    </div>
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6" style="padding-top:110px;padding-bottom:80px">
+    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-    <div class="brand-label mb-4">PROCESS × INTELLIGENCE</div>
+      <!-- ── Left: text ── -->
+      <div class="hero-float">
+        <div class="brand-label mb-5">PROCESS × INTELLIGENCE</div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border mb-7" style="border-color:rgba(0,194,255,0.2);background:rgba(0,194,255,0.04)">
+          <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow flex-shrink-0"></div>
+          <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Melbourne · Enterprise Consulting · Australia</span>
+        </div>
+        <h1 class="font-display font-black text-white leading-none mb-6 glow-text" style="font-size:clamp(2.4rem,5.5vw,4rem);letter-spacing:-0.03em">
+          Smarter Processes.<br><span class="gradient-text">Better Intelligence.</span>
+        </h1>
+        <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+          We redesign how your business operates — then build the data and AI layer that keeps it performing. Process first. Technology second. Always.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+          <a href="contact.html" class="btn-primary text-center">Start a Conversation ↗</a>
+          <a href="case-studies.html" class="btn-outline text-center">View Case Studies ↗</a>
+        </div>
+        <div class="flex flex-wrap gap-x-7 gap-y-2">
+          <div class="flex items-center gap-2 text-sm text-slate-500"><div class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></div>15+ Enterprise Clients</div>
+          <div class="flex items-center gap-2 text-sm text-slate-500"><div class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></div>Lean Six Sigma Certified</div>
+          <div class="flex items-center gap-2 text-sm text-slate-500"><div class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></div>Microsoft Fabric Partner</div>
+        </div>
+      </div>
 
-    <div class="inline-flex flex-wrap justify-center items-center gap-2 px-4 py-2 rounded-full border border-electric-500/20 bg-electric-500/5 mb-8">
-      <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow flex-shrink-0"></div>
-      <span class="hero-badge-text text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Intelligence · Australia</span>
-    </div>
+      <!-- ── Right: animated pipeline SVG ── -->
+      <div class="hero-float-delay flex items-center justify-center" style="min-height:380px">
+        <svg viewBox="0 0 520 450" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px;display:block;overflow:visible" aria-hidden="true">
+          <defs>
+            <radialGradient id="svgBg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00C2FF" stop-opacity="0.07"/>
+              <stop offset="100%" stop-color="#0B1A2E" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="fGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="fGlow2"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <!-- Ring path for animateMotion -->
+            <path id="svgRing" d="M260,68 C358,68 438,130 438,215 C438,300 358,362 260,362 C162,362 82,300 82,215 C82,130 162,68 260,68" fill="none"/>
+          </defs>
 
-    <h1 class="font-display text-3xl sm:text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6 glow-text neon-glow hero-float">
-      Better Processes.<br>Fewer Surprises.<br><span class="gradient-text">Smarter Business.</span>
-    </h1>
-    <p class="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto mb-6 leading-relaxed hero-float-delay">
-      We map how your business works, find the problems hiding in your processes before they surface, then build the intelligence layer that keeps them from coming back.
-    </p>
-    <p class="text-slate-500 text-base mb-10"><span class="hero-tagline-line"></span>Where process meets intelligence</p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
-      <a href="contact.html" class="btn-primary w-full sm:w-auto text-center">Start a Conversation ↗</a>
-      <a href="case-studies.html" class="btn-outline w-full sm:w-auto text-center">View Case Studies ↗</a>
-    </div>
+          <!-- Background soft glow -->
+          <ellipse cx="260" cy="215" rx="195" ry="165" fill="url(#svgBg)"/>
 
-    <!-- Proof points -->
-    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 mt-16 text-sm text-slate-500">
-      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>15+ Enterprise Engagements</div>
-      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>Lean Six Sigma Certified</div>
-      <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>Based in Australia</div>
-    </div>
+          <!-- Orbit track -->
+          <path d="M260,68 C358,68 438,130 438,215 C438,300 358,362 260,362 C162,362 82,300 82,215 C82,130 162,68 260,68"
+                fill="none" stroke="rgba(0,194,255,0.1)" stroke-width="1.5" stroke-dasharray="6,5"/>
+
+          <!-- Hub spokes (dashed) -->
+          <line x1="260" y1="68"  x2="260" y2="195" stroke="rgba(0,194,255,0.08)" stroke-width="1" stroke-dasharray="4,5"/>
+          <line x1="438" y1="215" x2="285" y2="215" stroke="rgba(0,194,255,0.08)" stroke-width="1" stroke-dasharray="4,5"/>
+          <line x1="260" y1="362" x2="260" y2="235" stroke="rgba(0,194,255,0.08)" stroke-width="1" stroke-dasharray="4,5"/>
+          <line x1="82"  y1="215" x2="235" y2="215" stroke="rgba(0,194,255,0.08)" stroke-width="1" stroke-dasharray="4,5"/>
+
+          <!-- ── CENTER HUB ── -->
+          <!-- Outer pulse ring -->
+          <circle cx="260" cy="215" r="40" fill="none" stroke="rgba(0,194,255,0.18)" stroke-width="1">
+            <animate attributeName="r" values="40;50;40" dur="4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.8;0;0.8" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Hub circle -->
+          <circle cx="260" cy="215" r="38" fill="rgba(9,22,46,0.97)" stroke="rgba(0,194,255,0.45)" stroke-width="1.5" filter="url(#fGlow)"/>
+          <!-- Mini PBI chart inside hub -->
+          <rect x="244" y="224" width="5" height="8"  rx="1.5" fill="#2E6BF6" opacity="0.9"/>
+          <rect x="252" y="219" width="5" height="13" rx="1.5" fill="#2E6BF6" opacity="0.9"/>
+          <rect x="260" y="213" width="5" height="19" rx="1.5" fill="#00C2FF" opacity="0.95"/>
+          <rect x="268" y="207" width="5" height="25" rx="1.5" fill="#00C2FF"/>
+          <path d="M246.5,224 L254.5,219 L262.5,213 L270.5,207" fill="none" stroke="#46D5FF" stroke-width="1.6" stroke-linecap="round"/>
+
+          <!-- ── ANIMATED PACKETS ── -->
+          <circle r="5.5" fill="#00C2FF" opacity="0.9" filter="url(#fGlow)">
+            <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="0s"><mpath href="#svgRing"/></animateMotion>
+          </circle>
+          <circle r="4" fill="#2E6BF6" opacity="0.75" filter="url(#fGlow)">
+            <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="-1.5s"><mpath href="#svgRing"/></animateMotion>
+          </circle>
+          <circle r="4" fill="#10b981" opacity="0.75" filter="url(#fGlow)">
+            <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="-3s"><mpath href="#svgRing"/></animateMotion>
+          </circle>
+          <circle r="3.5" fill="#7C3AED" opacity="0.7" filter="url(#fGlow)">
+            <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="-4.5s"><mpath href="#svgRing"/></animateMotion>
+          </circle>
+
+          <!-- ── NODE 1: BUSINESS PROCESS (top) ── -->
+          <circle cx="260" cy="68" r="33" fill="rgba(9,22,46,0.97)" stroke="rgba(46,107,246,0.6)" stroke-width="1.5" filter="url(#fGlow)"/>
+          <circle cx="260" cy="68" r="40" fill="none" stroke="rgba(46,107,246,0.15)" stroke-width="1">
+            <animate attributeName="r" values="38;46;38" dur="3.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;0;0.6" dur="3.5s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Workflow icon -->
+          <rect x="249" y="57" width="9" height="7" rx="2" fill="none" stroke="#2E6BF6" stroke-width="1.5"/>
+          <rect x="249" y="70" width="9" height="7" rx="2" fill="none" stroke="#2E6BF6" stroke-width="1.5"/>
+          <rect x="262" y="63.5" width="9" height="7" rx="2" fill="none" stroke="#4C8BFF" stroke-width="1.5"/>
+          <path d="M258,60.5 L262,67" fill="none" stroke="#2E6BF6" stroke-width="1" stroke-dasharray="2,1.5" opacity="0.7"/>
+          <path d="M258,73.5 L262,70" fill="none" stroke="#2E6BF6" stroke-width="1" stroke-dasharray="2,1.5" opacity="0.7"/>
+          <!-- Label -->
+          <text x="260" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#2E6BF6" font-weight="700" letter-spacing="0.07em">BUSINESS PROCESS</text>
+          <text x="260" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(139,180,204,0.65)">Lean Six Sigma · BPMN 2.0</text>
+
+          <!-- ── NODE 2: INTELLIGENCE (right) ── -->
+          <circle cx="438" cy="215" r="33" fill="rgba(9,22,46,0.97)" stroke="rgba(0,194,255,0.6)" stroke-width="1.5" filter="url(#fGlow)"/>
+          <circle cx="438" cy="215" r="40" fill="none" stroke="rgba(0,194,255,0.15)" stroke-width="1">
+            <animate attributeName="r" values="38;46;38" dur="4.1s" repeatCount="indefinite" begin="-1.2s"/>
+            <animate attributeName="opacity" values="0.6;0;0.6" dur="4.1s" repeatCount="indefinite" begin="-1.2s"/>
+          </circle>
+          <!-- Bar chart icon -->
+          <rect x="427" y="211" width="4.5" height="10" rx="1.2" fill="#00C2FF" opacity="0.75"/>
+          <rect x="434" y="205" width="4.5" height="16" rx="1.2" fill="#00C2FF"/>
+          <rect x="441" y="208" width="4.5" height="13" rx="1.2" fill="#00C2FF" opacity="0.85"/>
+          <path x1="426" y1="222" x2="447" y2="222" stroke="rgba(0,194,255,0.4)" stroke-width="1" d="M426,222 L447,222"/>
+          <!-- Label -->
+          <text x="438" y="262" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#00C2FF" font-weight="700" letter-spacing="0.07em">INTELLIGENCE</text>
+          <text x="438" y="274" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(139,180,204,0.65)">Fabric · Power BI · OneLake</text>
+
+          <!-- ── NODE 3: AI (bottom) ── -->
+          <circle cx="260" cy="362" r="33" fill="rgba(9,22,46,0.97)" stroke="rgba(16,185,129,0.6)" stroke-width="1.5" filter="url(#fGlow)"/>
+          <circle cx="260" cy="362" r="40" fill="none" stroke="rgba(16,185,129,0.15)" stroke-width="1">
+            <animate attributeName="r" values="38;46;38" dur="3.8s" repeatCount="indefinite" begin="-2.5s"/>
+            <animate attributeName="opacity" values="0.6;0;0.6" dur="3.8s" repeatCount="indefinite" begin="-2.5s"/>
+          </circle>
+          <!-- Neural icon -->
+          <circle cx="260" cy="362" r="6.5" fill="none" stroke="#10b981" stroke-width="1.5"/>
+          <circle cx="248" cy="354" r="3.5" fill="#10b981" opacity="0.65"/>
+          <circle cx="272" cy="354" r="3.5" fill="#10b981" opacity="0.65"/>
+          <circle cx="248" cy="370" r="3.5" fill="#10b981" opacity="0.65"/>
+          <circle cx="272" cy="370" r="3.5" fill="#10b981" opacity="0.65"/>
+          <path d="M254,362 L248,354 M266,362 L272,354 M254,362 L248,370 M266,362 L272,370" stroke="#10b981" stroke-width="1" opacity="0.55"/>
+          <!-- Label -->
+          <text x="260" y="408" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#10b981" font-weight="700" letter-spacing="0.07em">AI &amp; AUTOMATION</text>
+          <text x="260" y="420" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(139,180,204,0.65)">Agents · Copilot Studio · RPA</text>
+
+          <!-- ── NODE 4: DATA (left) ── -->
+          <circle cx="82" cy="215" r="33" fill="rgba(9,22,46,0.97)" stroke="rgba(124,58,237,0.6)" stroke-width="1.5" filter="url(#fGlow)"/>
+          <circle cx="82" cy="215" r="40" fill="none" stroke="rgba(124,58,237,0.15)" stroke-width="1">
+            <animate attributeName="r" values="38;46;38" dur="4.4s" repeatCount="indefinite" begin="-3.8s"/>
+            <animate attributeName="opacity" values="0.6;0;0.6" dur="4.4s" repeatCount="indefinite" begin="-3.8s"/>
+          </circle>
+          <!-- Database icon -->
+          <ellipse cx="82" cy="208" rx="9" ry="3.5" fill="none" stroke="#7C3AED" stroke-width="1.5"/>
+          <path d="M73,208 L73,220 M91,208 L91,220" stroke="#7C3AED" stroke-width="1.5"/>
+          <ellipse cx="82" cy="220" rx="9" ry="3.5" fill="rgba(124,58,237,0.18)" stroke="#7C3AED" stroke-width="1.5"/>
+          <!-- Label -->
+          <text x="82" y="262" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#9B72F8" font-weight="700" letter-spacing="0.07em">DATA LAYER</text>
+          <text x="82" y="274" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(139,180,204,0.65)">Warehouse · ETL · OneLake</text>
+
+          <!-- ── FLOATING STATUS CHIPS ── -->
+          <g transform="translate(305,22)">
+            <rect width="148" height="26" rx="13" fill="rgba(46,107,246,0.1)" stroke="rgba(46,107,246,0.25)" stroke-width="1"/>
+            <circle cx="14" cy="13" r="4" fill="#2E6BF6"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" repeatCount="indefinite"/></circle>
+            <text x="24" y="17" font-family="Inter,sans-serif" font-size="10" fill="rgba(139,180,204,0.9)">Process-first delivery</text>
+          </g>
+          <g transform="translate(10,285)">
+            <rect width="126" height="26" rx="13" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.22)" stroke-width="1"/>
+            <circle cx="13" cy="13" r="4" fill="#10b981"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite" begin="-0.9s"/></circle>
+            <text x="23" y="17" font-family="Inter,sans-serif" font-size="10" fill="rgba(139,180,204,0.9)">Night Factory™ AI</text>
+          </g>
+          <g transform="translate(340,155)">
+            <rect width="96" height="26" rx="13" fill="rgba(0,194,255,0.07)" stroke="rgba(0,194,255,0.18)" stroke-width="1"/>
+            <text x="48" y="17" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(139,180,204,0.9)">15+ clients</text>
+          </g>
+        </svg>
+      </div>
+
+    </div><!-- end grid -->
   </div>
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg width="24" height="24" fill="none" stroke="#0ea5e933" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <svg width="24" height="24" fill="none" stroke="#0ea5e922" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
 
-<!-- ── Services ── -->
+<!-- ══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════ -->
 <section class="py-24 relative">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
+    <div class="text-center mb-14 reveal">
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">What We Do</span>
-      <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-4">End-to-End Consulting.<br><span class="gradient-text">From Process to Insight.</span></h2>
-      <p class="text-slate-600 max-w-2xl mx-auto text-lg">Seven connected services — four highlighted below. Process first, technology second.</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4 mb-3">End-to-End Consulting.<br><span class="gradient-text">From Process to Insight.</span></h2>
+      <p class="text-slate-500 text-base max-w-xl mx-auto">Seven connected services. Process first, technology second.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <div class="glass-card p-7 reveal" style="transition-delay:0.05s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
-          <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M9 8h6M6 11h.01M9 11h9"/></svg>
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(46,107,246,0.1)">
+          <svg width="20" height="20" fill="none" stroke="#2E6BF6" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M9 8h6M6 11h.01M9 11h9"/></svg>
         </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Business Process &amp; Workflow Design</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Map, analyse, and redesign end-to-end processes using Lean Six Sigma and ISO 9001 before any technology decision is made.</p>
+        <h3 class="font-display text-base font-semibold text-white mb-2">Business Process &amp; Workflow Design</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Map, analyse, and redesign end-to-end processes using Lean Six Sigma and BPMN 2.0 before any technology decision is made.</p>
         <a href="services.html#process-design" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
       <div class="glass-card p-7 reveal" style="transition-delay:0.1s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(0,194,255,0.08)">
           <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
         </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Process Automation</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Automate optimised processes — not broken ones. Power Automate, Copilot Studio, AI agents, and RPA deployed on a solid process foundation.</p>
+        <h3 class="font-display text-base font-semibold text-white mb-2">Process Automation</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Automate optimised processes — not broken ones. Power Automate, Copilot Studio, AI agents, and RPA on a solid process foundation.</p>
         <a href="services.html#automation" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
       <div class="glass-card p-7 reveal" style="transition-delay:0.15s">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(14,165,233,0.08)">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(0,194,255,0.08)">
           <svg width="20" height="20" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Data Warehouse Migration</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Migrate legacy warehouses to Microsoft Fabric — SSIS to ADF, Synapse or on-prem SQL Server to OneLake — with zero data loss and minimal downtime.</p>
+        <h3 class="font-display text-base font-semibold text-white mb-2">Data Warehouse Migration</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Migrate legacy warehouses to Microsoft Fabric — SSIS to ADF, on-prem SQL to OneLake — with zero data loss and minimal downtime.</p>
         <a href="services.html#dw-migration" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
       <div class="glass-card p-7 reveal" style="transition-delay:0.2s">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5" style="background:rgba(16,185,129,0.08)">
           <svg width="20" height="20" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         </div>
-        <h3 class="font-display text-base font-semibold text-slate-900 mb-2">Business Intelligence &amp; Analytics</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">Build the intelligence layer with Microsoft Fabric and Power BI — dashboards that answer real business questions, not just display data.</p>
+        <h3 class="font-display text-base font-semibold text-white mb-2">Business Intelligence &amp; Analytics</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Build the intelligence layer with Microsoft Fabric and Power BI — dashboards that answer real questions, not just display data.</p>
         <a href="services.html#bi-analytics" class="text-electric-500 text-sm font-medium mt-4 inline-block hover:text-electric-400">Learn more →</a>
       </div>
     </div>
-    <div class="text-center mt-12 reveal">
+    <div class="text-center mt-10 reveal">
       <a href="services.html" class="btn-outline">See All 7 Services ↗</a>
     </div>
   </div>
 </section>
 
 
-<!-- ── Why ProcessBI ── -->
-<section class="py-24 relative" style="background:rgba(255,255,255,0.02)">
+<!-- ══════════════════════════════════════════
+     THREE PILLARS — BP / BI / AI
+══════════════════════════════════════════ -->
+<section class="py-24 relative" style="background:rgba(0,0,0,0.15)">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
+    <div class="text-center mb-14 reveal">
+      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Our Disciplines</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4 mb-3">Three Disciplines.<br><span class="gradient-text">One Outcome.</span></h2>
+      <p class="text-slate-500 text-base max-w-xl mx-auto">ProcessBI sits at the intersection of process excellence, data intelligence, and AI capability. Each discipline is meaningless without the others.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- BP -->
+      <div class="pillar-card reveal" style="transition-delay:0.05s;--pillar-color:#2E6BF6;--pillar-color-rgb:46,107,246">
+        <div class="pillar-icon-wrap">
+          <svg width="28" height="28" fill="none" stroke="#2E6BF6" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="6" rx="2"/><rect x="2" y="15" width="9" height="6" rx="2"/><rect x="13" y="9" width="9" height="6" rx="2"/><path d="M11 6h1a2 2 0 012 2v1M11 18h1a2 2 0 002-2v-1"/></svg>
+        </div>
+        <div class="pillar-tag">01 — Foundation</div>
+        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Business<br>Process</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">Every engagement starts here. We map how your business actually works, find the waste, the risk, and the bottlenecks — then redesign the process before touching any technology.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="pillar-tag-badge">Lean Six Sigma</span>
+          <span class="pillar-tag-badge">BPMN 2.0</span>
+          <span class="pillar-tag-badge">DMAIC</span>
+          <span class="pillar-tag-badge">ISO 9001</span>
+          <span class="pillar-tag-badge">7S Framework</span>
+        </div>
+      </div>
+
+      <!-- BI -->
+      <div class="pillar-card reveal" style="transition-delay:0.12s;--pillar-color:#00C2FF;--pillar-color-rgb:0,194,255">
+        <div class="pillar-icon-wrap" style="border-color:rgba(0,194,255,0.25);background:rgba(0,194,255,0.06)">
+          <svg width="28" height="28" fill="none" stroke="#00C2FF" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/><path d="M3 20h18"/></svg>
+        </div>
+        <div class="pillar-tag" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">02 — Intelligence</div>
+        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Business<br>Intelligence</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">Once the process is right, we build the data layer on top of it. Microsoft Fabric as the platform, Power BI as the lens — dashboards built on clean, structured, trusted data.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="pillar-tag-badge" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">Microsoft Fabric</span>
+          <span class="pillar-tag-badge" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">Power BI</span>
+          <span class="pillar-tag-badge" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">OneLake</span>
+          <span class="pillar-tag-badge" style="color:#00C2FF;background:rgba(0,194,255,0.08);border-color:rgba(0,194,255,0.2)">Data Warehouse</span>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <div class="pillar-card reveal" style="transition-delay:0.19s;--pillar-color:#10b981;--pillar-color-rgb:16,185,129">
+        <div class="pillar-icon-wrap" style="border-color:rgba(16,185,129,0.25);background:rgba(16,185,129,0.06)">
+          <svg width="28" height="28" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M6.343 6.343a8 8 0 000 11.314M17.657 6.343a8 8 0 010 11.314M3 12h1M20 12h1M12 3v1M12 20v1"/></svg>
+        </div>
+        <div class="pillar-tag" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">03 — Automation</div>
+        <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Artificial<br>Intelligence</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">The automation layer that runs on top of process and intelligence. AI agents, Copilot Studio, knowledge graphs, and LLM orchestration — deployed on a solid foundation, not a broken one.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="pillar-tag-badge" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">AI Agents</span>
+          <span class="pillar-tag-badge" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">Copilot Studio</span>
+          <span class="pillar-tag-badge" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">LLM Orchestration</span>
+          <span class="pillar-tag-badge" style="color:#10b981;background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.2)">RPA</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     WHY PROCESSBI
+══════════════════════════════════════════ -->
+<section class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-14 items-center">
       <div class="reveal">
         <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Why ProcessBI</span>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-6">Process First.<br>Technology Second. Always.</h2>
-        <p class="text-slate-600 leading-relaxed mb-6">Most BI firms start with the technology. We start with your processes. When the process is right, the data tells a clear story. When it's broken, no dashboard can fix it. ProcessBI brings 15+ years of business process and data expertise to every engagement.</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-4 mb-5">Process First.<br>Technology Second. Always.</h2>
+        <p class="text-slate-400 leading-relaxed mb-7">Most BI firms start with the tool. We start with your process. When the process is right, the data tells a clear story. When it's broken, no dashboard can fix it.</p>
         <div class="space-y-4">
           <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-slate-900 font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-sm mt-0.5">We identify process gaps, bottlenecks, and risk points before they become incidents. Our process mapping surfaces what's going wrong — and what will go wrong — before it costs you.</p></div>
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(46,107,246,0.08)"><svg width="14" height="14" fill="#2E6BF6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div><h4 class="text-white font-medium text-sm">Proactive by design</h4><p class="text-slate-500 text-sm mt-0.5">We surface process gaps and risk points before they become incidents — not after.</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-slate-900 font-medium text-sm">Process-first delivery</h4><p class="text-slate-500 text-sm mt-0.5">Every engagement starts with understanding and redesigning how your business actually works — not with choosing a tool.</p></div>
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,194,255,0.06)"><svg width="14" height="14" fill="#00C2FF" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div><h4 class="text-white font-medium text-sm">Dual expertise</h4><p class="text-slate-500 text-sm mt-0.5">15+ years spanning both operations consulting and enterprise data platforms — rare in a single firm.</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(14,165,233,0.06)"><svg width="14" height="14" fill="#0ea5e9" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><h4 class="text-slate-900 font-medium text-sm">Measurable process gains</h4><p class="text-slate-500 text-sm mt-0.5">We measure cycle time reduction, error rates, handoff delays, and automation coverage — not just dashboard aesthetics.</p></div>
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(16,185,129,0.06)"><svg width="14" height="14" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div><h4 class="text-white font-medium text-sm">Measurable outcomes</h4><p class="text-slate-500 text-sm mt-0.5">Cycle time, error rates, automation coverage — we measure what moves the needle, not just dashboard aesthetics.</p></div>
           </div>
         </div>
-        <div class="flex gap-4 mt-10">
+        <div class="flex gap-4 mt-9">
           <a href="about.html" class="btn-primary">Our Approach ↗</a>
           <a href="services.html" class="btn-outline">View Services ↗</a>
         </div>
       </div>
-      <div class="reveal" style="transition-delay:0.2s">
+      <div class="reveal" style="transition-delay:0.15s">
         <div class="grid grid-cols-2 gap-4">
           <div class="glass-card p-6 text-center">
-            <div class="text-3xl font-black font-display gradient-text-blue">15+</div>
-            <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Years Process &amp; BI Experience</div>
+            <div class="font-display font-black gradient-text-blue" style="font-size:2.6rem">15+</div>
+            <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Years Experience</div>
           </div>
           <div class="glass-card p-6 text-center">
-            <div class="text-3xl font-black font-display" style="color:#0ea5e9">50+</div>
+            <div class="font-display font-black text-white" style="font-size:2.6rem;color:#0ea5e9!important">50+</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Process Engagements</div>
           </div>
           <div class="glass-card p-6 text-center">
-            <div class="text-3xl font-black font-display" style="color:#00C2FF">7</div>
-            <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Distinct Services</div>
+            <div class="font-display font-black gradient-text" style="font-size:2.6rem">7</div>
+            <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Core Services</div>
           </div>
           <div class="glass-card p-6 text-center">
-            <div class="text-3xl font-black font-display gradient-text">6+</div>
+            <div class="font-display font-black text-white" style="font-size:2.6rem;color:#10b981!important">6+</div>
             <div class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Industries Served</div>
           </div>
         </div>
@@ -337,218 +520,29 @@
   </div>
 </section>
 
-<!-- ── Industries We Serve ── -->
-<section class="py-24 relative">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Industries We Serve</span>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">Every Industry Has Processes<br>Worth Improving</h2>
-      <p class="text-slate-600 max-w-2xl mx-auto">We've redesigned processes across every sector. The methodology is the same. The business context is always unique.</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-      <div class="glass-card p-6 reveal" style="transition-delay:0.05s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Government &amp; Public Sector</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Compliance-ready analytics, audit trails, and citizen-service intelligence platforms.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="transition-delay:0.1s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9" y1="14.5" x2="15" y2="14.5"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Financial Services &amp; Super</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">APRA-aligned risk dashboards, fraud detection, and fund performance analytics.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="transition-delay:0.15s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Utilities &amp; Infrastructure</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Asset performance monitoring, outage prediction, and operational efficiency dashboards.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="transition-delay:0.2s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 1 4.93 19.07M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Manufacturing &amp; Supply Chain</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">End-to-end production visibility, quality analytics, and logistics intelligence.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="transition-delay:0.25s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Education &amp; Not-for-Profit</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Grant reporting, student outcome analytics, and mission-impact dashboards.</p>
-      </div>
-      <div class="glass-card p-6 reveal" style="transition-delay:0.3s">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(14,165,233,0.08)">
-          <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        </div>
-        <h4 class="font-display text-base font-semibold text-slate-900 mb-1">Retail &amp; Consumer</h4>
-        <p class="text-slate-500 text-xs leading-relaxed">Customer analytics, inventory intelligence, and omnichannel performance reporting.</p>
-      </div>
-    </div>
-    <div class="text-center mt-10 reveal">
-      <a href="industries.html" class="btn-outline">View All Industries ↗</a>
-    </div>
-  </div>
-</section>
 
-<!-- ── Technologies We Work With ── -->
-<section id="technologies" class="py-16 relative" style="background:rgba(255,255,255,0.015)">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-10 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Technology Stack</span>
-      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-2">AI &amp; Analytics Platforms</h2>
-      <p class="text-slate-500 text-sm">Platform-agnostic expertise across the modern data stack.</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.0s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><rect x="2" y="2" width="9" height="9" rx="2" fill="#0078D4"/><rect x="13" y="2" width="9" height="9" rx="2" fill="#00BCF2"/><rect x="2" y="13" width="9" height="9" rx="2" fill="#50E6FF"/><rect x="13" y="13" width="9" height="9" rx="2" fill="#0078D4"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Microsoft Fabric</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.04s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M12 3L21 8V16L12 21L3 16V8Z" stroke="#FF3621" stroke-width="1.5" fill="rgba(255,54,33,0.12)" stroke-linejoin="round"/><path d="M12 7.5L16.5 10V14.5L12 17L7.5 14.5V10Z" fill="#FF3621" opacity="0.7"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Databricks</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.08s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="12" cy="12" r="4" fill="#0078D4"/><circle cx="12" cy="3" r="2" fill="#0078D4" opacity="0.55"/><circle cx="12" cy="21" r="2" fill="#0078D4" opacity="0.55"/><circle cx="3" cy="12" r="2" fill="#0078D4" opacity="0.55"/><circle cx="21" cy="12" r="2" fill="#0078D4" opacity="0.55"/><circle cx="5.5" cy="5.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="18.5" cy="5.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="5.5" cy="18.5" r="1.5" fill="#00BCF2" opacity="0.5"/><circle cx="18.5" cy="18.5" r="1.5" fill="#00BCF2" opacity="0.5"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Azure OpenAI</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.12s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><rect x="2" y="15" width="5" height="7" rx="1.5" fill="#F2C811"/><rect x="9.5" y="10" width="5" height="12" rx="1.5" fill="#F2C811" opacity="0.8"/><rect x="17" y="4" width="5" height="18" rx="1.5" fill="#F2C811"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Power BI</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.16s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><line x1="12" y1="2" x2="12" y2="22" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="12" x2="22" y2="12" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="4.9" y1="4.9" x2="19.1" y2="19.1" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><line x1="4.9" y1="19.1" x2="19.1" y2="4.9" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="2.5" fill="#29B5E8"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Snowflake</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.2s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M4 8.5H15L19 12L15 15.5H4L8 12Z" stroke="#FF694A" stroke-width="1.5" fill="rgba(255,105,74,0.12)" stroke-linejoin="round"/><circle cx="19" cy="7" r="2.5" fill="#FF694A" opacity="0.8"/><circle cx="19" cy="17" r="2.5" fill="#FF694A"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">dbt</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.24s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><path d="M15 2L7 13H12L10 22L17 11H12L15 2Z" fill="#E25A1C" stroke="#E25A1C" stroke-width="0.5" stroke-linejoin="round"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Apache Spark</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.28s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="6" cy="6" r="2.5" fill="#00B4D8"/><circle cx="18" cy="6" r="2.5" fill="#00B4D8"/><circle cx="12" cy="15" r="3" fill="#00B4D8"/><circle cx="6" cy="21" r="2" fill="#00B4D8" opacity="0.55"/><circle cx="18" cy="21" r="2" fill="#00B4D8" opacity="0.55"/><line x1="6" y1="6" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.5"/><line x1="18" y1="6" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.5"/><line x1="6" y1="21" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.4"/><line x1="18" y1="21" x2="12" y2="15" stroke="#00B4D8" stroke-width="1.2" opacity="0.4"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Azure Synapse</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.32s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><circle cx="10" cy="10" r="7" stroke="#4285F4" stroke-width="2" fill="none"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round"/><circle cx="10" cy="10" r="3" fill="#4285F4" opacity="0.25"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Looker / BigQuery</span>
-      </div>
-      <div class="tech-badge reveal" style="padding:12px 14px;transition-delay:0.36s">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" flex-shrink="0"><line x1="12" y1="2" x2="12" y2="22" stroke="#1F77B4" stroke-width="2.5" stroke-linecap="round"/><line x1="2" y1="12" x2="22" y2="12" stroke="#1F77B4" stroke-width="2.5" stroke-linecap="round"/><line x1="5.5" y1="5.5" x2="18.5" y2="18.5" stroke="#1F77B4" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="#1F77B4" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="#1F77B4"/><circle cx="5.5" cy="12" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="18.5" cy="12" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="12" cy="5.5" r="1.8" fill="#1F77B4" opacity="0.55"/><circle cx="12" cy="18.5" r="1.8" fill="#1F77B4" opacity="0.55"/></svg>
-        <span class="text-slate-600 text-xs font-medium" style="white-space:nowrap">Tableau</span>
-      </div>
-    </div>
-    <div class="text-center mt-8 reveal">
-      <a href="services.html#ai-platforms" class="text-electric-500 text-sm font-medium hover:text-electric-400" style="text-decoration:none">Explore platform expertise →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Standards & Methodology ── -->
-<section class="py-20 relative">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-12 reveal">
-      <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">How We Work</span>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-4">The ProcessBI Method</h2>
-      <p class="text-slate-600 max-w-xl mx-auto">Three disciplines. One outcome: processes that work better, cost less, and generate better data.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="glass-card p-7 reveal" style="transition-delay:0.1s">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
-            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </div>
-          <div>
-            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">ISO 9001</div>
-            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Quality Management</h4>
-            <p class="text-slate-500 text-xs leading-relaxed">Every process design is documented, peer-reviewed, and signed off at each milestone. Nothing is delivered that hasn't been verified against the agreed specification.</p>
-          </div>
+<!-- ══════════════════════════════════════════
+     NIGHT FACTORY
+══════════════════════════════════════════ -->
+<section class="py-24 relative night-factory-section">
+  <div class="night-factory-glow" aria-hidden="true"></div>
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2)">
+          <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-glow flex-shrink-0"></div>
+          <span class="text-emerald-400 text-xs font-semibold tracking-widest uppercase">Night Factory™ — Autonomous AI</span>
         </div>
-      </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.2s">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
-            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-5">Your business doesn't<br>sleep. Neither do our agents.</h2>
+        <p class="text-slate-400 leading-relaxed mb-7">Night Factory™ is ProcessBI's autonomous AI layer. While your team rests, our agents run: refreshing data, detecting exceptions, generating reports, and surfacing intelligent alerts — so your morning briefing is already done at 7am.</p>
+        <div class="space-y-3 mb-8">
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <div class="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.1)"><svg width="11" height="11" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Overnight data refresh and reconciliation
           </div>
-          <div>
-            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">Lean Six Sigma</div>
-            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Process Excellence</h4>
-            <p class="text-slate-500 text-xs leading-relaxed">We use DMAIC to analyse root causes and eliminate waste before recommending technology. Business logic is fixed in the process — not patched with software.</p>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <div class="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.1)"><svg width="11" height="11" fill="#10b981" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Exception detection and intelligent alerting
           </div>
-        </div>
-      </div>
-      <div class="glass-card p-7 reveal" style="transition-delay:0.3s">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.04))">
-            <svg width="24" height="24" fill="none" stroke="#0ea5e9" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          </div>
-          <div>
-            <div class="text-electric-500 text-xs font-bold tracking-widest uppercase mb-1">Process Automation</div>
-            <h4 class="font-display text-base font-semibold text-slate-900 mb-2">Intelligent Automation</h4>
-            <p class="text-slate-500 text-xs leading-relaxed">Every repetitive manual step in a redesigned process is a candidate for automation — from Power Automate flows to full AI agent orchestration.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
-<section class="py-32 relative">
-  <div class="max-w-3xl mx-auto px-6 text-center reveal">
-    <div class="mesh-gradient" style="background:#00C2FF;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06"></div>
-    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Get Started</span>
-    <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">Ready to Fix How<br>Your Business Works?</h2>
-    <p class="text-slate-600 text-lg mb-10">Tell us about a process that's costing you time, money, or accuracy. We'll map it, benchmark it, and come back with a concrete improvement plan — no obligation, within one business day.</p>
-    <a href="contact.html" class="btn-primary text-lg" style="padding:18px 48px">Book a Free Discovery Call ↗</a>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="shared-nav.js?v=3"></script>
-<script>
-/* ── Hero interactive effects: mouse parallax blobs + cursor glow ── */
-(function(){
-  'use strict';
-  var hero=document.getElementById('hero');
-  if(!hero)return;
-  var b1=document.getElementById('hero-blob-1');
-  var b2=document.getElementById('hero-blob-2');
-  var b3=document.getElementById('hero-blob-3');
-  var gl=document.getElementById('cursor-glow');
-  var mxN=0,myN=0;
-  var cx1=0,cy1=0,cx2=0,cy2=0,cx3=0,cy3=0;
-  var mobile=window.matchMedia('(max-width:767px)').matches;
-  var LERP=0.05,RANGE=12;
-  function lerp(a,b,t){return a+(b-a)*t;}
-  hero.addEventListener('mousemove',function(e){
-    var r=hero.getBoundingClientRect();
-    mxN=(e.clientX-r.left)/r.width*2-1;
-    myN=(e.clientY-r.top)/r.height*2-1;
-    if(gl){
-      gl.style.left=(e.clientX-r.left)+'px';
-      gl.style.top=(e.clientY-r.top)+'px';
-      gl.style.opacity='1';
-    }
-  },{passive:true});
-  hero.addEventListener('mouseleave',function(){
-    if(gl)gl.style.opacity='0';
-  },{passive:true});
-  (function raf(){
-    requestAnimationFrame(raf);
-    if(mobile||!b1)return;
-    cx1=lerp(cx1,-mxN*RANGE,LERP);
-    cy1=lerp(cy1,-myN*RANGE,LERP);
-    cx2=lerp(cx2,-mxN*RANGE*0.7,LERP);
-    cy2=lerp(cy2,-myN*RANGE*0.7,LERP);
-    cx3=lerp(cx3,-mxN*RANGE*0.4,LERP);
-    cy3=lerp(cy3,-myN*RANGE*0.4,LERP);
-    b1.style.transform='translate3d('+cx1.toFixed(2)+'px,'+cy1.toFixed(2)+'px,0)';
-    b2.style.transform='transla
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <div class="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.1)"><svg width="11" height="11" fill="#10b981" viewBox="0 0 24 24"><
