@@ -317,7 +317,7 @@ if(typeof THREE !== 'undefined'){
     const lpos  = new Float32Array(MAX_LINES*6);
     lgeo.setAttribute('position', new THREE.BufferAttribute(lpos,3));
     const lmat = new THREE.LineBasicMaterial({
-      color:0x00C2FF,transparent:true,opacity:0
+      color:0x00C2FF,transparent:true,opacity:0.09
     });
     scene.add(new THREE.LineSegments(lgeo,lmat));
 
@@ -359,4 +359,3 @@ if(typeof THREE !== 'undefined'){
 }
 
 })();
-   
