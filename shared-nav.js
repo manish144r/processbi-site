@@ -20,8 +20,8 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
   <filter id="ngl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   <style>
     .nline{stroke-dasharray:none}
-    .nhalo{transform-box:fill-box;transform-origin:center;animation:npulse 3.6s ease-in-out infinite}
-    @keyframes npulse{0%,100%{opacity:.28}50%{opacity:.72}}
+    .nhalo{transform-box:fill-box;transform-origin:center;animation:npulse 4.4s ease-in-out infinite}
+    @keyframes npulse{0%,100%{opacity:.18}50%{opacity:.42}}
   </style>
 </defs>
 <rect class="nbar nb0" x="12" y="78" width="17" height="26" rx="6" fill="url(#nl1)"/>
@@ -45,7 +45,7 @@ const NAV_LINKS = [
   {href:'industries.html',               label:'Industries'},
   {href:'case-studies.html',             label:'Case Studies'},
   {href:'about.html',                    label:'About'},
-  {href:'contact.html',                  label:'Contact'},
+  {href:'contact.html',                  label:'Get a Quote'},
   {href:'blog/index.html',               label:'Blog'},
 ];
 
@@ -111,7 +111,7 @@ const desktopLinks = NAV_LINKS.map(l=>{
 const mobileLinks  = NAV_LINKS.map(l=>`<a href="${l.href}" style="color:${currentPage===l.href?'#00C2FF':'#CBD5E1'}" class="block py-2 transition-colors text-sm font-medium">${l.label}</a>`).join('');
 
 const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transition-all duration-300">
-  <div style="max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3" style="text-decoration:none">
       ${LOGO_SVG}
       <div>
@@ -119,17 +119,17 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
         <div class="brand-label" style="font-size:9px;letter-spacing:0.16em;line-height:1;margin-top:1px;opacity:0.7">PROCESS × INTELLIGENCE</div>
       </div>
     </a>
-    <div class="hidden md:flex items-center gap-8">${desktopLinks}</div>
+    <div class="hidden md:flex items-center gap-7">${desktopLinks}</div>
     <div class="flex items-center gap-4">
-      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Contact</a>
+      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Book a Call</a>
       <button id="mobile-menu-btn" class="md:hidden transition-colors" style="color:#8BB4CC" aria-label="Menu">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
     </div>
   </div>
   <div id="mobile-menu" class="hidden md:hidden" style="background:rgba(11,26,46,0.98);border-top:1px solid rgba(0,194,255,0.1)">
-    <div style="max-width:1440px;margin:0 auto;padding:16px 32px" class="space-y-1">${mobileLinks}
-      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Contact</a>
+    <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">${mobileLinks}
+      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Book a Call</a>
     </div>
   </div>
 </nav>`;
@@ -140,7 +140,7 @@ document.body.insertAdjacentHTML('afterbegin', navHTML);
    5. Inject Footer
 ─────────────────────────────────────────────── */
 const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);background:rgba(8,18,36,0.55);backdrop-filter:blur(8px);padding:64px 0 0">
-  <div style="max-width:1440px;margin:0 auto;padding:0 32px">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-4 gap-10 mb-12">
       <div class="md:col-span-2">
         <a href="index.html" class="flex items-center gap-3 mb-4" style="text-decoration:none">
@@ -176,106 +176,100 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
   </div>
 </footer>`;
 
-(function injectFooterWhenReady(){
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', function(){document.body.insertAdjacentHTML('beforeend',footerHTML);}, {once:true});
-  } else {
-    document.body.insertAdjacentHTML('beforeend',footerHTML);
-  }
+document.body.insertAdjacentHTML('beforeend', footerHTML);
+
+/* ───────────────────────────────────────────────
+   6. Scroll reveal
+─────────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ───────────────────────────────────────────────
+   7. Navbar scroll
+─────────────────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  const nb = document.getElementById('navbar');
+  if(nb) nb.style.borderBottomColor = scrollY>50 ? 'rgba(0,194,255,0.25)' : 'rgba(0,194,255,0.1)';
+},{passive:true});
+
+/* ───────────────────────────────────────────────
+   8. Mobile menu
+─────────────────────────────────────────────── */
+const mmbtn = document.getElementById('mobile-menu-btn');
+const mmenu = document.getElementById('mobile-menu');
+if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
+
+/* ───────────────────────────────────────────────
+   8b. Services dropdown (desktop hover)
+─────────────────────────────────────────────── */
+(function(){
+  var wrap = document.getElementById('svc-drop-wrap');
+  var drop = document.getElementById('svc-drop');
+  if(!wrap || !drop) return;
+  var timer;
+  wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
+  wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
 })();
 
 /* ───────────────────────────────────────────────
-   6-11. DOM interactions — wrapped in DOMContentLoaded so they work
-   whether shared-nav.js loads at top or bottom of <body>
+   9. Counter animation (home page metrics)
 ─────────────────────────────────────────────── */
-function _pbInitDOM(){
-
-  /* 6. Scroll reveal */
-  const revealObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-
-  /* 7. Navbar scroll border */
-  window.addEventListener('scroll',()=>{
-    const nb = document.getElementById('navbar');
-    if(nb) nb.style.borderBottomColor = scrollY>50 ? 'rgba(0,194,255,0.25)' : 'rgba(0,194,255,0.1)';
-  },{passive:true});
-
-  /* 8. Mobile menu */
-  const mmbtn = document.getElementById('mobile-menu-btn');
-  const mmenu = document.getElementById('mobile-menu');
-  if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
-
-  /* 8b. Services dropdown */
-  (function(){
-    var wrap = document.getElementById('svc-drop-wrap');
-    var drop = document.getElementById('svc-drop');
-    if(!wrap || !drop) return;
-    var timer;
-    wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
-    wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
-  })();
-
-  /* 9. Counter animation */
-  function animateCounters(){
-    document.querySelectorAll('.metric-number[data-target]').forEach(el=>{
-      const target = parseFloat(el.dataset.target);
-      const suffix = el.dataset.suffix || el.textContent.replace(/[\d.]/g,'');
-      const dec    = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
-      let current  = 0, start = null;
-      const duration = 1800;
-      function step(ts){
-        if(!start) start=ts;
-        const progress = Math.min((ts-start)/duration,1);
-        const ease = 1 - Math.pow(1-progress,3);
-        current = target * ease;
-        el.textContent = (dec ? current.toFixed(dec) : Math.floor(current)) + suffix;
-        if(progress<1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }
-  const counterTarget = document.querySelector('.metric-number[data-target]');
-  if(counterTarget){
-    const cObserver = new IntersectionObserver(entries=>{
-      if(entries[0].isIntersecting){ animateCounters(); cObserver.disconnect(); }
-    },{threshold:0.3});
-    cObserver.observe(counterTarget);
-  }
-
-  /* 10. Case study expand */
-  document.querySelectorAll('.expand-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const body = btn.previousElementSibling;
-      const icon = btn.querySelector('.expand-icon');
-      if(!body) return;
-      body.classList.toggle('open');
-      icon && icon.classList.toggle('rotated');
-      btn.querySelector('span').textContent = body.classList.contains('open') ? 'Show less' : 'Read more';
-    });
+function animateCounters(){
+  document.querySelectorAll('.metric-number[data-target]').forEach(el=>{
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || el.textContent.replace(/[\d.]/g,'');
+    const dec    = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
+    let current  = 0, start = null;
+    const duration = 1800;
+    function step(ts){
+      if(!start) start=ts;
+      const progress = Math.min((ts-start)/duration,1);
+      const ease = 1 - Math.pow(1-progress,3);
+      current = target * ease;
+      el.textContent = (dec ? current.toFixed(dec) : Math.floor(current)) + suffix;
+      if(progress<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   });
-
-  /* 11. Case study filter */
-  document.querySelectorAll('.filter-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.case-card').forEach(card=>{
-        const industry = card.dataset.industry || '';
-        card.style.display = (filter==='all' || industry.includes(filter)) ? '' : 'none';
-      });
-    });
-  });
-
+}
+const counterTarget = document.querySelector('.metric-number[data-target]');
+if(counterTarget){
+  const cObserver = new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){ animateCounters(); cObserver.disconnect(); }
+  },{threshold:0.3});
+  cObserver.observe(counterTarget);
 }
 
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded', _pbInitDOM, {once:true});
-} else {
-  _pbInitDOM();
-}
+/* ───────────────────────────────────────────────
+   10. Case study expand toggle
+─────────────────────────────────────────────── */
+document.querySelectorAll('.expand-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const body = btn.previousElementSibling;
+    const icon = btn.querySelector('.expand-icon');
+    if(!body) return;
+    body.classList.toggle('open');
+    icon && icon.classList.toggle('rotated');
+    btn.querySelector('span').textContent = body.classList.contains('open') ? 'Show less' : 'Read more';
+  });
+});
+
+/* ───────────────────────────────────────────────
+   11. Case study filter
+─────────────────────────────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.case-card').forEach(card=>{
+      const industry = card.dataset.industry || '';
+      card.style.display = (filter==='all' || industry.includes(filter)) ? '' : 'none';
+    });
+  });
+});
 
 /* ───────────────────────────────────────────────
    12. Three.js particle background — dark navy palette
@@ -323,7 +317,7 @@ if(typeof THREE !== 'undefined'){
     const lpos  = new Float32Array(MAX_LINES*6);
     lgeo.setAttribute('position', new THREE.BufferAttribute(lpos,3));
     const lmat = new THREE.LineBasicMaterial({
-      color:0x00C2FF,transparent:true,opacity:0.09
+      color:0x00C2FF,transparent:true,opacity:0
     });
     scene.add(new THREE.LineSegments(lgeo,lmat));
 
@@ -365,3 +359,4 @@ if(typeof THREE !== 'undefined'){
 }
 
 })();
+   
