@@ -20,8 +20,8 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
   <filter id="ngl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   <style>
     .nline{stroke-dasharray:none}
-    .nhalo{transform-box:fill-box;transform-origin:center;animation:npulse 4.4s ease-in-out infinite}
-    @keyframes npulse{0%,100%{opacity:.18}50%{opacity:.42}}
+    .nhalo{transform-box:fill-box;transform-origin:center;animation:npulse 3.6s ease-in-out infinite}
+    @keyframes npulse{0%,100%{opacity:.28}50%{opacity:.72}}
   </style>
 </defs>
 <rect class="nbar nb0" x="12" y="78" width="17" height="26" rx="6" fill="url(#nl1)"/>
@@ -111,7 +111,7 @@ const desktopLinks = NAV_LINKS.map(l=>{
 const mobileLinks  = NAV_LINKS.map(l=>`<a href="${l.href}" style="color:${currentPage===l.href?'#00C2FF':'#CBD5E1'}" class="block py-2 transition-colors text-sm font-medium">${l.label}</a>`).join('');
 
 const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px">
     <a href="index.html" class="flex items-center gap-3" style="text-decoration:none">
       ${LOGO_SVG}
       <div>
@@ -119,7 +119,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
         <div class="brand-label" style="font-size:9px;letter-spacing:0.16em;line-height:1;margin-top:1px;opacity:0.7">PROCESS × INTELLIGENCE</div>
       </div>
     </a>
-    <div class="hidden md:flex items-center gap-7">${desktopLinks}</div>
+    <div class="hidden md:flex items-center gap-8">${desktopLinks}</div>
     <div class="flex items-center gap-4">
       <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Contact</a>
       <button id="mobile-menu-btn" class="md:hidden transition-colors" style="color:#8BB4CC" aria-label="Menu">
@@ -128,7 +128,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
     </div>
   </div>
   <div id="mobile-menu" class="hidden md:hidden" style="background:rgba(11,26,46,0.98);border-top:1px solid rgba(0,194,255,0.1)">
-    <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">${mobileLinks}
+    <div style="max-width:1440px;margin:0 auto;padding:16px 32px" class="space-y-1">${mobileLinks}
       <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Contact</a>
     </div>
   </div>
@@ -140,7 +140,7 @@ document.body.insertAdjacentHTML('afterbegin', navHTML);
    5. Inject Footer
 ─────────────────────────────────────────────── */
 const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);background:rgba(8,18,36,0.55);backdrop-filter:blur(8px);padding:64px 0 0">
-  <div class="max-w-7xl mx-auto px-6">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px">
     <div class="grid md:grid-cols-4 gap-10 mb-12">
       <div class="md:col-span-2">
         <a href="index.html" class="flex items-center gap-3 mb-4" style="text-decoration:none">
@@ -176,7 +176,13 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
   </div>
 </footer>`;
 
-document.body.insertAdjacentHTML('beforeend', footerHTML);
+(function injectFooterWhenReady(){
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', function(){document.body.insertAdjacentHTML('beforeend',footerHTML);}, {once:true});
+  } else {
+    document.body.insertAdjacentHTML('beforeend',footerHTML);
+  }
+})();
 
 /* ───────────────────────────────────────────────
    6. Scroll reveal
