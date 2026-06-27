@@ -3,31 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Selected Work — ProcessBI | Enterprise Data & Process Projects Australia</title>
+<title>Selected Work — ProcessBI</title>
 <meta name="description" content="A sample of the process and data engagements ProcessBI has delivered across government, financial services, utilities, and manufacturing in Australia. Client names and figures withheld — what matters is the work.">
-<link rel="canonical" href="https://processbi.com.au/case-studies">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="ProcessBI">
-<meta property="og:title" content="Selected Work — ProcessBI | Enterprise Process &amp; Data Projects Australia">
-<meta property="og:description" content="A sample of process design, automation, and Microsoft Fabric engagements delivered across government, financial services, utilities, and manufacturing in Australia.">
-<meta property="og:url" content="https://processbi.com.au/case-studies.html">
-<meta property="og:image" content="https://processbi.com.au/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Selected Work — ProcessBI | Process &amp; BI Projects Australia">
-<meta name="twitter:description" content="Process design, Microsoft Fabric migrations, fraud detection, and BI analytics delivered across Australian enterprise.">
-<meta name="twitter:image" content="https://processbi.com.au/og-image.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{emerald:'#10b981'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=6">
+<link rel="stylesheet" href="shared.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<style>
-.cs-detail { border-top:1px solid rgba(0,194,255,0.12); padding-top:10px; margin-top:10px; }
-</style>
 </head>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="shared-nav.js?v=6"></script>
 
 <!-- Page Hero -->
 <div class="page-hero">
@@ -195,45 +179,6 @@
         <div class="mt-3"><span class="tag-badge">Fabric RTI</span><span class="tag-badge">KQL</span><span class="tag-badge">Azure ML</span><span class="tag-badge">Purview</span></div>
       </div>
 
-      <!-- 16 -->
-      <div class="glass-card p-7 reveal case-card" data-industry="manufacturing">
-        <span class="text-accent-emerald text-xs font-semibold tracking-widest uppercase">Manufacturing &amp; Operations</span>
-        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Real-Time Manufacturing Dashboard in 6 Weeks</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A manufacturer running daily production reporting from a patchwork of Excel files pulled from three ERP modules. Plant managers waited until 9 AM for yesterday's numbers. We designed a Fabric Lakehouse with a Direct Lake semantic model surfacing shift-level OEE, line yield, and material variance — live before the morning shift.</p>
-        <div class="cs-detail mt-3 text-xs text-slate-500">
-          <div class="mb-1"><strong class="text-slate-700">Approach:</strong> Process-first — mapped the decisions that needed to be made and when, then built the data architecture around those decision points.</div>
-          <div><strong class="text-slate-700">Outcome:</strong> Shift-level visibility from 6:05 AM. Report generation automated. Downtime root-cause data captured in structured form for the first time.</div>
-        </div>
-        <div class="arch-flow mt-3"><span class="arch-node">ERP Staging</span><span class="arch-arrow">→</span><span class="arch-node">Fabric Lakehouse</span><span class="arch-arrow">→</span><span class="arch-node">Gold Semantic Model</span><span class="arch-arrow">→</span><span class="arch-node">Direct Lake Reports</span></div>
-        <div class="mt-3"><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Power BI</span><span class="tag-badge">Direct Lake</span><span class="tag-badge">OneLake</span><span class="tag-badge">ERP Integration</span></div>
-      </div>
-
-      <!-- 17 -->
-      <div class="glass-card p-7 reveal case-card" style="transition-delay:0.1s" data-industry="financial">
-        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Financial Services</span>
-        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Reducing Report Generation Time by Up to 80%</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A financial services firm's reporting team spent the first three days of every month consolidating data from eight source systems into a management pack — manual copy-paste, format reconciliation, full rebuild on any error. We replaced the mechanical steps with a governed Power Query pipeline. The team now reviews exceptions and writes commentary; the pack assembles itself.</p>
-        <div class="cs-detail mt-3 text-xs text-slate-500">
-          <div class="mb-1"><strong class="text-slate-700">Approach:</strong> Mapped every transformation step, identified which required human judgment vs. which were mechanical — then automated the mechanical layer entirely.</div>
-          <div><strong class="text-slate-700">Outcome:</strong> Month-end cycle compressed from 3 days to under 1 day. Reconciliation error rate near zero.</div>
-        </div>
-        <div class="arch-flow mt-3"><span class="arch-node">8 Source Systems</span><span class="arch-arrow">→</span><span class="arch-node">Power Query Pipeline</span><span class="arch-arrow">→</span><span class="arch-node">Fabric Data Model</span><span class="arch-arrow">→</span><span class="arch-node">Automated Pack</span></div>
-        <div class="mt-3"><span class="tag-badge">Power Query</span><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Power Automate</span><span class="tag-badge">Process Automation</span></div>
-      </div>
-
-      <!-- 18 -->
-      <div class="glass-card p-7 reveal case-card" style="transition-delay:0.2s" data-industry="government">
-        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Government &amp; Public Sector</span>
-        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Process Intelligence: Finding Operational Inefficiency in the Data</h3>
-        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A government agency knew their citizen-services throughput was above the policy target but could not identify where. Their process documentation described how the process was designed to work — not how it actually worked. We extracted event logs, ran process mining to reconstruct the real process, identified eleven undocumented variants, and located the primary bottleneck at a specific handover point invisible in headline statistics.</p>
-        <div class="cs-detail mt-3 text-xs text-slate-500">
-          <div class="mb-1"><strong class="text-slate-700">Approach:</strong> Process discovery from data — conformance checking, variant analysis, rework loop identification — then a redesigned BPMN for the primary path.</div>
-          <div><strong class="text-slate-700">Outcome:</strong> Real process map reconstructed. Bottleneck quantified. Two rework loops root-caused and addressed without system change.</div>
-        </div>
-        <div class="arch-flow mt-3"><span class="arch-node">Case Management Logs</span><span class="arch-arrow">→</span><span class="arch-node">Process Mining</span><span class="arch-arrow">→</span><span class="arch-node">Variant Analysis</span><span class="arch-arrow">→</span><span class="arch-node">Power BI Dashboard</span></div>
-        <div class="mt-3"><span class="tag-badge">Process Mining</span><span class="tag-badge">BPMN 2.0</span><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Power BI</span><span class="tag-badge">Python</span></div>
-      </div>
-
     </div>
 
     <!-- ── Process Blueprints ── -->
@@ -256,4 +201,64 @@
       <!-- BP 02 -->
       <div class="glass-card p-7 reveal case-card" style="transition-delay:0.1s" data-industry="government">
         <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Government</span>
-        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2
+        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Budget Cycle &amp; Citizen Services</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A public-sector governance blueprint that automates budget consolidation and citizen-service workflows on governed, auditable reporting — replacing spreadsheet-driven cycles with a transparent, repeatable process.</p>
+        <div class="arch-flow"><span class="arch-node">Agency Systems</span><span class="arch-arrow">→</span><span class="arch-node">Consolidation</span><span class="arch-arrow">→</span><span class="arch-node">Governed Reporting</span><span class="arch-arrow">→</span><span class="arch-node">Service Delivery</span></div>
+        <div class="mt-3"><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Power BI</span><span class="tag-badge">Purview</span></div>
+      </div>
+
+      <!-- BP 03 -->
+      <div class="glass-card p-7 reveal case-card" style="transition-delay:0.2s" data-industry="technology">
+        <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Transport</span>
+        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Rail Operations &amp; Predictive Maintenance</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A rail operations blueprint linking asset telemetry to predictive maintenance and network performance reporting — moving from reactive fixes to a planned, data-driven maintenance process.</p>
+        <div class="arch-flow"><span class="arch-node">Asset Telemetry</span><span class="arch-arrow">→</span><span class="arch-node">Event Stream</span><span class="arch-arrow">→</span><span class="arch-node">Predictive Model</span><span class="arch-arrow">→</span><span class="arch-node">Operations View</span></div>
+        <div class="mt-3"><span class="tag-badge">Azure IoT Hub</span><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Predictive ML</span></div>
+      </div>
+
+      <!-- BP 04 -->
+      <div class="glass-card p-7 reveal case-card" data-industry="energy">
+        <span class="text-accent-emerald text-xs font-semibold tracking-widest uppercase">Energy &amp; Utilities</span>
+        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Distribution Network Asset Management</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A distribution-network asset-management blueprint unifying asset, outage, and compliance data into operational and regulatory views — one process serving both day-to-day operations and the regulator.</p>
+        <div class="arch-flow"><span class="arch-node">Asset &amp; Outage Data</span><span class="arch-arrow">→</span><span class="arch-node">Unified Model</span><span class="arch-arrow">→</span><span class="arch-node">Operations View</span><span class="arch-arrow">→</span><span class="arch-node">Regulatory Reporting</span></div>
+        <div class="mt-3"><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Azure IoT</span><span class="tag-badge">Power BI</span></div>
+      </div>
+
+      <!-- BP 05 -->
+      <div class="glass-card p-7 reveal case-card" style="transition-delay:0.1s" data-industry="manufacturing">
+        <span class="text-accent-emerald text-xs font-semibold tracking-widest uppercase">Manufacturing</span>
+        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Demand-to-Delivery with AI Quality Control</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A demand-to-delivery blueprint pairing forecasting with AI-assisted quality control across the production and logistics chain — connecting what's planned, what's made, and what ships into one continuous process.</p>
+        <div class="arch-flow"><span class="arch-node">Demand Signals</span><span class="arch-arrow">→</span><span class="arch-node">Forecast</span><span class="arch-arrow">→</span><span class="arch-node">Production &amp; QC</span><span class="arch-arrow">→</span><span class="arch-node">Delivery</span></div>
+        <div class="mt-3"><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">XGBoost</span><span class="tag-badge">Computer Vision</span><span class="tag-badge">Power BI</span></div>
+      </div>
+
+      <!-- BP 06 -->
+      <div class="glass-card p-7 reveal case-card" style="transition-delay:0.2s" data-industry="financial">
+        <span class="text-accent-emerald text-xs font-semibold tracking-widest uppercase">Insurance</span>
+        <h3 class="font-display text-lg font-semibold text-slate-900 mt-3 mb-2">Claims Processing &amp; Underwriting</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mt-1 mb-3">A claims-and-underwriting automation blueprint streamlining intake, assessment, and decisioning on governed reporting — redesigning the process first, then automating the repetitive steps within it.</p>
+        <div class="arch-flow"><span class="arch-node">Intake</span><span class="arch-arrow">→</span><span class="arch-node">Assessment</span><span class="arch-arrow">→</span><span class="arch-node">Decisioning</span><span class="arch-arrow">→</span><span class="arch-node">Governed Reporting</span></div>
+        <div class="mt-3"><span class="tag-badge">Microsoft Fabric</span><span class="tag-badge">Azure ML</span><span class="tag-badge">Power Automate</span><span class="tag-badge">Power BI</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="py-20 relative">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-4">Have a Process Worth Improving?</h2>
+    <p class="text-slate-600 text-lg mb-8">Every engagement starts with an honest conversation about your challenges. No sales pitch.</p>
+    <a href="contact.html" class="btn-primary">Get a Quote</a>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="shared-nav.js"></script>
+<script>/* ProcessBI reveal safety-net — guarantees content shows even if shared-nav.js fails */(function(){function S(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('visible');e.style.opacity='1';e.style.transform='none';});}if('IntersectionObserver' in window){try{var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(function(e){o.observe(e);});}catch(err){S();}}else{S();}setTimeout(S,2600);})();</script>
+
+</body>
+</html>

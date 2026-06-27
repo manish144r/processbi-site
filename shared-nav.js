@@ -40,13 +40,13 @@ const LOGO_SVG = `<svg viewBox="0 0 132 120" xmlns="http://www.w3.org/2000/svg" 
    3. Nav links config
 ─────────────────────────────────────────────── */
 const NAV_LINKS = [
-  {href:'index.html',                    label:'Home'},
-  {href:'services.html',                 label:'Services'},
-  {href:'industries.html',               label:'Industries'},
-  {href:'case-studies.html',             label:'Case Studies'},
-  {href:'about.html',                    label:'About'},
-  {href:'contact.html',                  label:'Get a Quote'},
-  {href:'blog/index.html',               label:'Blog'},
+  {href:'index.html',    label:'Home'},
+  {href:'services.html', label:'Services'},
+  {href:'methodology.html', label:'Methodology'},
+  {href:'case-studies.html', label:'Case Studies'},
+  {href:'technology.html', label:'Technology'},
+  {href:'about.html',   label:'About'},
+  {href:'contact.html', label:'Contact'},
 ];
 
 const currentPage = (location.pathname.split('/').pop()||'index.html');
@@ -60,54 +60,7 @@ function navLinkClass(href){
 /* ───────────────────────────────────────────────
    4. Inject Nav
 ─────────────────────────────────────────────── */
-/* Services mega-dropdown (4 practice areas) */
-const SVC_DROPDOWN = `<div id="svc-drop" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:360px;background:#0B1A2E;border:1px solid rgba(0,194,255,0.15);border-radius:16px;padding:16px 12px 12px;box-shadow:0 24px 48px rgba(0,0,0,0.4);z-index:200">
-  <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(139,180,204,0.5);padding:0 8px 10px;border-bottom:1px solid rgba(0,194,255,0.08);margin-bottom:8px">Our Services</div>
-  <div style="display:flex;flex-direction:column;gap:2px">
-    <a href="service-business-process.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(46,107,246,0.12)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#2E6BF6;box-shadow:0 0 8px #2E6BF688;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Business Process Design</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Map and redesign end-to-end operations</div></div>
-    </a>
-    <a href="service-fabric.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(0,194,255,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#00C2FF;box-shadow:0 0 8px #00C2FF88;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Microsoft Fabric</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Unified data platform implementation</div></div>
-    </a>
-    <a href="service-powerbi.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(242,200,17,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#F2C811;box-shadow:0 0 8px #F2C81188;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Power BI Consulting</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Reports that answer real business questions</div></div>
-    </a>
-    <a href="service-automation.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(14,165,233,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#0ea5e9;box-shadow:0 0 8px #0ea5e988;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Process Automation</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Automate repetitive workflows at scale</div></div>
-    </a>
-    <a href="service-dw-migration.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(99,102,241,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#6366f1;box-shadow:0 0 8px #6366f188;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Data Warehouse Migration</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Legacy warehouse to Microsoft Fabric</div></div>
-    </a>
-    <a href="service-bi-analytics.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(70,213,255,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#46D5FF;box-shadow:0 0 8px #46D5FF88;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Analytics &amp; BI</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Dashboards built on trusted data</div></div>
-    </a>
-    <a href="service-data-engineering.html" style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background 0.18s" onmouseover="this.style.background='rgba(168,85,247,0.08)'" onmouseout="this.style.background='transparent'">
-      <span style="width:8px;height:8px;border-radius:50%;background:#a855f7;box-shadow:0 0 8px #a855f788;flex:none"></span>
-      <div><div style="color:#FFFFFF;font-size:13px;font-weight:600;line-height:1.2">Data Engineering</div><div style="color:#8BB4CC;font-size:11px;margin-top:2px">Pipelines, integrations &amp; transformation</div></div>
-    </a>
-  </div>
-  <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,194,255,0.08);text-align:center">
-    <a href="services.html" style="color:#00C2FF;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.color='#1EAEFF'" onmouseout="this.style.color='#00C2FF'">View all services →</a>
-  </div>
-</div>`;
-
-const desktopLinks = NAV_LINKS.map(l=>{
-  if(l.href==='services.html'){
-    const isActive = currentPage===l.href;
-    return `<div id="svc-drop-wrap" style="position:relative;display:inline-flex;align-items:center">` +
-      `<a href="${l.href}" class="${navLinkClass(l.href)}" style="${isActive?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${isActive?'#00C2FF':'#CBD5E1'}'">` +
-      `${l.label}<svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="margin-left:4px;display:inline;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>` +
-      SVC_DROPDOWN + `</div>`;
-  }
-  return `<a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${currentPage===l.href?'#00C2FF':'#CBD5E1'}'">${l.label}</a>`;
-}).join('');
+const desktopLinks = NAV_LINKS.map(l=>`<a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#00C2FF':'color:#CBD5E1'}" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='${currentPage===l.href?'#00C2FF':'#CBD5E1'}'">${l.label}</a>`).join('');
 const mobileLinks  = NAV_LINKS.map(l=>`<a href="${l.href}" style="color:${currentPage===l.href?'#00C2FF':'#CBD5E1'}" class="block py-2 transition-colors text-sm font-medium">${l.label}</a>`).join('');
 
 const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transition-all duration-300">
@@ -121,7 +74,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
     </a>
     <div class="hidden md:flex items-center gap-7">${desktopLinks}</div>
     <div class="flex items-center gap-4">
-      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Book a Call</a>
+      <a href="contact.html" class="hidden md:inline-flex btn-primary" style="padding:10px 22px;font-size:13px">Get a Quote</a>
       <button id="mobile-menu-btn" class="md:hidden transition-colors" style="color:#8BB4CC" aria-label="Menu">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
@@ -129,7 +82,7 @@ const navHTML = `<nav id="navbar" class="fixed top-0 w-full z-50 nav-blur transi
   </div>
   <div id="mobile-menu" class="hidden md:hidden" style="background:rgba(11,26,46,0.98);border-top:1px solid rgba(0,194,255,0.1)">
     <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">${mobileLinks}
-      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Book a Call</a>
+      <a href="contact.html" class="btn-primary block text-center mt-4" style="padding:12px 0;font-size:13px">Get a Quote</a>
     </div>
   </div>
 </nav>`;
@@ -158,7 +111,7 @@ const footerHTML = `<footer style="border-top:1px solid rgba(0,194,255,0.12);bac
         <h4 style="color:#FFFFFF;font-weight:600;font-size:0.875rem;margin-bottom:16px">Contact</h4>
         <div class="space-y-2">
           <p style="color:#8BB4CC;font-size:0.875rem">hello@processbi.com.au</p>
-          <p style="color:#8BB4CC;font-size:0.875rem">Australia</p>
+          <p style="color:#8BB4CC;font-size:0.875rem">Melbourne, Australia</p>
           <a href="https://linkedin.com/in/manish-sharma-processbi" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#8BB4CC;font-size:0.875rem;text-decoration:none;margin-top:8px;transition:color 0.2s" onmouseover="this.style.color='#00C2FF'" onmouseout="this.style.color='#8BB4CC'">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
             LinkedIn
@@ -200,18 +153,6 @@ window.addEventListener('scroll',()=>{
 const mmbtn = document.getElementById('mobile-menu-btn');
 const mmenu = document.getElementById('mobile-menu');
 if(mmbtn && mmenu) mmbtn.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
-
-/* ───────────────────────────────────────────────
-   8b. Services dropdown (desktop hover)
-─────────────────────────────────────────────── */
-(function(){
-  var wrap = document.getElementById('svc-drop-wrap');
-  var drop = document.getElementById('svc-drop');
-  if(!wrap || !drop) return;
-  var timer;
-  wrap.addEventListener('mouseenter',function(){clearTimeout(timer);drop.style.display='block';},{passive:true});
-  wrap.addEventListener('mouseleave',function(){timer=setTimeout(function(){drop.style.display='none';},130);},{passive:true});
-})();
 
 /* ───────────────────────────────────────────────
    9. Counter animation (home page metrics)

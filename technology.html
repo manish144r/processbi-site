@@ -548,5 +548,7 @@
 })();
 if(typeof lucide!=="undefined")lucide.createIcons();
 </script>
+<script>/* ProcessBI reveal safety-net — guarantees content shows even if shared-nav.js fails */(function(){function S(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('visible');e.style.opacity='1';e.style.transform='none';});}if('IntersectionObserver' in window){try{var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(function(e){o.observe(e);});}catch(err){S();}}else{S();}setTimeout(S,2600);})();</script>
+
 </body>
 </html>

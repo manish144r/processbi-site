@@ -1,4 +1,4 @@
-/* ── ProcessBI shared styles — Dark Premium Theme — v5 ── */
+/* ── ProcessBI shared styles — Dark Premium Theme ── */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -12,17 +12,6 @@ body{
 h1,h2,h3,h4,h5,h6{letter-spacing:-0.02em;line-height:1.1}
 section{background:transparent}
 .section-alt{background:rgba(255,255,255,0.02)}
-
-
-/* ── Layout width — widen containers globally ── */
-.max-w-7xl { max-width: 1440px !important; }
-.max-w-6xl { max-width: 1360px !important; }
-.max-w-5xl { max-width: 1280px !important; }
-/* Extra breathing room on wide screens */
-@media (min-width: 1600px) {
-  .max-w-7xl { max-width: 1520px !important; }
-  .max-w-6xl { max-width: 1440px !important; }
-}
 
 /* ── Tailwind slate / color overrides for dark theme ── */
 .text-slate-950,.text-slate-900{color:#FFFFFF !important}
@@ -330,15 +319,24 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:#8BB4CC !important}
   opacity:0.4
 }
 
-/* ── Pillar cards ── */
-.pillar-card{
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(var(--pillar-color-rgb,0,194,255),0.15);
-  border-radius:14px;padding:36px 32px;
-  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-  position:relative;overflow:hidden
+/* ── Mobile responsiveness ── */
+@media (max-width: 768px) {
+  .page-hero { padding: 100px 16px 60px }
+  .page-hero h1 { font-size: 2.5rem }
+  .glass-card { border-radius: 12px }
+  .glass-card:hover { transform: none }
+  .arch-flow { font-size: 11px; padding: 10px 12px; white-space: normal }
+  .arch-node { margin: 2px }
+  .arch-arrow { display: none }
+  .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.9rem }
+  .metric-number { font-size: 2.2rem }
+  .step-number { font-size: 3.5rem }
+  .industry-icon { width: 40px; height: 40px }
+  .marquee-track { animation-duration: 20s }
 }
-.pillar-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(var(--pillar-color-rgb,0,194,255),0.6),transparent);
-  opacity:0;transition:opacity 0.
+@media (max-width: 480px) {
+  .page-hero { padding: 80px 12px 40px }
+  .page-hero h1 { font-size: 2rem }
+  .tag-badge, .tag-badge-blue, .tag-badge-green { font-size: 9px; padding: 2px 8px }
+  .step-card { padding: 20px 24px }
+}
