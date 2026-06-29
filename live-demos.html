@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demos — See SPC for Agents, RayFin & Capstone · ProcessBI</title>
+<meta name="description" content="See ProcessBI's Statistical Process Control for agentic systems, RayFin (Power BI in React/TypeScript) and Capstone (project management) running live in your browser — all in-memory, no setup.">
+<meta property="og:title" content="Live Demos · ProcessBI">
+<meta property="og:description" content="SPC for AI agents, RayFin React-deployed Power BI, Capstone PM — running live in your browser.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:url" content="https://processbi.com.au/live-demos.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://processbi.com.au/live-demos.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{teal:'#2DD4BF'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* ════════════════════ Window chrome ════════════════════ */
+.demo-frame{
+  background:#FFFFFF;
+  border:1px solid rgba(2,86,155,0.18);
+  border-radius:14px;
+  box-shadow:0 18px 50px rgba(11,42,82,0.12), 0 4px 12px rgba(11,42,82,0.06);
+  overflow:hidden;
+  font-family:'Inter',sans-serif
+}
+.win-bar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:13px 18px;
+  background:linear-gradient(180deg,#F6F9FC 0%,#EEF4FB 100%);
+  border-bottom:1px solid rgba(2,86,155,0.13)
+}
+.win-dots{display:flex;gap:7px;flex:none}
+.win-dot{width:12px;height:12px;border-radius:50%}
+.win-dot.r{background:#FF5F57}
+.win-dot.y{background:#FEBC2E}
+.win-dot.g{background:#28C840}
+.win-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:13px;
+  color:#0A1626;
+  letter-spacing:.01em;
+  flex:1;
+  text-align:center
+}
+.win-status{
+  font-family:'Space Mono',monospace;
+  font-size:11px;
+  color:#054186;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:none
+}
+.live-pulse{
+  width:8px;height:8px;border-radius:50%;background:#10B981;
+  box-shadow:0 0 0 0 rgba(16,185,129,0.5);
+  animation:livepulse 1.6s ease-in-out infinite
+}
+@keyframes livepulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.5)}
+  50%{box-shadow:0 0 0 8px rgba(16,185,129,0)}
+}
+
+.win-body{display:flex;background:#FFFFFF}
+.win-side{
+  flex:none;
+  width:230px;
+  border-right:1px solid rgba(2,86,155,0.10);
+  background:#FAFCFE;
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:14px
+}
+.win-main{flex:1;min-width:0;padding:18px 22px;display:flex;flex-direction:column;gap:14px}
+@media(max-width:880px){
+  .win-body{flex-direction:column}
+  .win-side{width:auto;border-right:0;border-bottom:1px solid rgba(2,86,155,0.10)}
+}
+
+.side-h{
+  font-family:'Space Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#054186;
+  font-weight:700
+}
+
+/* ════════════════════ Demo 1 — SPC for Agents ════════════════════ */
+.agent-row{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 10px;border-radius:8px;
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.10);
+  transition:all .25s
+}
+.agent-row.active{border-color:rgba(0,194,255,0.4);background:#F2F8FE}
+.agent-led{
+  width:9px;height:9px;border-radius:50%;flex:none;
+  background:#10B981;box-shadow:0 0 8px rgba(16,185,129,0.5);
+  animation:livepulse 2s ease-in-out infinite
+}
+.agent-led.warn{background:#F59E0B;box-shadow:0 0 8px rgba(245,158,11,0.5)}
+.agent-led.bad{background:#EF4444;box-shadow:0 0 8px rgba(239,68,68,0.6)}
+.agent-name{
+  flex:1;font-size:12.5px;font-weight:600;color:#0A1626;
+  font-family:'Space Grotesk',sans-serif;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.agent-stat{
+  font-family:'Space Mono',monospace;font-size:10.5px;color:#3A4A5F;
+  background:rgba(2,86,155,0.07);padding:2px 6px;border-radius:5px;
+  flex:none
+}
+
+.spc-tabs{display:flex;gap:6px;border-bottom:1px solid rgba(2,86,155,0.10);padding-bottom:0;margin-bottom:6px}
+.spc-tab{
+  padding:8px 14px;font-size:12px;font-weight:600;color:#3A4A5F;
+  background:transparent;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .2s
+}
+.spc-tab:hover{color:#054186}
+.spc-tab.active{color:#054186;border-bottom-color:#054186}
+
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi{
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.13);
+  border-radius:10px;padding:11px 14px
+}
+.kpi-l{
+  font-family:'Space Mono',monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#3A4A5F;font-weight:700
+}
+.kpi-v{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  color:#0A1626;font-size:20px;margin-top:2px;
+  letter-spacing:-0.01em
+}
+.kpi-v.ok{color:#0a7c5a}
+.kpi-v.warn{color:#B45309}
+.kpi-v.bad{color:#B91C1C}
+
+.spc-svg{
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.10);
+  border-radius:10px;display:block;width:100%;height:auto
+}
+
+.alerts-list{
+  display:flex;flex-direction:column;gap:6px;
+  max-height:110px;overflow-y:auto;padding-right:4px
+}
+.alert{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:8px 11px;border-radius:8px;font-size:12px;
+  background:#FEF3C7;border:1px solid rgba(245,158,11,0.35);color:#7A4A05;
+  animation:alertIn .35s ease
+}
+.alert.bad{background:#FEE2E2;border-color:rgba(239,68,68,0.4);color:#7F1D1D}
+.alert .a-rule{
+  font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;
+  background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;letter-spacing:.04em
+}
+.alert .a-msg{flex:1;line-height:1.4}
+.alert .a-time{font-family:'Space Mono',monospace;font-size:10.5px;opacity:0.7;flex:none}
+@keyframes alertIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+.spc-btn{
+  padding:8px 14px;font-size:12px;font-weight:600;
+  border-radius:8px;cursor:pointer;border:1px solid rgba(2,86,155,0.18);
+  background:#FFFFFF;color:#054186;transition:all .25s
+}
+.spc-btn:hover{background:#F2F8FE;border-color:#054186}
+.spc-btn.danger{color:#B91C1C;border-color:rgba(185,28,28,0.3)}
+.spc-btn.danger:hover{background:#FEE2E2;border-color:#B91C1C}
+
+/* ════════════════════ Demo 2 — Capstone PM ════════════════════ */
+.cap-header{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:14px 18px;background:#FAFCFE;
+  border:1px solid rgba(2,86,155,0.10);border-radius:10px
+}
+.cap-tally{
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  padding:8px 14px;background:#F2F8FE;
+  border:1px solid rgba(2,86,155,0.10);border-radius:10px
+}
+.cap-tally-item{
+  display:flex;align-items:center;gap:7px;
+  font-family:'Space Mono',monospace;font-size:11px;
+  letter-spacing:.06em;color:#054186;font-weight:700
+}
+.cap-tally-item .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.cap-tally-item .dot.agent{background:#46D5FF;box-shadow:0 0 6px rgba(70,213,255,0.5)}
+.cap-tally-item .dot.human{background:#0a7c5a}
+.cap-tally-item .dot.handoff{background:linear-gradient(90deg,#46D5FF,#0a7c5a)}
+.cap-tally-item .v{color:#0A1626;font-size:13px}
+.cap-tally-divider{width:1px;height:14px;background:rgba(2,86,155,0.18)}
+.cap-sprint-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#0A1626;font-size:15px}
+.cap-sprint-meta{font-family:'Space Mono',monospace;font-size:11px;color:#3A4A5F;letter-spacing:.06em}
+.cap-progress{flex:1;min-width:140px;height:8px;background:rgba(2,86,155,0.10);border-radius:4px;overflow:hidden}
+.cap-progress-bar{
+  height:100%;background:linear-gradient(90deg,#46D5FF,#0078D4);
+  border-radius:4px;transition:width .8s ease
+}
+.cap-progress-num{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#054186;font-size:14px}
+
+.cap-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;min-height:340px}
+@media(max-width:880px){.cap-board{grid-template-columns:repeat(2,1fr)}}
+.cap-col{
+  background:#F6F9FC;border:1px solid rgba(2,86,155,0.10);
+  border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px
+}
+.cap-col-h{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#054186;font-weight:700;
+  padding:0 4px 8px;border-bottom:1px solid rgba(2,86,155,0.10)
+}
+.cap-col-count{
+  background:rgba(2,86,155,0.10);color:#054186;
+  border-radius:10px;padding:1px 7px;font-size:10px
+}
+
+.cap-card{
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.13);
+  border-radius:8px;padding:10px 12px;
+  display:flex;flex-direction:column;gap:6px;
+  transition:transform .35s cubic-bezier(.4,0,.2,1), opacity .35s, box-shadow .2s;
+  cursor:default;
+  font-size:12.5px;
+  box-shadow:0 1px 3px rgba(11,42,82,0.05);
+  position:relative
+}
+.cap-card.agent{border-left:3px solid #46D5FF}
+.cap-card.handoff{border-left:3px solid #0a7c5a;background:linear-gradient(135deg,#FFFFFF 0%,#F0FAFF 100%)}
+.cap-card.move{transform:translateY(-3px);box-shadow:0 8px 18px rgba(11,42,82,0.10)}
+.cap-card.fade-in{animation:cardin .4s ease}
+@keyframes cardin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.cap-card-title{font-family:'Space Grotesk',sans-serif;font-weight:600;color:#0A1626;font-size:13px;line-height:1.3}
+.cap-card-meta{display:flex;align-items:center;gap:8px;font-size:11px}
+.cap-tag{
+  display:inline-block;padding:1px 7px;border-radius:5px;font-size:10px;font-weight:600;
+  font-family:'Space Mono',monospace;letter-spacing:.06em
+}
+.cap-tag.p1{background:rgba(185,28,28,0.10);color:#B91C1C}
+.cap-tag.p2{background:rgba(245,158,11,0.12);color:#B45309}
+.cap-tag.p3{background:rgba(5,65,134,0.10);color:#054186}
+.cap-assignee{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,#46D5FF,#054186);
+  color:#FFFFFF;font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:10px;display:flex;align-items:center;justify-content:center;
+  margin-left:auto;flex:none
+}
+.cap-owner{margin-left:auto;display:flex;align-items:center;gap:4px;flex:none}
+.cap-agent-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 7px 2px 5px;border-radius:5px;
+  background:linear-gradient(135deg,rgba(70,213,255,0.18),rgba(0,194,255,0.08));
+  border:1px solid rgba(0,194,255,0.40);
+  color:#054186;font-family:'Space Mono',monospace;
+  font-size:10px;font-weight:700;letter-spacing:.04em;
+  white-space:nowrap;max-width:118px;overflow:hidden;text-overflow:ellipsis
+}
+.cap-agent-badge svg{flex:none}
+.cap-handoff-arrow{color:#0a7c5a;font-weight:700;font-size:11px;margin:0 1px}
+.cap-due{color:#3A4A5F;font-family:'Space Mono',monospace;font-size:10.5px}
+
+/* ════════════════════ Demo 3 — RayFin (PBI React) ════════════════════ */
+.rf-tabs{
+  display:flex;gap:0;border-bottom:1px solid rgba(2,86,155,0.13);
+  background:#F6F9FC;border-radius:10px 10px 0 0;padding:0 6px
+}
+.rf-tab{
+  padding:11px 18px;font-size:12px;font-weight:600;color:#3A4A5F;
+  background:transparent;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;
+  display:flex;align-items:center;gap:8px
+}
+.rf-tab:hover{color:#054186}
+.rf-tab.active{color:#054186;border-bottom-color:#054186;background:#FFFFFF}
+
+.rf-body{display:grid;grid-template-columns:200px 1fr;gap:14px;padding:14px 0 0}
+@media(max-width:880px){.rf-body{grid-template-columns:1fr}}
+
+.rf-slicer-pane{
+  background:#FAFCFE;border:1px solid rgba(2,86,155,0.10);
+  border-radius:10px;padding:14px;
+  display:flex;flex-direction:column;gap:14px
+}
+.rf-slicer-h{
+  font-family:'Space Mono',monospace;font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:#054186;font-weight:700
+}
+.rf-slicer-opts{display:flex;flex-direction:column;gap:4px}
+.rf-slicer-opt{
+  display:flex;align-items:center;gap:8px;font-size:12px;color:#26354C;
+  padding:5px 8px;border-radius:6px;cursor:pointer;transition:all .15s;
+  background:transparent;border:none;text-align:left;font-weight:500
+}
+.rf-slicer-opt:hover{background:#F2F8FE;color:#054186}
+.rf-slicer-opt.on{background:#E9F2FB;color:#054186;font-weight:700}
+.rf-slicer-opt::before{
+  content:'';width:14px;height:14px;border-radius:3px;
+  border:1.5px solid rgba(2,86,155,0.30);
+  flex:none;background:#FFFFFF;transition:all .15s
+}
+.rf-slicer-opt.on::before{
+  background:#054186;border-color:#054186;
+  box-shadow:inset 0 0 0 3px #FFFFFF
+}
+
+.rf-canvas{display:flex;flex-direction:column;gap:12px}
+.rf-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:760px){.rf-kpi-row{grid-template-columns:repeat(2,1fr)}}
+.rf-kpi{
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.13);
+  border-radius:10px;padding:12px 14px;
+  display:flex;flex-direction:column;gap:3px
+}
+.rf-kpi-l{
+  font-family:'Space Mono',monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#3A4A5F;font-weight:700
+}
+.rf-kpi-v{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;color:#0A1626;
+  font-size:22px;letter-spacing:-0.01em
+}
+.rf-kpi-d{font-size:11px;font-weight:600;display:flex;align-items:center;gap:3px}
+.rf-kpi-d.up{color:#0a7c5a}
+.rf-kpi-d.down{color:#B91C1C}
+
+.rf-charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.rf-charts-row{grid-template-columns:1fr}}
+.rf-card{
+  background:#FFFFFF;border:1px solid rgba(2,86,155,0.13);
+  border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px
+}
+.rf-card-h{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;color:#0A1626;font-size:13px
+}
+.rf-card-h .sub{font-family:'Space Mono',monospace;font-size:10.5px;color:#3A4A5F;font-weight:500}
+.rf-svg{display:block;width:100%;height:auto}
+
+.rf-table{width:100%;border-collapse:collapse;font-size:12px}
+.rf-table th{
+  text-align:left;padding:8px 10px;font-family:'Space Mono',monospace;
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#3A4A5F;font-weight:700;
+  border-bottom:1px solid rgba(2,86,155,0.13)
+}
+.rf-table td{padding:8px 10px;border-bottom:1px solid rgba(2,86,155,0.06);color:#26354C}
+.rf-table tr:last-child td{border-bottom:none}
+.rf-table .num{font-family:'Space Mono',monospace;text-align:right}
+.rf-table .bar-cell{width:32%}
+.rf-mini{height:6px;background:rgba(2,86,155,0.10);border-radius:3px;overflow:hidden}
+.rf-mini-bar{height:100%;background:linear-gradient(90deg,#46D5FF,#0078D4);border-radius:3px;transition:width .5s ease}
+
+/* ════════════════════ Section heads ════════════════════ */
+.demo-section{padding:50px 24px}
+.demo-section h2{
+  font-family:'Space Grotesk',sans-serif;font-weight:800;color:#0A1626;
+  font-size:clamp(28px,3.6vw,40px);letter-spacing:-0.02em;line-height:1.1
+}
+.demo-eyebrow{
+  font-family:'Space Mono',monospace;font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:#054186;font-weight:700
+}
+.demo-lede{color:#26354C;font-size:16px;line-height:1.6;max-width:680px;margin-top:12px}
+.demo-sample-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Space Mono',monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#7A4A05;
+  background:#FEF3C7;border:1px solid rgba(245,158,11,0.30);
+  border-radius:20px;padding:5px 12px;font-weight:700;margin-bottom:14px
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto px-6 reveal">
+    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Live Demos · Running in your browser</span>
+    <h1 class="font-display text-5xl md:text-6xl font-black mt-4 mb-6" style="color:#0A1626">Working software, <span class="gradient-text">not slides.</span></h1>
+    <p class="text-slate-600 text-xl leading-relaxed">SPC for agentic systems, RayFin React-deployed Power BI, and Capstone project management — all running in-memory, right here in your browser. No login, no setup, no static screenshots.</p>
+  </div>
+</div>
+
+<!-- ═══════════ DEMO 1 — SPC for Agentic Systems ═══════════ -->
+<section class="demo-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="demo-sample-tag"><span>●</span> Sample data · illustrative</div>
+    <div class="demo-eyebrow">01 · Statistical Process Control for Agentic Systems</div>
+    <h2>Bringing Process rules to AI agents.</h2>
+    <p class="demo-lede">Agents drift. Without statistical control, you find out when something goes wrong. We apply Western Electric rules to agent telemetry — so drift surfaces as a signal, not a postmortem.</p>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:14px;color:#3A4A5F;font-size:13.5px;line-height:1.5;max-width:680px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#054186" stroke-width="2" style="flex:none"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span><strong style="color:#0A1626">Production runs on a live Grafana dashboard.</strong> This is a browser-side preview of the same control logic and Western Electric rules.</span>
+    </div>
+
+    <div class="demo-frame" style="margin-top:26px">
+      <div class="win-bar">
+        <div class="win-dots"><div class="win-dot r"></div><div class="win-dot y"></div><div class="win-dot g"></div></div>
+        <div class="win-title">Agent SPC Monitor · Grafana preview</div>
+        <div class="win-status"><div class="live-pulse"></div><span>LIVE</span></div>
+      </div>
+      <div class="win-body">
+        <aside class="win-side">
+          <div class="side-h">Agents (5)</div>
+          <div id="spc-agents" style="display:flex;flex-direction:column;gap:7px"></div>
+          <div class="side-h" style="margin-top:6px">Controls</div>
+          <button class="spc-btn danger" id="spc-drift-btn">⚡ Inject drift event</button>
+          <button class="spc-btn" id="spc-reset-btn">↻ Reset chart</button>
+        </aside>
+        <main class="win-main">
+          <div class="spc-tabs">
+            <button class="spc-tab active" data-metric="latency">Response latency</button>
+            <button class="spc-tab" data-metric="error">Error rate</button>
+            <button class="spc-tab" data-metric="throughput">Throughput</button>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-l">Current</div><div class="kpi-v ok" id="spc-kpi-now">—</div></div>
+            <div class="kpi"><div class="kpi-l">σ (sigma)</div><div class="kpi-v" id="spc-kpi-sigma">—</div></div>
+            <div class="kpi"><div class="kpi-l">In control</div><div class="kpi-v ok" id="spc-kpi-state">YES</div></div>
+          </div>
+          <svg id="spc-chart" class="spc-svg" viewBox="0 0 800 280" preserveAspectRatio="none" style="height:280px"></svg>
+          <div>
+            <div class="side-h" style="margin-bottom:6px">Rule violations</div>
+            <div class="alerts-list" id="spc-alerts"><div style="font-size:12px;color:#3A4A5F;padding:4px 2px">No rule violations — process in statistical control.</div></div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DEMO 2 — Capstone PM ═══════════ -->
+<section class="demo-section section-alt reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="demo-sample-tag"><span>●</span> Sample data · illustrative</div>
+    <div class="demo-eyebrow">02 · Capstone — Project Management</div>
+    <h2>Where humans and agents <span class="gradient-text">share the work.</span></h2>
+    <p class="demo-lede">Some tasks belong to people — design, judgement, stakeholder calls. Others belong to agents — refresh, reconciliation, monitoring, automated reporting. Capstone tracks both on the same board, with explicit handoffs so nothing slips between them.</p>
+
+    <div class="demo-frame" style="margin-top:26px">
+      <div class="win-bar">
+        <div class="win-dots"><div class="win-dot r"></div><div class="win-dot y"></div><div class="win-dot g"></div></div>
+        <div class="win-title">Capstone · Sprint Board</div>
+        <div class="win-status"><div class="live-pulse"></div><span>LIVE</span></div>
+      </div>
+      <div class="win-body" style="display:block">
+        <div class="win-main" style="padding:18px 22px;gap:14px">
+          <div class="cap-header">
+            <div>
+              <div class="cap-sprint-name">Sprint 14 — Fabric migration · wave 2</div>
+              <div class="cap-sprint-meta">Day 6 of 10 · Capstone</div>
+            </div>
+            <div class="cap-progress"><div class="cap-progress-bar" id="cap-progress" style="width:0%"></div></div>
+            <div class="cap-progress-num" id="cap-progress-num">0%</div>
+          </div>
+          <div class="cap-tally" id="cap-tally">
+            <div class="cap-tally-item"><span class="dot agent"></span>Agent-led <span class="v" data-tally="agent">0</span></div>
+            <div class="cap-tally-divider"></div>
+            <div class="cap-tally-item"><span class="dot human"></span>Human-led <span class="v" data-tally="human">0</span></div>
+            <div class="cap-tally-divider"></div>
+            <div class="cap-tally-item"><span class="dot handoff"></span>Handoffs <span class="v" data-tally="handoff">0</span></div>
+          </div>
+          <div class="cap-board" id="cap-board">
+            <div class="cap-col" data-col="backlog">
+              <div class="cap-col-h"><span>Backlog</span><span class="cap-col-count" data-count>0</span></div>
+              <div class="cap-col-cards"></div>
+            </div>
+            <div class="cap-col" data-col="progress">
+              <div class="cap-col-h"><span>In progress</span><span class="cap-col-count" data-count>0</span></div>
+              <div class="cap-col-cards"></div>
+            </div>
+            <div class="cap-col" data-col="review">
+              <div class="cap-col-h"><span>Review</span><span class="cap-col-count" data-count>0</span></div>
+              <div class="cap-col-cards"></div>
+            </div>
+            <div class="cap-col" data-col="done">
+              <div class="cap-col-h"><span>Done</span><span class="cap-col-count" data-count>0</span></div>
+              <div class="cap-col-cards"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DEMO 3 — RayFin (PBI in React/TS) ═══════════ -->
+<section class="demo-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="demo-sample-tag"><span>●</span> Sample data · illustrative</div>
+    <div class="demo-eyebrow">03 · RayFin — Power BI in React / TypeScript</div>
+    <h2>Embedded reports. <span class="gradient-text">Without the embed.</span></h2>
+    <p class="demo-lede">RayFin is our CLI for deploying Power BI semantic logic as React/TypeScript — so reports live inside your app, with your design system, your auth, your interaction model.</p>
+
+    <div class="demo-frame" style="margin-top:26px">
+      <div class="win-bar">
+        <div class="win-dots"><div class="win-dot r"></div><div class="win-dot y"></div><div class="win-dot g"></div></div>
+        <div class="win-title">RayFin · Operations Report</div>
+        <div class="win-status"><div class="live-pulse"></div><span>LIVE</span></div>
+      </div>
+      <div class="win-body" style="display:block;padding:0">
+        <div class="rf-tabs" id="rf-tabs">
+          <button class="rf-tab active" data-page="overview"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</button>
+          <button class="rf-tab" data-page="performance"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>Performance</button>
+        </div>
+        <div class="rf-body" style="padding:14px 18px 22px">
+          <aside class="rf-slicer-pane">
+            <div>
+              <div class="rf-slicer-h">Region</div>
+              <div class="rf-slicer-opts" data-slicer="region">
+                <button class="rf-slicer-opt on" data-v="all">All regions</button>
+                <button class="rf-slicer-opt" data-v="nsw">NSW</button>
+                <button class="rf-slicer-opt" data-v="vic">VIC</button>
+                <button class="rf-slicer-opt" data-v="qld">QLD</button>
+                <button class="rf-slicer-opt" data-v="wa">WA / SA</button>
+              </div>
+            </div>
+            <div>
+              <div class="rf-slicer-h">Segment</div>
+              <div class="rf-slicer-opts" data-slicer="segment">
+                <button class="rf-slicer-opt on" data-v="all">All segments</button>
+                <button class="rf-slicer-opt" data-v="ent">Enterprise</button>
+                <button class="rf-slicer-opt" data-v="mid">Mid-market</button>
+                <button class="rf-slicer-opt" data-v="sme">SME</button>
+              </div>
+            </div>
+            <div>
+              <div class="rf-slicer-h">Period</div>
+              <div class="rf-slicer-opts" data-slicer="period">
+                <button class="rf-slicer-opt" data-v="q1">Q1</button>
+                <button class="rf-slicer-opt" data-v="q2">Q2</button>
+                <button class="rf-slicer-opt on" data-v="ytd">YTD</button>
+              </div>
+            </div>
+          </aside>
+          <div class="rf-canvas" id="rf-canvas">
+            <!-- KPI Row -->
+            <div class="rf-kpi-row" id="rf-kpis">
+              <div class="rf-kpi"><div class="rf-kpi-l">Active accounts</div><div class="rf-kpi-v" data-kpi="accounts">—</div><div class="rf-kpi-d up" data-trend="accounts">—</div></div>
+              <div class="rf-kpi"><div class="rf-kpi-l">Transactions</div><div class="rf-kpi-v" data-kpi="tx">—</div><div class="rf-kpi-d up" data-trend="tx">—</div></div>
+              <div class="rf-kpi"><div class="rf-kpi-l">Avg. resolution</div><div class="rf-kpi-v" data-kpi="res">—</div><div class="rf-kpi-d down" data-trend="res">—</div></div>
+              <div class="rf-kpi"><div class="rf-kpi-l">SLA met</div><div class="rf-kpi-v" data-kpi="sla">—</div><div class="rf-kpi-d up" data-trend="sla">—</div></div>
+            </div>
+            <!-- Charts Row -->
+            <div class="rf-charts-row">
+              <div class="rf-card">
+                <div class="rf-card-h"><span>Transactions by region</span><span class="sub">Bar</span></div>
+                <svg id="rf-bar" class="rf-svg" viewBox="0 0 380 200" preserveAspectRatio="none" style="height:200px"></svg>
+              </div>
+              <div class="rf-card">
+                <div class="rf-card-h"><span>Trend</span><span class="sub">Line · 12 weeks</span></div>
+                <svg id="rf-line" class="rf-svg" viewBox="0 0 380 200" preserveAspectRatio="none" style="height:200px"></svg>
+              </div>
+            </div>
+            <div class="rf-charts-row" id="rf-row-2">
+              <div class="rf-card">
+                <div class="rf-card-h"><span>Mix by segment</span><span class="sub">Donut</span></div>
+                <svg id="rf-donut" class="rf-svg" viewBox="0 0 380 200" preserveAspectRatio="xMidYMid meet" style="height:200px"></svg>
+              </div>
+              <div class="rf-card">
+                <div class="rf-card-h"><span>Top accounts</span><span class="sub">Table</span></div>
+                <table class="rf-table"><thead><tr><th>Account</th><th class="num">Tx</th><th class="bar-cell">Share</th></tr></thead><tbody id="rf-table"></tbody></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="demo-section section-alt reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="demo-eyebrow">Talk to us</div>
+    <h2 style="margin:14px 0 16px">Want this in your platform?</h2>
+    <p style="color:#3A4A5F;font-size:17px;line-height:1.6;max-width:560px;margin:0 auto 26px">SPC for agents, RayFin React-deployed reports, Capstone PM — they're real, they're in production, and they're available to your team.</p>
+    <a href="contact.html" class="btn-primary">Start a Conversation →</a>
+  </div>
+</section>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DEMO 1 — SPC for Agentic Systems
+═══════════════════════════════════════════════════════════ */
+(function(){
+  const agents = [
+    {name:'ClassifierAgent', latency:[420,80], err:[0.5,0.4], thru:[120,15]},
+    {name:'RetrievalAgent',  latency:[280,60], err:[0.8,0.5], thru:[200,25]},
+    {name:'ScoringAgent',    latency:[180,40], err:[0.3,0.3], thru:[340,40]},
+    {name:'ReportAgent',     latency:[620,90], err:[1.2,0.7], thru:[80,12]},
+    {name:'ReconcileAgent',  latency:[510,75], err:[0.7,0.5], thru:[95,14]}
+  ];
+  const metrics = {
+    latency:    {label:'Response latency', unit:'ms', good:'low'},
+    error:      {label:'Error rate',       unit:'%',  good:'low'},
+    throughput: {label:'Throughput',       unit:'/s', good:'high'}
+  };
+
+  let activeMetric = 'latency';
+  let series = []; // array of {value, agentIdx, ts, rules:[]}
+  let driftCountdown = 0; // when > 0, biases next N points high
+  const maxPoints = 60;
+
+  // Stats helpers
+  function mean(a){return a.reduce((s,x)=>s+x,0)/a.length}
+  function std(a){const m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)*(x-m),0)/Math.max(1,a.length-1))}
+  function gauss(mu,sigma){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return mu+sigma*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+
+  function genValue(){
+    const a = agents[Math.floor(Math.random()*agents.length)];
+    let val;
+    if(activeMetric==='latency'){val=gauss(a.latency[0], a.latency[1]);}
+    else if(activeMetric==='error'){val=Math.max(0,gauss(a.err[0], a.err[1]));}
+    else {val=gauss(a.thru[0], a.thru[1]);}
+    if(driftCountdown > 0){
+      // bias high (for latency/error) or low (for throughput)
+      const bias = (activeMetric==='throughput' ? -1 : 1) * (driftCountdown / 6) * (activeMetric==='latency' ? 200 : activeMetric==='error' ? 1.2 : 60);
+      val = val + bias;
+      driftCountdown--;
+    }
+    if(activeMetric==='error') val = Math.max(0, val);
+    if(activeMetric==='throughput') val = Math.max(20, val);
+    return {value:val, agentIdx: agents.indexOf(a)};
+  }
+
+  // Western Electric rules (return list of fired rule codes for the LATEST point)
+  function checkRules(){
+    if(series.length < 2) return [];
+    const vals = series.map(p=>p.value);
+    // Use first 30 points (or all if fewer) as the reference window so drift after that is detected
+    const ref = vals.slice(0, Math.min(30, vals.length));
+    const mu = mean(ref);
+    const sigma = std(ref);
+    if(sigma < 1e-6) return [];
+    const ucl = mu + 3*sigma, lcl = mu - 3*sigma;
+    const zone2hi = mu + 2*sigma, zone2lo = mu - 2*sigma;
+    const zone1hi = mu + 1*sigma, zone1lo = mu - 1*sigma;
+    const n = vals.length;
+    const last = vals[n-1];
+    const fires = [];
+    // R1: single point outside ±3σ
+    if(last > ucl || last < lcl) fires.push({code:'R1', msg:'Point beyond ±3σ control limit'});
+    // R2: 2 of 3 consecutive on same side beyond ±2σ
+    if(n >= 3){
+      const w = vals.slice(n-3);
+      const hi = w.filter(v=>v>zone2hi).length;
+      const lo = w.filter(v=>v<zone2lo).length;
+      if(hi >= 2 || lo >= 2) fires.push({code:'R2', msg:'2 of 3 points beyond ±2σ (same side)'});
+    }
+    // R3: 4 of 5 consecutive on same side beyond ±1σ
+    if(n >= 5){
+      const w = vals.slice(n-5);
+      const hi = w.filter(v=>v>zone1hi).length;
+      const lo = w.filter(v=>v<zone1lo).length;
+      if(hi >= 4 || lo >= 4) fires.push({code:'R3', msg:'4 of 5 points beyond ±1σ (same side)'});
+    }
+    // R4: 8 consecutive on same side of CL
+    if(n >= 8){
+      const w = vals.slice(n-8);
+      const hi = w.filter(v=>v>mu).length;
+      const lo = w.filter(v=>v<mu).length;
+      if(hi === 8 || lo === 8) fires.push({code:'R4', msg:'8 consecutive points on same side of CL'});
+    }
+    // Only the latest point gets its rules — return new ones (not yet recorded)
+    return fires;
+  }
+
+  function renderAgentList(){
+    const wrap = document.getElementById('spc-agents');
+    wrap.innerHTML = '';
+    const lastByAgent = {};
+    series.slice(-25).forEach(p => { lastByAgent[p.agentIdx] = p; });
+    agents.forEach((a,i)=>{
+      const p = lastByAgent[i];
+      const v = p ? p.value : 0;
+      let led = 'ok';
+      const m = activeMetric;
+      if(m==='latency' && v > a.latency[0] + 2*a.latency[1]) led = 'warn';
+      if(m==='latency' && v > a.latency[0] + 3*a.latency[1]) led = 'bad';
+      if(m==='error' && v > a.err[0] + 2*a.err[1]) led = 'warn';
+      if(m==='error' && v > a.err[0] + 3*a.err[1]) led = 'bad';
+      if(m==='throughput' && v < a.thru[0] - 2*a.thru[1]) led = 'warn';
+      if(m==='throughput' && v < a.thru[0] - 3*a.thru[1]) led = 'bad';
+      const display = p ? fmtVal(v) : '—';
+      wrap.innerHTML += `<div class="agent-row${i===0?' active':''}">
+        <div class="agent-led${led==='ok'?'':' '+led}"></div>
+        <div class="agent-name">${a.name}</div>
+        <div class="agent-stat">${display}</div>
+      </div>`;
+    });
+  }
+
+  function fmtVal(v){
+    if(activeMetric==='latency') return Math.round(v)+'ms';
+    if(activeMetric==='error') return v.toFixed(2)+'%';
+    return Math.round(v)+'/s';
+  }
+
+  function renderChart(){
+    const svg = document.getElementById('spc-chart');
+    const W = 800, H = 280, pad = {l:46, r:18, t:14, b:30};
+    const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+    if(series.length === 0){ svg.innerHTML = ''; return; }
+    const vals = series.map(p=>p.value);
+    const ref = vals.slice(0, Math.min(30, vals.length));
+    const mu = mean(ref), sigma = std(ref) || 1;
+    const ucl = mu + 3*sigma, lcl = mu - 3*sigma;
+    // Y range: from min(LCL, min(values)) to max(UCL, max(values)), with padding
+    const dataMax = Math.max(...vals, ucl);
+    const dataMin = Math.min(...vals, lcl);
+    const range = dataMax - dataMin || 1;
+    const yMin = dataMin - range*0.05;
+    const yMax = dataMax + range*0.05;
+    const xScale = i => pad.l + (innerW * (i / Math.max(maxPoints-1, 1)));
+    const yScale = v => pad.t + innerH - (innerH * (v - yMin) / (yMax - yMin));
+    // Build SVG
+    let html = '';
+    // Subtle grid
+    for(let k=1;k<5;k++){
+      const y = pad.t + innerH * (k/5);
+      html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="rgba(2,86,155,0.06)" stroke-width="1"/>`;
+    }
+    // Sigma zones (±1, ±2)
+    [{y1:mu-sigma,y2:mu+sigma,fill:'rgba(16,185,129,0.04)'},
+     {y1:mu-2*sigma,y2:mu-sigma,fill:'rgba(245,158,11,0.05)'},
+     {y1:mu+sigma,y2:mu+2*sigma,fill:'rgba(245,158,11,0.05)'},
+     {y1:mu-3*sigma,y2:mu-2*sigma,fill:'rgba(239,68,68,0.05)'},
+     {y1:mu+2*sigma,y2:mu+3*sigma,fill:'rgba(239,68,68,0.05)'}
+    ].forEach(z=>{
+      const y1=yScale(z.y2), y2=yScale(z.y1);
+      html += `<rect x="${pad.l}" y="${y1}" width="${innerW}" height="${y2-y1}" fill="${z.fill}"/>`;
+    });
+    // Control lines
+    html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${yScale(ucl)}" y2="${yScale(ucl)}" stroke="#B91C1C" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+    html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${yScale(lcl)}" y2="${yScale(lcl)}" stroke="#B91C1C" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+    html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${yScale(mu)}"  y2="${yScale(mu)}"  stroke="#054186" stroke-width="1.5"/>`;
+    // Labels for limits
+    html += `<text x="${W-pad.r-2}" y="${yScale(ucl)-4}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#B91C1C">UCL · ${fmtVal(ucl)}</text>`;
+    html += `<text x="${W-pad.r-2}" y="${yScale(mu)-4}"  text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#054186">CL  · ${fmtVal(mu)}</text>`;
+    html += `<text x="${W-pad.r-2}" y="${yScale(lcl)+12}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#B91C1C">LCL · ${fmtVal(lcl)}</text>`;
+    // Y axis labels (min/max)
+    html += `<text x="${pad.l-6}" y="${pad.t+4}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">${fmtVal(yMax)}</text>`;
+    html += `<text x="${pad.l-6}" y="${H-pad.b+2}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">${fmtVal(yMin)}</text>`;
+    // Connecting line
+    let path = '';
+    series.forEach((p,i)=>{
+      const x = xScale(i), y = yScale(p.value);
+      path += (i===0 ? 'M' : 'L') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    });
+    html += `<path d="${path}" fill="none" stroke="#0E69B8" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
+    // Points
+    series.forEach((p,i)=>{
+      const x = xScale(i), y = yScale(p.value);
+      const bad = p.rules && p.rules.length > 0;
+      const r = (i === series.length-1) ? 4.2 : 2.8;
+      if(bad){
+        html += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r+2}" fill="rgba(239,68,68,0.20)"/>`;
+        html += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="#EF4444" stroke="#FFFFFF" stroke-width="1.5"/>`;
+      } else {
+        html += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="#054186" stroke="#FFFFFF" stroke-width="1.2"/>`;
+      }
+    });
+    svg.innerHTML = html;
+    // KPIs
+    const lastVal = series[series.length-1].value;
+    const nowEl = document.getElementById('spc-kpi-now');
+    nowEl.textContent = fmtVal(lastVal);
+    nowEl.className = 'kpi-v ' + (lastVal>ucl||lastVal<lcl ? 'bad' : (lastVal>mu+2*sigma||lastVal<mu-2*sigma ? 'warn' : 'ok'));
+    document.getElementById('spc-kpi-sigma').textContent = fmtVal(sigma);
+    const stateEl = document.getElementById('spc-kpi-state');
+    const anyRecent = series.slice(-8).some(p=>p.rules && p.rules.length>0);
+    stateEl.textContent = anyRecent ? 'NO' : 'YES';
+    stateEl.className = 'kpi-v ' + (anyRecent ? 'bad' : 'ok');
+  }
+
+  function pushAlert(point, rule){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    const ss = String(now.getSeconds()).padStart(2,'0');
+    const list = document.getElementById('spc-alerts');
+    // Clear "in control" placeholder
+    if(list.firstElementChild && !list.firstElementChild.classList.contains('alert')){ list.innerHTML = ''; }
+    const isCritical = rule.code === 'R1';
+    const div = document.createElement('div');
+    div.className = 'alert' + (isCritical ? ' bad' : '');
+    div.innerHTML = `<span class="a-rule">${rule.code}</span><span class="a-msg"><strong>${agents[point.agentIdx].name}</strong> · ${rule.msg} · ${fmtVal(point.value)} ${metrics[activeMetric].unit}</span><span class="a-time">${hh}:${mm}:${ss}</span>`;
+    list.prepend(div);
+    while(list.children.length > 6) list.removeChild(list.lastChild);
+  }
+
+  function tick(){
+    const p = genValue();
+    p.ts = Date.now();
+    p.rules = [];
+    series.push(p);
+    if(series.length > maxPoints) series.shift();
+    const fires = checkRules();
+    p.rules = fires;
+    fires.forEach(r => pushAlert(p, r));
+    renderChart();
+    renderAgentList();
+  }
+
+  function reset(){
+    series = [];
+    document.getElementById('spc-alerts').innerHTML = '<div style="font-size:12px;color:#3A4A5F;padding:4px 2px">No rule violations — process in statistical control.</div>';
+    // seed with 12 points so we have a baseline
+    for(let i=0;i<12;i++){ const p = genValue(); p.ts = Date.now(); p.rules = []; series.push(p); }
+    renderChart();
+    renderAgentList();
+  }
+  reset();
+
+  // Bind tabs
+  document.querySelectorAll('.spc-tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.spc-tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      activeMetric = t.dataset.metric;
+      reset();
+    });
+  });
+  document.getElementById('spc-drift-btn').addEventListener('click', ()=>{ driftCountdown = 6; });
+  document.getElementById('spc-reset-btn').addEventListener('click', reset);
+
+  // Tick every 1.5s when section visible
+  let timer = null;
+  const sec = document.getElementById('spc-chart').closest('section');
+  const io = new IntersectionObserver(([entry])=>{
+    if(entry.isIntersecting){
+      if(!timer) timer = setInterval(tick, 1500);
+    } else {
+      if(timer){ clearInterval(timer); timer = null; }
+    }
+  }, {threshold:0.1});
+  io.observe(sec);
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   DEMO 2 — Capstone (project management)
+═══════════════════════════════════════════════════════════ */
+(function(){
+  // Three kinds of work — Capstone tracks them on one board:
+  //   human      — needs judgement, design, stakeholder context
+  //   agent      — best done by an autonomous agent (refresh, reconcile, monitor, generate)
+  //   handoff    — starts with one, finishes with the other (agent flags → human decides, etc.)
+  const humanTasks = [
+    'Architecture review — medallion contracts',
+    'Stakeholder demo prep',
+    'Sprint retro · facilitate',
+    'RLS policy decision',
+    'Customer interview — reporting needs',
+    'Approve security baseline',
+    'Onboard new analyst',
+    'Define capacity sizing target',
+    'Sign off SemPy framework',
+    'Write blog: SPC for agents'
+  ];
+  const agentTasks = [
+    'Refresh Bronze → Silver tables',
+    'Reconcile finance vs. supply chain',
+    'Generate morning ops briefing',
+    'Run Purview lineage scan',
+    'Detect DAX measure regressions',
+    'Auto-deploy semantic model (DEV)',
+    'Scan for orphaned datasets',
+    'Build SPC chart for ops',
+    'Index new documentation',
+    'Right-size Fabric capacity',
+    'Tune Direct Lake refresh'
+  ];
+  const handoffTasks = [
+    {t:'Anomaly flagged — investigate', from:'agent', to:'human'},
+    {t:'Reviewed — deploy to PROD',    from:'human', to:'agent'},
+    {t:'Drift detected — approve fix', from:'agent', to:'human'},
+    {t:'Approved — trigger migration',  from:'human', to:'agent'}
+  ];
+  const humans = ['MS','PR','AK','JT','RB','NW','LV','EC'];
+  const agents = ['RefreshAgent','ReconcileAgent','ReportAgent','LineageAgent','BuildAgent','ScoringAgent','DocAgent','ClassifierAgent'];
+  const priorities = ['p1','p2','p3'];
+  const cols = ['backlog','progress','review','done'];
+  let nextId = 1;
+  let cards = [];
+  let progress = 0;
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+  function makeCard(forceCol, forceKind){
+    const kindRoll = Math.random();
+    const kind = forceKind || (kindRoll < 0.45 ? 'agent' : kindRoll < 0.85 ? 'human' : 'handoff');
+    const pr = pick(priorities);
+    let title, ownerHuman, ownerAgent, handoffFrom, handoffTo;
+    if(kind === 'agent'){
+      title = pick(agentTasks);
+      ownerAgent = pick(agents);
+    } else if(kind === 'human'){
+      title = pick(humanTasks);
+      ownerHuman = pick(humans);
+    } else {
+      const h = pick(handoffTasks);
+      title = h.t;
+      handoffFrom = h.from; handoffTo = h.to;
+      ownerHuman = pick(humans);
+      ownerAgent = pick(agents);
+    }
+    return {id: nextId++, col: forceCol || 'backlog', title, priority: pr, kind, ownerHuman, ownerAgent, handoffFrom, handoffTo, justAdded:true};
+  }
+
+  function shortAgent(name){
+    // "RefreshAgent" → "REFRESH"
+    return name.replace(/Agent$/,'').toUpperCase();
+  }
+
+  function ownerHTML(c){
+    if(c.kind === 'agent'){
+      return `<span class="cap-owner"><span class="cap-agent-badge" title="${c.ownerAgent}">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M12 7V3M8 13h.01M16 13h.01M9 17h6"/></svg>
+        ${shortAgent(c.ownerAgent)}
+      </span></span>`;
+    }
+    if(c.kind === 'handoff'){
+      const first = c.handoffFrom === 'agent'
+        ? `<span class="cap-agent-badge" title="${c.ownerAgent}">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M12 7V3M8 13h.01M16 13h.01M9 17h6"/></svg>${shortAgent(c.ownerAgent)}</span>`
+        : `<span class="cap-assignee" style="margin-left:0">${c.ownerHuman}</span>`;
+      const second = c.handoffTo === 'agent'
+        ? `<span class="cap-agent-badge" title="${c.ownerAgent}">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M12 7V3M8 13h.01M16 13h.01M9 17h6"/></svg>${shortAgent(c.ownerAgent)}</span>`
+        : `<span class="cap-assignee" style="margin-left:0">${c.ownerHuman}</span>`;
+      return `<span class="cap-owner">${first}<span class="cap-handoff-arrow">→</span>${second}</span>`;
+    }
+    return `<span class="cap-assignee">${c.ownerHuman}</span>`;
+  }
+
+  function seed(){
+    cards = [];
+    // Realistic mix: more agent work in early columns, more human review near done
+    for(let i=0;i<3;i++) cards.push(makeCard('backlog', 'agent'));
+    cards.push(makeCard('backlog', 'human'));
+    cards.push(makeCard('progress', 'agent'));
+    cards.push(makeCard('progress', 'human'));
+    cards.push(makeCard('progress', 'handoff'));
+    cards.push(makeCard('review', 'human'));
+    cards.push(makeCard('review', 'handoff'));
+    cards.push(makeCard('done', 'agent'));
+    cards.push(makeCard('done', 'human'));
+    cards.forEach(c => c.justAdded = false);
+    progress = 22;
+    render();
+  }
+
+  function updateTally(){
+    const tally = {agent:0, human:0, handoff:0};
+    cards.forEach(c => tally[c.kind]++);
+    Object.keys(tally).forEach(k => {
+      const el = document.querySelector(`[data-tally="${k}"]`);
+      if(el) el.textContent = tally[k];
+    });
+  }
+
+  function render(){
+    cols.forEach(col => {
+      const colEl = document.querySelector(`.cap-col[data-col="${col}"]`);
+      const cardsEl = colEl.querySelector('.cap-col-cards');
+      const here = cards.filter(c => c.col === col);
+      colEl.querySelector('[data-count]').textContent = here.length;
+      cardsEl.innerHTML = '';
+      here.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'cap-card ' + c.kind + (c.justAdded ? ' fade-in' : '');
+        div.innerHTML = `<div class="cap-card-title">${c.title}</div>
+          <div class="cap-card-meta">
+            <span class="cap-tag ${c.priority}">${c.priority.toUpperCase()}</span>
+            <span class="cap-due">PB-${String(c.id).padStart(3,'0')}</span>
+            ${ownerHTML(c)}
+          </div>`;
+        cardsEl.appendChild(div);
+        c.justAdded = false;
+      });
+    });
+    document.getElementById('cap-progress').style.width = progress + '%';
+    document.getElementById('cap-progress-num').textContent = progress + '%';
+    updateTally();
+  }
+
+  function tick(){
+    const candidates = cards.filter(c => c.col !== 'done');
+    if(candidates.length === 0) return;
+    const weights = candidates.map(c => c.col === 'progress' ? 3 : c.col === 'review' ? 4 : c.col === 'backlog' ? 2 : 1);
+    const total = weights.reduce((s,x)=>s+x,0);
+    let r = Math.random() * total;
+    let pickCard = candidates[0];
+    for(let i=0;i<candidates.length;i++){ r -= weights[i]; if(r <= 0){ pickCard = candidates[i]; break; } }
+    const idx = cols.indexOf(pickCard.col);
+    pickCard.col = cols[idx+1];
+    const doneCards = cards.filter(c => c.col === 'done');
+    if(doneCards.length > 4){
+      const oldest = doneCards[0];
+      cards = cards.filter(c => c.id !== oldest.id);
+    }
+    if(cards.filter(c => c.col === 'backlog').length < 3){
+      cards.push(makeCard('backlog'));
+    }
+    progress = Math.min(100, progress + 3);
+    if(progress >= 100){ progress = 22; seed(); return; }
+    render();
+  }
+
+  seed();
+  let timer = null;
+  const sec = document.getElementById('cap-board').closest('section');
+  const io = new IntersectionObserver(([entry])=>{
+    if(entry.isIntersecting){
+      if(!timer) timer = setInterval(tick, 2500);
+    } else {
+      if(timer){ clearInterval(timer); timer = null; }
+    }
+  }, {threshold:0.1});
+  io.observe(sec);
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   DEMO 3 — RayFin (PBI in React/TS) — interactive slicers
+═══════════════════════════════════════════════════════════ */
+(function(){
+  // Synthetic dataset
+  const regions = ['nsw','vic','qld','wa'];
+  const regionNames = {nsw:'NSW',vic:'VIC',qld:'QLD',wa:'WA/SA'};
+  const segments = ['ent','mid','sme'];
+  const segNames = {ent:'Enterprise', mid:'Mid-market', sme:'SME'};
+  const periods = ['q1','q2','ytd'];
+
+  // Base account weights per (region, segment, period) — synthetic but deterministic
+  function seed(s){ let x = s; return () => { x = (x*1103515245+12345)&0x7fffffff; return x/0x7fffffff; } }
+  const rand = seed(7);
+  const accounts = [];
+  ['Aurora Trading','Boreal Logistics','Caelum Health','Delta Mutual','Equinox Power','Forte Capital','Gemini Builders','Helios Energy','Indigo Bank','Junos Insurance','Kestrel Group','Lumen Finance','Materia Co','Nexus Holdings'].forEach(name=>{
+    accounts.push({name, region:regions[Math.floor(rand()*regions.length)], segment:segments[Math.floor(rand()*segments.length)],
+      // base tx and accounts numbers
+      base: 200 + Math.floor(rand()*1800)});
+  });
+
+  // Period multipliers
+  const periodMult = {q1:1.0, q2:1.18, ytd:2.4};
+
+  const state = {region:'all', segment:'all', period:'ytd'};
+
+  function filtered(){
+    return accounts.filter(a =>
+      (state.region === 'all' || a.region === state.region) &&
+      (state.segment === 'all' || a.segment === state.segment)
+    );
+  }
+
+  function fmt(n){ return n.toLocaleString('en-AU') }
+
+  function renderKPIs(){
+    const f = filtered();
+    const m = periodMult[state.period];
+    const accountsN = f.length;
+    const totalTx = Math.round(f.reduce((s,a)=>s+a.base,0) * m);
+    const avgRes = (2.8 - (state.period==='ytd'?0.4: state.period==='q2'?0.2 : 0)).toFixed(1) + 'h';
+    const sla = (94 + (state.region==='nsw'?2.5:state.region==='qld'?-1.5:0) + (state.period==='ytd'?1.2:0)).toFixed(1) + '%';
+    const kpis = document.querySelectorAll('#rf-kpis [data-kpi]');
+    const trends = document.querySelectorAll('#rf-kpis [data-trend]');
+    document.querySelector('[data-kpi="accounts"]').textContent = fmt(accountsN);
+    document.querySelector('[data-kpi="tx"]').textContent = fmt(totalTx);
+    document.querySelector('[data-kpi="res"]').textContent = avgRes;
+    document.querySelector('[data-kpi="sla"]').textContent = sla;
+    document.querySelector('[data-trend="accounts"]').textContent = '▲ +' + (4 + Math.floor(accountsN/3)) + '%';
+    document.querySelector('[data-trend="tx"]').textContent = '▲ +' + (8 + Math.floor(m*4)) + '%';
+    document.querySelector('[data-trend="res"]').textContent = '▼ -12%';
+    document.querySelector('[data-trend="sla"]').textContent = '▲ +1.8%';
+  }
+
+  function renderBar(){
+    const f = filtered();
+    const m = periodMult[state.period];
+    const byR = {};
+    regions.forEach(r => byR[r] = 0);
+    f.forEach(a => { byR[a.region] += a.base; });
+    Object.keys(byR).forEach(k => byR[k] = Math.round(byR[k] * m));
+    const W=380,H=200,pad={l:42,r:14,t:14,b:30};
+    const innerW = W-pad.l-pad.r, innerH = H-pad.t-pad.b;
+    const max = Math.max(...Object.values(byR), 1);
+    let html = '';
+    // grid
+    for(let k=0;k<=4;k++){
+      const y = pad.t + innerH*(k/4);
+      const v = Math.round(max - (max*k/4));
+      html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="rgba(2,86,155,0.08)" stroke-width="1"/>`;
+      html += `<text x="${pad.l-6}" y="${y+3}" text-anchor="end" font-size="9.5" font-family="Space Mono,monospace" fill="#3A4A5F">${fmt(v)}</text>`;
+    }
+    const bw = innerW / regions.length;
+    regions.forEach((r,i)=>{
+      const h = (byR[r]/max) * innerH;
+      const x = pad.l + i*bw + 14;
+      const y = pad.t + innerH - h;
+      const w = bw - 28;
+      html += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="4" fill="#0E69B8" opacity="${state.region==='all'||state.region===r?'1':'0.35'}">
+        <animate attributeName="height" from="0" to="${h.toFixed(1)}" dur="0.35s" fill="freeze"/>
+        <animate attributeName="y" from="${(pad.t+innerH).toFixed(1)}" to="${y.toFixed(1)}" dur="0.35s" fill="freeze"/>
+      </rect>`;
+      html += `<text x="${(x+w/2).toFixed(1)}" y="${H-pad.b+14}" text-anchor="middle" font-size="11" font-family="Space Grotesk,sans-serif" font-weight="600" fill="#26354C">${regionNames[r]}</text>`;
+      html += `<text x="${(x+w/2).toFixed(1)}" y="${y-5}" text-anchor="middle" font-size="10" font-family="Space Mono,monospace" fill="#054186" font-weight="700">${fmt(byR[r])}</text>`;
+    });
+    document.getElementById('rf-bar').innerHTML = html;
+  }
+
+  function renderLine(){
+    const f = filtered();
+    const m = periodMult[state.period];
+    const base = f.reduce((s,a)=>s+a.base,0) * m;
+    // Generate 12 weekly points with gentle trend
+    const W=380,H=200,pad={l:42,r:14,t:14,b:30};
+    const innerW = W-pad.l-pad.r, innerH = H-pad.t-pad.b;
+    const pts = [];
+    for(let i=0;i<12;i++){
+      const t = i/11;
+      const v = base * (0.55 + 0.45*t + 0.04*Math.sin(t*8));
+      pts.push(Math.round(v));
+    }
+    const max = Math.max(...pts);
+    const min = Math.min(...pts);
+    const range = max - min || 1;
+    const xs = i => pad.l + innerW * i/(pts.length-1);
+    const ys = v => pad.t + innerH - innerH * (v-min)/range;
+    let html = '';
+    for(let k=0;k<=4;k++){
+      const y = pad.t + innerH*(k/4);
+      html += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="rgba(2,86,155,0.08)" stroke-width="1"/>`;
+    }
+    // Area
+    let path = '';
+    pts.forEach((v,i)=>{
+      const x = xs(i), y = ys(v);
+      path += (i===0?'M':'L') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    });
+    const areaPath = path + `L ${xs(pts.length-1).toFixed(1)} ${(pad.t+innerH).toFixed(1)} L ${xs(0).toFixed(1)} ${(pad.t+innerH).toFixed(1)} Z`;
+    html += `<defs><linearGradient id="rfg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#46D5FF" stop-opacity="0.4"/><stop offset="100%" stop-color="#0078D4" stop-opacity="0"/></linearGradient></defs>`;
+    html += `<path d="${areaPath}" fill="url(#rfg)"/>`;
+    html += `<path d="${path}" fill="none" stroke="#0E69B8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach((v,i)=>{
+      html += `<circle cx="${xs(i).toFixed(1)}" cy="${ys(v).toFixed(1)}" r="${i===pts.length-1?4:2.4}" fill="#054186" stroke="#FFFFFF" stroke-width="1.5"/>`;
+    });
+    // Labels: first + last
+    html += `<text x="${pad.l}" y="${H-pad.b+14}" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">W1</text>`;
+    html += `<text x="${W-pad.r}" y="${H-pad.b+14}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">W12</text>`;
+    html += `<text x="${xs(pts.length-1).toFixed(1)+5}" y="${(ys(pts[pts.length-1])-8).toFixed(1)}" font-size="10" font-family="Space Mono,monospace" fill="#054186" font-weight="700">${fmt(pts[pts.length-1])}</text>`;
+    document.getElementById('rf-line').innerHTML = html;
+  }
+
+  function renderDonut(){
+    const f = filtered();
+    const m = periodMult[state.period];
+    const segTotals = {};
+    segments.forEach(s => segTotals[s] = 0);
+    f.forEach(a => segTotals[a.segment] += a.base);
+    Object.keys(segTotals).forEach(k => segTotals[k] = Math.round(segTotals[k] * m));
+    const total = Object.values(segTotals).reduce((s,x)=>s+x,0) || 1;
+    const colors = {ent:'#054186', mid:'#0E69B8', sme:'#46D5FF'};
+    const cx=110, cy=100, r=65, sw=22;
+    let html = '';
+    let a0 = -Math.PI/2;
+    segments.forEach(seg=>{
+      const frac = segTotals[seg]/total;
+      const a1 = a0 + frac*Math.PI*2;
+      const large = (a1-a0) > Math.PI ? 1 : 0;
+      const x0 = cx + Math.cos(a0)*r, y0 = cy + Math.sin(a0)*r;
+      const x1 = cx + Math.cos(a1)*r, y1 = cy + Math.sin(a1)*r;
+      html += `<path d="M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 ${large} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${colors[seg]}" stroke-width="${sw}" opacity="${state.segment==='all'||state.segment===seg?'1':'0.30'}"/>`;
+      a0 = a1;
+    });
+    // Center
+    html += `<text x="${cx}" y="${cy-4}" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="800" font-size="22" fill="#0A1626">${fmt(total)}</text>`;
+    html += `<text x="${cx}" y="${cy+14}" text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" letter-spacing="2" fill="#3A4A5F">TOTAL TX</text>`;
+    // Legend
+    let ly = 50;
+    segments.forEach(seg=>{
+      const pct = Math.round((segTotals[seg]/total)*100);
+      html += `<rect x="200" y="${ly}" width="11" height="11" rx="3" fill="${colors[seg]}"/>`;
+      html += `<text x="218" y="${ly+10}" font-size="12" font-family="Inter,sans-serif" font-weight="600" fill="#0A1626">${segNames[seg]}</text>`;
+      html += `<text x="365" y="${ly+10}" text-anchor="end" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#054186">${pct}%</text>`;
+      ly += 28;
+    });
+    document.getElementById('rf-donut').innerHTML = html;
+  }
+
+  function renderTable(){
+    const f = filtered();
+    const m = periodMult[state.period];
+    const enriched = f.map(a => ({name:a.name, tx: Math.round(a.base*m)}));
+    enriched.sort((a,b)=>b.tx-a.tx);
+    const top = enriched.slice(0, 5);
+    const maxTx = Math.max(...top.map(x=>x.tx), 1);
+    let html = '';
+    top.forEach(r=>{
+      const pct = Math.round((r.tx/maxTx)*100);
+      html += `<tr>
+        <td><strong style="color:#0A1626">${r.name}</strong></td>
+        <td class="num">${fmt(r.tx)}</td>
+        <td class="bar-cell"><div class="rf-mini"><div class="rf-mini-bar" style="width:${pct}%"></div></div></td>
+      </tr>`;
+    });
+    document.getElementById('rf-table').innerHTML = html;
+  }
+
+  function renderAll(){
+    renderKPIs();
+    renderBar();
+    renderLine();
+    renderDonut();
+    renderTable();
+  }
+
+  // Slicer bindings
+  document.querySelectorAll('.rf-slicer-opts').forEach(opts=>{
+    const key = opts.dataset.slicer;
+    opts.querySelectorAll('.rf-slicer-opt').forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        opts.querySelectorAll('.rf-slicer-opt').forEach(x=>x.classList.remove('on'));
+        opt.classList.add('on');
+        state[key] = opt.dataset.v;
+        renderAll();
+      });
+    });
+  });
+  // Tab placeholders (would switch pages in real RayFin)
+  document.querySelectorAll('.rf-tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.rf-tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      renderAll();
+    });
+  });
+
+  renderAll();
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="shared-nav.js"></script>
+</body>
+</html>

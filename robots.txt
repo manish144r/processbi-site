@@ -1,12 +1,6 @@
-# robots.txt for processbi.com.au
+# ProcessBI — Robots
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
-Disallow: /tmp/
+Disallow: /og-image.png
 
-# Sitemap
 Sitemap: https://processbi.com.au/sitemap.xml
-
-# Crawl-delay (optional, respected by some bots)
-Crawl-delay: 1

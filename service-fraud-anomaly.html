@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Engineering & Pipelines — Business Intelligence & Analytics · ProcessBI</title>
-<meta name="description" content="ADF pipeline design, PySpark notebooks, streaming Delta loads and data-quality frameworks that hold under load.">
-<meta property="og:title" content="Data Engineering & Pipelines · ProcessBI">
-<meta property="og:description" content="ADF pipeline design, PySpark notebooks, streaming Delta loads and data-quality frameworks that hold under load.">
+<title>Fraud & Anomaly Detection — Business Intelligence & Analytics · ProcessBI</title>
+<meta name="description" content="Real-time transaction scoring, entity profiling and a broad fraud-pattern library surfaced on risk dashboards.">
+<meta property="og:title" content="Fraud & Anomaly Detection · ProcessBI">
+<meta property="og:description" content="Real-time transaction scoring, entity profiling and a broad fraud-pattern library surfaced on risk dashboards.">
 <meta property="og:image" content="og-image.png">
-<meta property="og:url" content="https://processbi.com.au/service-data-engineering.html">
+<meta property="og:url" content="https://processbi.com.au/service-fraud-anomaly.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://processbi.com.au/service-data-engineering.html">
+<link rel="canonical" href="https://processbi.com.au/service-fraud-anomaly.html">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{teal:'#2DD4BF'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Data Engineering & Pipelines","description":"ADF pipeline design, PySpark notebooks, streaming Delta loads and data-quality frameworks that hold under load.","provider":{"@type":"Organization","name":"ProcessBI","url":"https://processbi.com.au"},"areaServed":"AU","serviceType":"Business Intelligence & Analytics","url":"https://processbi.com.au/service-data-engineering.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Fraud & Anomaly Detection","description":"Real-time transaction scoring, entity profiling and a broad fraud-pattern library surfaced on risk dashboards.","provider":{"@type":"Organization","name":"ProcessBI","url":"https://processbi.com.au"},"areaServed":"AU","serviceType":"Business Intelligence & Analytics","url":"https://processbi.com.au/service-fraud-anomaly.html"}</script>
 <style>
 .cs-hero{padding:120px 24px 50px;position:relative}
 .cs-back{display:inline-flex;align-items:center;gap:6px;color:#054186;font-weight:600;font-size:13px;text-decoration:none;margin-bottom:18px;transition:transform .2s}
@@ -56,9 +56,9 @@
     <div class="grid lg:grid-cols-[1fr_320px] gap-8 items-center">
       <div class="reveal">
         <div class="cs-kicker">BUSINESS INTELLIGENCE</div>
-        <h1 class="cs-title">Data Engineering & Pipelines</h1>
-        <p class="cs-lead">ADF pipeline design, PySpark notebooks, streaming Delta loads and data-quality frameworks that hold under load.</p>
-        <div style="margin-top:22px"><span class="tag-badge">Azure Data Factory</span><span class="tag-badge">PySpark</span><span class="tag-badge">Delta Lake</span><span class="tag-badge">Microsoft Fabric</span></div>
+        <h1 class="cs-title">Fraud & Anomaly Detection</h1>
+        <p class="cs-lead">Real-time transaction scoring, entity profiling and a broad fraud-pattern library surfaced on risk dashboards.</p>
+        <div style="margin-top:22px"><span class="tag-badge">Fabric RTI</span><span class="tag-badge">Azure ML</span><span class="tag-badge">KQL</span><span class="tag-badge">Python</span></div>
       </div>
       <div class="cs-hero-img reveal">
         <img src="images/cat-intelligence.png" alt="Business Intelligence & Analytics illustration" loading="eager">
@@ -70,7 +70,7 @@
 <section class="cs-section reveal">
   <div class="max-w-4xl mx-auto">
     <h2>What this service is</h2>
-    <p style="color:#26354C;font-size:17px;line-height:1.65">Reporting only works if the data underneath it is trustworthy and current. Data engineering done properly means pipelines that hold under load, quality checks that catch issues at source, and architectures that survive growth.</p>
+    <p style="color:#26354C;font-size:17px;line-height:1.65">Fraud caught after the fact is fraud you've already paid for. Real-time scoring, entity profiling and a curated fraud-pattern library bring detection to the point of transaction.</p>
   </div>
 </section>
 
@@ -81,19 +81,19 @@
     <div class="ap-grid">
       <div class="ap-step">
         <div class="ap-step-num">01</div>
-        <div class="ap-step-text">Design pipelines from the analytics outcomes backwards — not from the source forwards.</div>
+        <div class="ap-step-text">Stream transactions into a low-latency scoring pipeline.</div>
       </div>
       <div class="ap-step">
         <div class="ap-step-num">02</div>
-        <div class="ap-step-text">Build in data quality and observability from the start.</div>
+        <div class="ap-step-text">Combine pattern-based rules with ML scoring for layered detection.</div>
       </div>
       <div class="ap-step">
         <div class="ap-step-num">03</div>
-        <div class="ap-step-text">Use PySpark and Delta where the workload warrants it, not as the default.</div>
+        <div class="ap-step-text">Profile entities (customer, merchant, device) for context-aware decisions.</div>
       </div>
       <div class="ap-step">
         <div class="ap-step-num">04</div>
-        <div class="ap-step-text">Make every pipeline reproducible, monitored and recoverable.</div>
+        <div class="ap-step-text">Surface flagged events on one investigator queue with full lineage.</div>
       </div>
     </div>
   </div>
@@ -106,19 +106,19 @@
     <ul class="what-grid">
       <li class="what-item">
         <span class="what-tick">✓</span>
-        <span>End-to-end pipelines designed against the actual decisions</span>
+        <span>A real-time fraud detection engine with sub-second scoring</span>
       </li>
       <li class="what-item">
         <span class="what-tick">✓</span>
-        <span>A data-quality framework integrated into ingestion</span>
+        <span>An entity-profile layer for context-aware decisions</span>
       </li>
       <li class="what-item">
         <span class="what-tick">✓</span>
-        <span>Observability and alerting per pipeline</span>
+        <span>A maintained fraud-pattern library</span>
       </li>
       <li class="what-item">
         <span class="what-tick">✓</span>
-        <span>Recovery runbooks that the on-call team can actually use</span>
+        <span>One investigator queue with full audit and case management</span>
       </li>
     </ul>
   </div>
