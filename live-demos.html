@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Demos — See SPC for Agents, RayFin & Capstone · ProcessBI</title>
+<title>Demos — See SPC for Agents, RayFin & Capstone · ProcessBI</title>
 <meta name="description" content="See ProcessBI's Statistical Process Control for agentic systems, RayFin (Power BI in React/TypeScript) and Capstone (project management) running live in your browser — all in-memory, no setup.">
-<meta property="og:title" content="Live Demos · ProcessBI">
+<meta property="og:title" content="Demos · ProcessBI">
 <meta property="og:description" content="SPC for AI agents, RayFin React-deployed Power BI, Capstone PM — running live in your browser.">
 <meta property="og:image" content="og-image.png?v=20260629">
 <meta property="og:url" content="https://processbi.com.au/live-demos.html">
@@ -390,7 +390,7 @@
 <!-- Hero -->
 <div class="page-hero">
   <div class="max-w-4xl mx-auto px-6 reveal">
-    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Live Demos · Running in your browser</span>
+    <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Demos · Running in your browser</span>
     <h1 class="font-display text-5xl md:text-6xl font-black mt-4 mb-6" style="color:#0A1626">Working software, <span class="gradient-text">not slides.</span></h1>
     <p class="text-slate-600 text-xl leading-relaxed">SPC for agentic systems, RayFin React-deployed Power BI, and Capstone project management — all running in-memory, right here in your browser. No login, no setup, no static screenshots.</p>
   </div>
@@ -1060,7 +1060,7 @@
   // Period multipliers
   const periodMult = {q1:1.0, q2:1.18, ytd:2.4};
 
-  const state = {region:'all', segment:'all', period:'ytd'};
+  const state = {region:'all', segment:'all', period:'ytd', page:'overview'};
 
   function filtered(){
     return accounts.filter(a =>
@@ -1222,12 +1222,112 @@
     document.getElementById('rf-table').innerHTML = html;
   }
 
+  // ── Per-page labels/titles (Overview vs Performance) ──
+  const kpiLabelEls  = document.querySelectorAll('#rf-kpis .rf-kpi-l');
+  const cardTitleEls = document.querySelectorAll('.rf-canvas .rf-card-h > span:first-child');
+  const cardSubEls   = document.querySelectorAll('.rf-canvas .rf-card-h > span.sub');
+  const tableHeadEls = document.querySelectorAll('.rf-canvas table.rf-table thead th');
+  function setTexts(nodes, arr){ nodes.forEach((n,i)=>{ if(arr[i]!=null) n.textContent = arr[i]; }); }
+  function setTrend(sel, txt, dir){ const el=document.querySelector(sel); if(el){ el.textContent=txt; el.className='rf-kpi-d '+dir; } }
+
+  function renderOverview(){
+    setTexts(kpiLabelEls,  ['Active accounts','Transactions','Avg. resolution','SLA met']);
+    setTexts(cardTitleEls, ['Transactions by region','Trend','Mix by segment','Top accounts']);
+    setTexts(cardSubEls,   ['Bar','Line · 12 weeks','Donut','Table']);
+    setTexts(tableHeadEls, ['Account','Tx','Share']);
+    renderKPIs(); renderBar(); renderLine(); renderDonut(); renderTable();
+    document.querySelector('[data-trend="accounts"]').className='rf-kpi-d up';
+    document.querySelector('[data-trend="tx"]').className='rf-kpi-d up';
+    document.querySelector('[data-trend="res"]').className='rf-kpi-d down';
+    document.querySelector('[data-trend="sla"]').className='rf-kpi-d up';
+  }
+
+  /* ── Performance page: SLA, resolution, throughput, per-agent ── */
+  const agentNames = ['A. Nguyen','B. Okafor','C. Rossi','D. Patel','E. Hughes','F. Bianchi','G. Silva','H. Meyer'];
+  function renderPerfKPIs(){
+    const f = filtered(); const m = periodMult[state.period];
+    const load = f.reduce((s,a)=>s+a.base,0) * m;
+    const sla   = (94 + (state.region==='nsw'?2.5:state.region==='qld'?-1.5:0) + (state.period==='ytd'?1.2:0));
+    const avgRes= (2.8 - (state.period==='ytd'?0.4: state.period==='q2'?0.2:0));
+    const fcr   = (80 + (state.segment==='ent'?4:state.segment==='sme'?-3:0) + (state.period==='ytd'?2:0));
+    const thru  = Math.max(1, Math.round(load / (state.period==='ytd'?1900:state.period==='q2'?920:780)));
+    document.querySelector('[data-kpi="accounts"]').textContent = sla.toFixed(1)+'%';
+    document.querySelector('[data-kpi="tx"]').textContent       = avgRes.toFixed(1)+'h';
+    document.querySelector('[data-kpi="res"]').textContent      = fcr.toFixed(0)+'%';
+    document.querySelector('[data-kpi="sla"]').textContent      = thru+' /hr';
+    setTrend('[data-trend="accounts"]','▲ +1.8%','up');
+    setTrend('[data-trend="tx"]','▼ 0.4h','up');
+    setTrend('[data-trend="res"]','▲ +3%','up');
+    setTrend('[data-trend="sla"]','▲ +6%','up');
+  }
+  function renderPerfBar(){
+    const f = filtered(); const sum={};
+    regions.forEach(r=>sum[r]=0); f.forEach(a=>sum[a.region]+=a.base);
+    const resH={}; regions.forEach((r,i)=>{ const bias=(state.period==='ytd'?-0.3:0); resH[r]=+(2.3 + ((sum[r]%150)/120) + i*0.12 + bias).toFixed(1); });
+    const W=380,H=200,pad={l:42,r:14,t:14,b:30}; const innerW=W-pad.l-pad.r, innerH=H-pad.t-pad.b;
+    const max=Math.max(...Object.values(resH),1); let html='';
+    for(let k=0;k<=4;k++){ const y=pad.t+innerH*(k/4); const v=(max-(max*k/4));
+      html+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="rgba(2,86,155,0.08)" stroke-width="1"/>`;
+      html+=`<text x="${pad.l-6}" y="${y+3}" text-anchor="end" font-size="9.5" font-family="Space Mono,monospace" fill="#3A4A5F">${v.toFixed(1)}h</text>`; }
+    const bw=innerW/regions.length;
+    regions.forEach((r,i)=>{ const h=(resH[r]/max)*innerH; const x=pad.l+i*bw+14; const y=pad.t+innerH-h; const w=bw-28;
+      html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="4" fill="#0E69B8" opacity="${state.region==='all'||state.region===r?'1':'0.35'}"><animate attributeName="height" from="0" to="${h.toFixed(1)}" dur="0.35s" fill="freeze"/><animate attributeName="y" from="${(pad.t+innerH).toFixed(1)}" to="${y.toFixed(1)}" dur="0.35s" fill="freeze"/></rect>`;
+      html+=`<text x="${(x+w/2).toFixed(1)}" y="${H-pad.b+14}" text-anchor="middle" font-size="11" font-family="Space Grotesk,sans-serif" font-weight="600" fill="#26354C">${regionNames[r]}</text>`;
+      html+=`<text x="${(x+w/2).toFixed(1)}" y="${y-5}" text-anchor="middle" font-size="10" font-family="Space Mono,monospace" fill="#054186" font-weight="700">${resH[r].toFixed(1)}h</text>`; });
+    document.getElementById('rf-bar').innerHTML=html;
+  }
+  function renderPerfLine(){
+    const base = 90 + (state.region==='nsw'?2:state.region==='qld'?-1:0);
+    const W=380,H=200,pad={l:42,r:14,t:14,b:30}; const innerW=W-pad.l-pad.r, innerH=H-pad.t-pad.b;
+    const pts=[]; for(let i=0;i<12;i++){ const t=i/11; pts.push(+(base + 6*t + 1.2*Math.sin(t*7)).toFixed(1)); }
+    const max=Math.max(...pts,100), min=Math.min(...pts,base-2), range=(max-min)||1;
+    const xs=i=>pad.l+innerW*i/(pts.length-1); const ys=v=>pad.t+innerH-innerH*(v-min)/range; let html='';
+    for(let k=0;k<=4;k++){ const y=pad.t+innerH*(k/4); const v=(max-(max-min)*k/4);
+      html+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="rgba(2,86,155,0.08)" stroke-width="1"/>`;
+      html+=`<text x="${pad.l-6}" y="${y+3}" text-anchor="end" font-size="9" font-family="Space Mono,monospace" fill="#3A4A5F">${v.toFixed(0)}%</text>`; }
+    if(95>=min&&95<=max){ const yt=ys(95); html+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${yt}" y2="${yt}" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4 3"/><text x="${W-pad.r}" y="${yt-4}" text-anchor="end" font-size="9" font-family="Space Mono,monospace" fill="#B45309">SLA target 95%</text>`; }
+    let path=''; pts.forEach((v,i)=>{ path+=(i===0?'M':'L')+' '+xs(i).toFixed(1)+' '+ys(v).toFixed(1)+' '; });
+    html+=`<path d="${path}" fill="none" stroke="#0E69B8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach((v,i)=>{ html+=`<circle cx="${xs(i).toFixed(1)}" cy="${ys(v).toFixed(1)}" r="${i===pts.length-1?4:2.4}" fill="#054186" stroke="#FFFFFF" stroke-width="1.5"/>`; });
+    html+=`<text x="${pad.l}" y="${H-pad.b+14}" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">W1</text>`;
+    html+=`<text x="${W-pad.r}" y="${H-pad.b+14}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#3A4A5F">W12</text>`;
+    html+=`<text x="${(xs(pts.length-1)-2).toFixed(1)}" y="${(ys(pts[pts.length-1])-8).toFixed(1)}" text-anchor="end" font-size="10" font-family="Space Mono,monospace" fill="#054186" font-weight="700">${pts[pts.length-1].toFixed(1)}%</text>`;
+    document.getElementById('rf-line').innerHTML=html;
+  }
+  function renderPerfDonut(){
+    const f = filtered(); const m=periodMult[state.period]; const load=f.reduce((s,a)=>s+a.base,0)*m;
+    const stages=['Resolved','In-progress','Triage','Escalated']; const weights=[0.62,0.20,0.12,0.06]; const colors=['#054186','#0E69B8','#46D5FF','#F59E0B'];
+    const vals=weights.map(w=>Math.round(load*w)); const total=vals.reduce((s,x)=>s+x,0)||1;
+    const cx=110,cy=100,r=65,sw=22; let html=''; let a0=-Math.PI/2;
+    stages.forEach((st,idx)=>{ const frac=vals[idx]/total; const a1=a0+frac*Math.PI*2; const large=(a1-a0)>Math.PI?1:0;
+      const x0=cx+Math.cos(a0)*r,y0=cy+Math.sin(a0)*r,x1=cx+Math.cos(a1)*r,y1=cy+Math.sin(a1)*r;
+      html+=`<path d="M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 ${large} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${colors[idx]}" stroke-width="${sw}"/>`; a0=a1; });
+    html+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="800" font-size="20" fill="#0A1626">${(weights[0]*100).toFixed(0)}%</text>`;
+    html+=`<text x="${cx}" y="${cy+14}" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" letter-spacing="1.5" fill="#3A4A5F">RESOLVED</text>`;
+    let ly=44; stages.forEach((st,idx)=>{ const pct=Math.round((vals[idx]/total)*100);
+      html+=`<rect x="200" y="${ly}" width="11" height="11" rx="3" fill="${colors[idx]}"/>`;
+      html+=`<text x="218" y="${ly+10}" font-size="12" font-family="Inter,sans-serif" font-weight="600" fill="#0A1626">${st}</text>`;
+      html+=`<text x="365" y="${ly+10}" text-anchor="end" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#054186">${pct}%</text>`; ly+=26; });
+    document.getElementById('rf-donut').innerHTML=html;
+  }
+  function renderPerfTable(){
+    const f = filtered(); const m=periodMult[state.period]; const load=f.reduce((s,a)=>s+a.base,0)*m;
+    const rows = agentNames.map((n,i)=>{ const share=Math.max(0.04,0.20 - i*0.02); const resolved=Math.max(20,Math.round(load*share/6)); const sla=(97 - i*0.9 + (state.period==='ytd'?1:0)); return {n,resolved,sla}; });
+    rows.sort((a,b)=>b.resolved-a.resolved); const top=rows.slice(0,5); let html='';
+    top.forEach(r=>{ html+=`<tr><td><strong style="color:#0A1626">${r.n}</strong></td><td class="num">${fmt(r.resolved)}</td><td class="bar-cell"><div class="rf-mini"><div class="rf-mini-bar" style="width:${Math.min(100,r.sla).toFixed(0)}%"></div></div></td></tr>`; });
+    document.getElementById('rf-table').innerHTML=html;
+  }
+  function renderPerformance(){
+    setTexts(kpiLabelEls,  ['SLA compliance','Avg. resolution','First-contact res.','Throughput']);
+    setTexts(cardTitleEls, ['Avg resolution by region','SLA compliance trend','Resolution by stage','Agent performance']);
+    setTexts(cardSubEls,   ['Bars · hrs','Line · 12 weeks','Donut','Table']);
+    setTexts(tableHeadEls, ['Agent','Resolved','SLA']);
+    renderPerfKPIs(); renderPerfBar(); renderPerfLine(); renderPerfDonut(); renderPerfTable();
+  }
+
   function renderAll(){
-    renderKPIs();
-    renderBar();
-    renderLine();
-    renderDonut();
-    renderTable();
+    if(state.page === 'performance'){ renderPerformance(); }
+    else { renderOverview(); }
   }
 
   // Slicer bindings
@@ -1242,11 +1342,12 @@
       });
     });
   });
-  // Tab placeholders (would switch pages in real RayFin)
+  // Tabs switch between Overview and Performance pages
   document.querySelectorAll('.rf-tab').forEach(t=>{
     t.addEventListener('click', ()=>{
       document.querySelectorAll('.rf-tab').forEach(x=>x.classList.remove('active'));
       t.classList.add('active');
+      state.page = t.dataset.page || 'overview';
       renderAll();
     });
   });
