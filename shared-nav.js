@@ -69,7 +69,7 @@ const desktopLinks = NAV_LINKS.map(l=>{
   const hasDrop = DROPDOWNS[l.href];
   if(hasDrop){
     const groups = hasDrop.map(g=>{
-      const items = g.items.map(it=>`<a href="${it.href}" class="dd-item">${it.name}${it.kind==='blueprint'?'<span class="dd-tag">Blueprint</span>':''}</a>`).join('');
+      const items = g.items.map(it=>`<a href="${it.href}" class="dd-item">${it.name}</a>`).join('');
       return `<div class="dd-col"><div class="dd-col-h">${g.cat}</div>${items}</div>`;
     }).join('');
     const viewAllLabel = l.href==='services.html' ? 'View all 22 services →' : 'View all selected work →';
