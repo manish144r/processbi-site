@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Superannuation Fund Reporting — Case Study · ProcessBI</title>
+<meta name="description" content="Superannuation fund reporting on one reconciled model — member statements, investment reporting and regulatory packs from a single source.">
+<meta property="og:title" content="Superannuation Fund Reporting — ProcessBI Case Study">
+<meta property="og:description" content="Superannuation fund reporting on one reconciled model — member statements, investment reporting and regulatory packs from a single source.">
+<meta property="og:image" content="og-image.png?v=20260629">
+<meta property="og:url" content="https://processbi.com.au/case-superannuation-fund-reporting.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://processbi.com.au/case-superannuation-fund-reporting.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{teal:'#2DD4BF'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=20260706">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Superannuation Fund Reporting","description":"Superannuation fund reporting on one reconciled model — member statements, investment reporting and regulatory packs from a single source.","author":{"@type":"Organization","name":"ProcessBI"},"publisher":{"@type":"Organization","name":"ProcessBI","logo":{"@type":"ImageObject","url":"https://processbi.com.au/favicon.svg"}},"image":"https://processbi.com.au/og-image.png?v=20260629","mainEntityOfPage":"https://processbi.com.au/case-superannuation-fund-reporting.html"}</script>
+<style>
+.cs-hero{padding:120px 24px 50px;position:relative}
+.cs-back{display:inline-flex;align-items:center;gap:6px;color:#054186;font-weight:600;font-size:13px;text-decoration:none;margin-bottom:18px;transition:transform .2s}
+.cs-back:hover{transform:translateX(-3px)}
+.cs-kicker{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#054186;font-weight:700}
+.cs-title{font-family:'Space Grotesk',sans-serif;font-weight:800;letter-spacing:-0.02em;color:#0A1626;font-size:clamp(34px,5vw,54px);line-height:1.05;margin:14px 0 18px}
+.cs-lead{color:#26354C;font-size:19px;line-height:1.55;max-width:780px}
+.cs-hero-photo{width:100%;height:280px;object-fit:cover;border-radius:18px;box-shadow:0 18px 44px rgba(11,42,82,0.16);border:1px solid rgba(2,86,155,0.10)}
+.cs-section{padding:46px 24px}
+.cs-section h2{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#0A1626;font-size:clamp(26px,3.4vw,36px);letter-spacing:-0.02em;margin-bottom:8px}
+.cs-section .sub{color:#3A4A5F;font-size:15px;margin-bottom:28px;max-width:640px}
+.ap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.ap-step{background:#FFFFFF;border:1px solid rgba(2,86,155,0.13);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 18px rgba(11,42,82,0.05);transition:all .35s}
+.ap-step:hover{border-color:rgba(2,86,155,0.30);transform:translateY(-3px);box-shadow:0 12px 30px rgba(11,42,82,0.08)}
+.ap-step-num{font-family:'Space Grotesk';font-weight:800;color:#054186;font-size:13px;letter-spacing:.08em}
+.ap-step-text{color:#26354C;font-size:14.5px;line-height:1.55}
+.outcome{background:linear-gradient(135deg,#F5F8FB 0%,#EDF1F6 100%);border:1px solid rgba(2,86,155,0.14);border-radius:18px;padding:34px 38px}
+.outcome-k{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#054186;font-weight:700;margin-bottom:10px}
+.outcome-t{color:#0A1626;font-family:'Space Grotesk';font-weight:600;font-size:22px;line-height:1.4;letter-spacing:-0.01em}
+.cs-cta{background:linear-gradient(135deg,#FFFFFF 0%,#F4F7FA 100%);border:1px solid rgba(2,86,155,0.13);border-radius:18px;padding:40px;text-align:center}
+/* animated process flow */
+.pflow{display:flex;align-items:flex-start;gap:0;flex-wrap:wrap;background:#fff;border:1px solid rgba(2,86,155,.13);border-radius:18px;padding:32px 22px;box-shadow:0 12px 34px rgba(11,42,82,.07)}
+.pnode{flex:1 1 0;min-width:150px;display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;opacity:0;transform:translateY(14px);animation:pbRise .65s cubic-bezier(.2,.7,.2,1) forwards}
+.pnode .pic{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0E69B8,#00C2FF);box-shadow:0 10px 22px rgba(0,120,212,.30)}
+.pnode .plab{font-family:'Space Grotesk';font-weight:600;color:#0A1626;font-size:15px;line-height:1.3}
+.pnode .psub{color:#3A4A5F;font-size:12px;line-height:1.35;max-width:150px}
+.pconn{flex:0 0 40px;height:3px;margin-top:29px;border-radius:3px;position:relative;background:linear-gradient(90deg,#0E69B8,#00C2FF);overflow:hidden;opacity:0;animation:pbRise .65s ease forwards}
+.pconn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);transform:translateX(-120%);animation:pbShine 2.4s linear infinite}
+.pconn::after{content:'';position:absolute;right:-3px;top:-4px;border:5px solid transparent;border-left:7px solid #00C2FF}
+@keyframes pbRise{to{opacity:1;transform:none}}
+@keyframes pbShine{0%{transform:translateX(-120%)}55%,100%{transform:translateX(360%)}}
+@media(max-width:760px){.pconn{display:none}.pnode{flex:1 1 44%;margin-bottom:14px}}
+@media(prefers-reduced-motion:reduce){.pnode,.pconn{opacity:1;transform:none;animation:none}.pconn::before{animation:none;opacity:0}}
+/* dashboard mockup */
+.dashwrap{background:#0B1220;border-radius:18px;padding:0;overflow:hidden;box-shadow:0 20px 50px rgba(11,42,82,.20);border:1px solid rgba(2,86,155,.18)}
+.dashbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 22px;background:#111A2B;border-bottom:1px solid rgba(255,255,255,.06)}
+.dtt{color:#EAF1F8;font-family:'Space Grotesk';font-weight:600;font-size:15px}
+.dpill{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#9FB4C9;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:4px 10px;border-radius:20px;white-space:nowrap}
+.dashbody{padding:22px;background:#F7F9FC}
+.kpirow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:#fff;border:1px solid #E6ECF3;border-radius:12px;padding:14px 16px}
+.kpi .kv{font-family:'Space Grotesk';font-weight:800;color:#0A1626;font-size:22px;line-height:1}
+.kpi .kl{color:#5A6B80;font-size:11.5px;margin-top:6px;letter-spacing:.02em}
+.dgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+@media(max-width:720px){.dgrid{grid-template-columns:1fr}}
+.dcard{background:#fff;border:1px solid #E6ECF3;border-radius:12px;padding:16px}
+.dcard h4{font-family:'Space Grotesk';font-weight:600;color:#26354C;font-size:13px;margin:0 0 12px}
+.dlgd{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;margin-top:10px}
+.dlgd span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#3A4A5F}
+.dlgd i{width:11px;height:11px;border-radius:3px;display:inline-block}
+</style>
+</head>
+<body>
+
+<div class="cs-hero">
+  <div class="max-w-6xl mx-auto">
+    <a href="case-studies.html" class="cs-back">← All case studies</a>
+    <div class="grid lg:grid-cols-[1fr_400px] gap-10 items-center">
+      <div class="reveal">
+        <div class="cs-kicker">Superannuation & Wealth</div>
+        <h1 class="cs-title">Superannuation Fund Reporting</h1>
+        <p class="cs-lead">Member, contribution and investment reporting on one reconciled model — regulatory packs and member statements produced from a single, defensible source.</p>
+        <div style="margin-top:22px"><span class="tag-badge">Power BI</span><span class="tag-badge">Data Modelling</span><span class="tag-badge">Reconciliation</span><span class="tag-badge">APRA Reporting</span></div>
+      </div>
+      <div class="reveal"><img src="images/cs-superannuation.jpg" alt="Superannuation Fund Reporting — illustrative photography" class="cs-hero-photo" loading="eager"></div>
+    </div>
+  </div>
+</div>
+
+<section class="cs-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>The challenge</h2>
+    <p style="color:#26354C;font-size:17px;line-height:1.65;max-width:840px">Fund reporting was assembled by hand each period — administration, custodian and investment data stitched together in spreadsheets. Member statements, board packs and regulatory submissions each drew on slightly different cuts, so reconciling them consumed days and left room for error in numbers that have to be exactly right.</p>
+  </div>
+</section>
+
+<section class="cs-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>The process</h2>
+    <p class="sub">End to end — how data moves from source to decision.</p>
+    <div class="pflow reveal"><div class="pnode" style="animation-delay:0.0s"><div class="pic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7c0 1.7 3.6 3 8 3s8-1.3 8-3-3.6-3-8-3-8 1.3-8 3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div class="plab">Admin & Custodian</div><div class="psub">Members, unit prices, holdings</div></div><div class="pconn" style="animation-delay:0.0s"></div><div class="pnode" style="animation-delay:0.12s"><div class="pic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11l-3-3M20 17H9l3 3"/><circle cx="12" cy="12" r="1"/></svg></div><div class="plab">Reconciled</div><div class="psub">Daily control totals</div></div><div class="pconn" style="animation-delay:0.12s"></div><div class="pnode" style="animation-delay:0.24s"><div class="pic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h6"/></svg></div><div class="plab">Reporting Model</div><div class="psub">One conformed layer</div></div><div class="pconn" style="animation-delay:0.24s"></div><div class="pnode" style="animation-delay:0.36s"><div class="pic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div><div class="plab">Packs & Statements</div><div class="psub">Member · board · regulator</div></div></div>
+  </div>
+</section>
+
+<section class="cs-section section-alt reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>Our approach</h2>
+    <p class="sub">How we structured the work.</p>
+    <div class="ap-grid"><div class="ap-step"><div class="ap-step-num">01</div><div class="ap-step-text">Brought administration, custodian and investment feeds into one reconciled model with daily control totals, so every downstream report ties back to the same figures.</div></div><div class="ap-step"><div class="ap-step-num">02</div><div class="ap-step-text">Built the reporting layer around the fund's real structures — options, member segments, unit prices — rather than a generic template.</div></div><div class="ap-step"><div class="ap-step-num">03</div><div class="ap-step-text">Automated the recurring packs: member statement inputs, board reporting and regulatory tables generated from the single source instead of re-keyed.</div></div><div class="ap-step"><div class="ap-step-num">04</div><div class="ap-step-text">Kept a clear reconciliation and lineage trail so any number in a regulatory pack can be traced back to source.</div></div></div>
+  </div>
+</section>
+
+<section class="cs-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>What the reporting looks like</h2>
+    <p class="sub">An illustrative view of the dashboards this engagement produces. All figures are sample data for illustration only — not client results.</p>
+    <div class="dashwrap reveal"><div class="dashbar"><div class="dtt">Superannuation Fund — Member & Investment Reporting</div><span class="dpill">Sample data · illustrative</span></div><div class="dashbody"><div class="kpirow"><div class="kpi"><div class="kv">Reconciled</div><div class="kl">Daily unit price</div></div><div class="kpi"><div class="kv">+8.4%</div><div class="kl">1-yr crediting rate*</div></div><div class="kpi"><div class="kv">Members</div><div class="kl">Segmented view</div></div><div class="kpi"><div class="kv">APRA</div><div class="kl">Reg. pack ready</div></div></div><div class="dgrid"><div class="dcard"><h4>Net member contributions by quarter</h4><svg viewBox="0 0 560 190" width="100%" style="display:block"><line x1="40" y1="12.0" x2="546" y2="12.0" stroke="#EAEFF5" stroke-width="1"/><line x1="40" y1="49.5" x2="546" y2="49.5" stroke="#EAEFF5" stroke-width="1"/><line x1="40" y1="87.0" x2="546" y2="87.0" stroke="#EAEFF5" stroke-width="1"/><line x1="40" y1="124.5" x2="546" y2="124.5" stroke="#EAEFF5" stroke-width="1"/><line x1="40" y1="162.0" x2="546" y2="162.0" stroke="#EAEFF5" stroke-width="1"/><rect x="56.9" y="65.0" width="50.6" height="97.0" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="97.0" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="65.0" dur="0.9s" fill="freeze"/></rect><text x="82.2" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q1</text><rect x="141.2" y="55.0" width="50.6" height="107.0" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="107.0" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="55.0" dur="0.9s" fill="freeze"/></rect><text x="166.5" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q2</text><rect x="225.5" y="60.0" width="50.6" height="102.0" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="102.0" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="60.0" dur="0.9s" fill="freeze"/></rect><text x="250.8" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q3</text><rect x="309.9" y="41.6" width="50.6" height="120.4" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="120.4" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="41.6" dur="0.9s" fill="freeze"/></rect><text x="335.2" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q4</text><rect x="394.2" y="46.6" width="50.6" height="115.4" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="115.4" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="46.6" dur="0.9s" fill="freeze"/></rect><text x="419.5" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q1</text><rect x="478.5" y="31.6" width="50.6" height="130.4" rx="3" fill="#0078D4"><animate attributeName="height" from="0" to="130.4" dur="0.9s" fill="freeze"/><animate attributeName="y" from="162.0" to="31.6" dur="0.9s" fill="freeze"/></rect><text x="503.8" y="177" text-anchor="middle" font-size="10.5" fill="#5A6B80" font-family="Inter">Q2</text></svg></div><div class="dcard"><h4>Investment option mix</h4><div style="display:flex;justify-content:center"><svg viewBox="0 0 176 176" width="176" height="176" style="display:block"><circle cx="88" cy="88" r="54" fill="none" stroke="#EEF2F7" stroke-width="20"/><circle cx="88" cy="88" r="54" fill="none" stroke="#0078D4" stroke-width="20" stroke-dasharray="115.36 223.93" stroke-dashoffset="0.00" transform="rotate(-90 88 88)" stroke-linecap="butt"><animate attributeName="stroke-dasharray" from="0 339.29" to="115.36 223.93" dur="1s" fill="freeze"/></circle><circle cx="88" cy="88" r="54" fill="none" stroke="#00C2FF" stroke-width="20" stroke-dasharray="88.22 251.08" stroke-dashoffset="-115.36" transform="rotate(-90 88 88)" stroke-linecap="butt"><animate attributeName="stroke-dasharray" from="0 339.29" to="88.22 251.08" dur="1s" fill="freeze"/></circle><circle cx="88" cy="88" r="54" fill="none" stroke="#46D5FF" stroke-width="20" stroke-dasharray="74.64 264.65" stroke-dashoffset="-203.58" transform="rotate(-90 88 88)" stroke-linecap="butt"><animate attributeName="stroke-dasharray" from="0 339.29" to="74.64 264.65" dur="1s" fill="freeze"/></circle><circle cx="88" cy="88" r="54" fill="none" stroke="#0E69B8" stroke-width="20" stroke-dasharray="40.72 298.58" stroke-dashoffset="-278.22" transform="rotate(-90 88 88)" stroke-linecap="butt"><animate attributeName="stroke-dasharray" from="0 339.29" to="40.72 298.58" dur="1s" fill="freeze"/></circle><circle cx="88" cy="88" r="54" fill="none" stroke="#9AA9BC" stroke-width="20" stroke-dasharray="20.36 318.93" stroke-dashoffset="-318.93" transform="rotate(-90 88 88)" stroke-linecap="butt"><animate attributeName="stroke-dasharray" from="0 339.29" to="20.36 318.93" dur="1s" fill="freeze"/></circle></svg></div><div class="dlgd"><span><i style="background:#0078D4"></i>Australian equities</span><span><i style="background:#00C2FF"></i>Intl equities</span><span><i style="background:#46D5FF"></i>Fixed income</span><span><i style="background:#0E69B8"></i>Property & alt</span><span><i style="background:#9AA9BC"></i>Cash</span></div></div></div></div></div>
+  </div>
+</section>
+
+<section class="cs-section section-alt reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>Outcome</h2>
+    <div class="outcome">
+      <div class="outcome-k">What changed</div>
+      <div class="outcome-t">Member statements, board reporting and regulatory packs are now produced from one reconciled model. The period close is faster and the figures agree by construction, because everything traces back to the same reconciled source.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2>Related work</h2>
+    <p class="sub">Other engagements with a similar shape.</p>
+    <div class="grid md:grid-cols-3 gap-5">
+<a class="glass-card p-6 reveal case-card" style="text-decoration:none;display:flex;flex-direction:column;gap:8px" href="case-financial-portfolio-analysis.html"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Portfolio Analytics</span><img src="images/cs-portfolio.jpg" alt="" style="width:40px;height:30px;object-fit:cover;border-radius:6px;opacity:0.95"/></div><h3 class="font-display text-base font-semibold text-slate-900">Financial Portfolio Analysis</h3><p class="text-slate-600 text-xs leading-relaxed">Holdings, risk and attribution in one analytics layer — so allocation decisions are backed by measured risk and return.</p><div style="margin-top:8px;color:#054186;font-weight:700;font-size:12px">Read full case →</div></a>
+<a class="glass-card p-6 reveal case-card" style="text-decoration:none;display:flex;flex-direction:column;gap:8px" href="case-regulatory-reporting.html"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Business Process Automation</span><img src="images/sec-financial.png" alt="" style="width:40px;height:30px;object-fit:cover;border-radius:6px;opacity:0.95"/></div><h3 class="font-display text-base font-semibold text-slate-900">Regulatory Reporting & Process Automation</h3><p class="text-slate-600 text-xs leading-relaxed">A pipeline-driven regulatory reporting cycle with operations, credit and compliance dashboards — and an audit trail you can defend.</p><div style="margin-top:8px;color:#054186;font-weight:700;font-size:12px">Read full case →</div></a>
+<a class="glass-card p-6 reveal case-card" style="text-decoration:none;display:flex;flex-direction:column;gap:8px" href="case-monte-carlo-testing.html"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Quantitative Simulation</span><img src="images/cs-monte-carlo.jpg" alt="" style="width:40px;height:30px;object-fit:cover;border-radius:6px;opacity:0.95"/></div><h3 class="font-display text-base font-semibold text-slate-900">Multi-Model Monte Carlo Testing</h3><p class="text-slate-600 text-xs leading-relaxed">A multi-model Monte Carlo engine that stress-tests strategies across thousands of scenarios before any capital is committed.</p><div style="margin-top:8px;color:#054186;font-weight:700;font-size:12px">Read full case →</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section reveal">
+  <div class="max-w-3xl mx-auto">
+    <div class="cs-cta">
+      <div class="brand-label">Process × Intelligence</div>
+      <h2 style="margin:14px 0 14px">Have a similar problem?</h2>
+      <p style="color:#3A4A5F;max-width:520px;margin:0 auto 22px">Start with a conversation. We'll map the process, pressure-test the goal, and come back with a plan.</p>
+      <a href="contact.html" class="btn-primary">Get a Quote →</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="shared-nav.js?v=20260706"></script>
+</body>
+</html>

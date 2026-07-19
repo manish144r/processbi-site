@@ -96,6 +96,8 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:var(--muted) !import
 
 /* ── Mesh gradients — much softer on white ── */
 .mesh-gradient{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(90px);opacity:0.22;pointer-events:none}
+/* Background depth kept neutral — blue cast removed (Manish 2026-07-06) */
+.mesh-gradient{background:#E4E8EE !important}
 
 /* ── Dividers ── */
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent)}
@@ -275,7 +277,7 @@ p.text-slate-600,li.text-slate-600,div.text-slate-600{color:var(--muted) !import
 }
 .page-hero::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(0,194,255,0.10) 0%,transparent 70%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(15,26,42,0.045) 0%,transparent 70%);
   pointer-events:none
 }
 
