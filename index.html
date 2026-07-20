@@ -12,12 +12,13 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://processbi.com.au/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"ProcessBI","url":"https://processbi.com.au","logo":"https://processbi.com.au/favicon.svg","description":"Australian enterprise consulting — business process design, Microsoft Fabric, Power BI analytics and AI automation.","founder":{"@type":"Person","name":"Manish Sharma"},"areaServed":"AU","address":{"@type":"PostalAddress","addressLocality":"Sydney","addressCountry":"AU"},"sameAs":["https://linkedin.com/in/manish-sharma-processbi"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"ProcessBI","url":"https://processbi.com.au","logo":"https://processbi.com.au/favicon.svg","description":"Australian enterprise consulting — business process design, Microsoft Fabric, Power BI analytics and AI automation.","founder":{"@type":"Person","name":"Manish Sharma"},"areaServed":"AU","address":{"@type":"PostalAddress","addressLocality":"Sydney","addressCountry":"AU"},"sameAs":["https://linkedin.com/in/manish24"]}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{navy:{'900':'#0B1A2E','800':'#0D2347','700':'#0f2d5e','600':'#1a4a8a'},electric:{'400':'#1EAEFF','500':'#00C2FF','600':'#0078d4'},accent:{teal:'#2DD4BF'}},fontFamily:{display:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=20260629b">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" type="image/webp" href="assets/photos/hero-sydney.webp">
 <style>
 #hero{position:relative;min-height:auto;display:flex;align-items:center;overflow:hidden;padding:118px 0 64px}
 
@@ -72,9 +73,47 @@
   font-weight:600;font-size:.88rem;letter-spacing:.01em;transition:all .3s}
 .trust-tile:hover{color:#0A1626;border-color:rgba(0,194,255,0.3);background:#F2F8FE}
 
+/* ── Photography treatment ── */
+.photo-bg-hero{background:linear-gradient(rgba(10,31,60,0.65),rgba(10,31,60,0.45)),url('assets/photos/hero-sydney.webp') center/cover no-repeat}
+.photo-bg-hero h1{color:#fff!important}
+.photo-bg-hero .brand-label{color:rgba(255,255,255,0.8)!important}
+.photo-bg-hero .text-slate-600,.photo-bg-hero .text-slate-500{color:rgba(255,255,255,0.88)!important}
+.photo-bg-hero .inline-flex{border-color:rgba(255,255,255,0.2)!important;background:rgba(255,255,255,0.08)!important}
+.photo-bg-hero .inline-flex span,.photo-bg-hero .animate-pulse-glow{color:rgba(255,255,255,0.9)!important}
+.photo-bg-hero .inline-flex .w-2{background:#2DD4BF!important}
+.photo-bg-hero .btn-outline{color:#fff!important;border-color:rgba(255,255,255,0.5)!important}
+.photo-bg-hero .btn-outline:hover{border-color:#fff!important;background:rgba(255,255,255,0.1)!important}
+.photo-bg-hero .mesh-gradient{display:none}
+.photo-bg-hero .hero-tagline-line+span,.photo-bg-hero .hero-tagline-line{color:rgba(255,255,255,0.7)}
+
+.inline-photo{border-radius:14px;overflow:hidden;position:relative;display:inline-block}
+.inline-photo img{width:100%;height:auto;display:block}
+.inline-photo::after{content:'';position:absolute;inset:0;background:rgba(10,31,60,0.17);pointer-events:none;border-radius:14px}
+
+.industry-photo{position:relative;border-radius:14px;overflow:hidden;min-height:200px;display:flex;align-items:flex-end}
+.industry-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.industry-photo .ind-overlay{position:relative;z-index:1;width:100%;padding:20px 16px;
+  background:linear-gradient(transparent,rgba(10,31,60,0.82) 60%)}
+.industry-photo h4{color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:2px}
+.industry-photo p{color:rgba(255,255,255,0.75);font-size:.75rem;margin:0}
+
+.photo-bg-nf{background:linear-gradient(135deg,rgba(10,31,60,0.72),rgba(10,31,60,0.68)),url('assets/photos/data-tunnel.webp') center/cover no-repeat!important;border-color:rgba(0,194,255,0.25)!important}
+.photo-bg-nf h2,.photo-bg-nf p,.photo-bg-nf span,.photo-bg-nf a:not(.btn-primary){color:#fff!important}
+.photo-bg-nf .mesh-gradient{display:none}
+.photo-bg-nf .nf-cap{background:rgba(255,255,255,0.08)!important;border-color:rgba(255,255,255,0.15)!important}
+.photo-bg-nf .nf-cap:hover{background:rgba(255,255,255,0.14)!important;border-color:rgba(0,194,255,0.4)!important}
+.photo-bg-nf .nf-cap h4,.photo-bg-nf .nf-cap p{color:#fff!important}
+
+.photo-bg-cta{background:linear-gradient(rgba(10,31,60,0.70),rgba(10,31,60,0.70)),url('assets/photos/cta-cityscape.webp') center/cover no-repeat}
+.photo-bg-cta h2,.photo-bg-cta span,.photo-bg-cta p{color:#fff!important}
+.photo-bg-cta .mesh-gradient{display:none}
+.photo-bg-cta .btn-outline{color:#fff!important;border-color:rgba(255,255,255,0.5)!important}
+.photo-bg-cta .btn-outline:hover{border-color:#fff!important;background:rgba(255,255,255,0.1)!important}
+
 @media (max-width:768px){
   #hero{padding:110px 0 60px;min-height:auto}
   .flow-rail::before{left:23px}
+  .industry-photo{min-height:160px}
 }
 </style>
 </head>
@@ -82,7 +121,7 @@
 
 
 <!-- ════════════════════ HERO ════════════════════ -->
-<section id="hero">
+<section id="hero" class="photo-bg-hero">
   <div class="mesh-gradient" style="background:#00C2FF;top:-160px;left:-120px"></div>
   <div class="mesh-gradient" style="background:#1A7FFF;top:180px;right:-220px"></div>
   <div class="mesh-gradient" style="background:#2DD4BF;bottom:-120px;left:35%;opacity:0.05"></div>
@@ -96,7 +135,7 @@
           <div class="w-2 h-2 rounded-full bg-electric-500 animate-pulse-glow"></div>
           <span class="text-electric-500 text-xs font-semibold tracking-widest uppercase">Enterprise Consulting · Australia</span>
         </div>
-        <h1 class="font-display text-5xl md:text-6xl font-black leading-[1.05] mb-6 neon-glow" style="color:#0A1626">
+        <h1 class="font-display text-5xl md:text-6xl font-black leading-[1.05] mb-6 neon-glow" style="color:#fff">
           Smarter Processes.<br><span class="gradient-text">Better Intelligence.</span>
         </h1>
         <p class="text-slate-600 text-xl leading-relaxed mb-4 max-w-xl">
@@ -124,6 +163,9 @@
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">What We Do</span>
       <h2 class="font-display text-4xl md:text-5xl font-bold mt-4 mb-5" style="color:#0A1626">End-to-End Consulting.<br><span class="gradient-text">From Process to Insight.</span></h2>
       <p class="text-slate-600 max-w-2xl mx-auto text-lg">Seven connected services that bridge the gap between business process and business intelligence — with automation and AI as the connective layer.</p>
+    </div>
+    <div class="mb-10 reveal" style="max-width:640px;margin-left:auto;margin-right:auto">
+      <div class="inline-photo"><img src="assets/photos/whiteboard.webp" alt="Consultant mapping a business process on a whiteboard" width="800" height="534" loading="lazy"></div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="glass-card p-7 reveal" style="transition-delay:.05s">
@@ -172,6 +214,9 @@
       <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">How It Fits Together</span>
       <h2 class="font-display text-4xl md:text-5xl font-bold mt-4 mb-5" style="color:#0A1626">Three Disciplines.<br><span class="gradient-text">One Outcome.</span></h2>
       <p class="text-slate-600 max-w-2xl mx-auto text-lg">Process, intelligence and automation aren't separate projects. We bring all three together so the gains compound.</p>
+    </div>
+    <div class="mb-10 reveal" style="max-width:560px;margin-left:auto;margin-right:auto">
+      <div class="inline-photo"><img src="assets/photos/data-center.webp" alt="Modern data center powering enterprise analytics" width="800" height="533" loading="lazy"></div>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
       <div class="disc-card reveal" style="transition-delay:.05s">
@@ -242,9 +287,13 @@
 
     <!-- INDUSTRIES -->
     <div class="pb-panel" data-panel="industries">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-6">
+        <div class="industry-photo"><img src="assets/photos/metro-train.webp" alt="Sydney metro train at station — transport sector" width="600" height="395" loading="lazy"><div class="ind-overlay"><h4>Transport</h4><p>Fleet, network and timetable analytics.</p></div></div>
+        <div class="industry-photo"><img src="assets/photos/power-lines.webp" alt="High-voltage power lines at dusk — energy sector" width="265" height="400" loading="lazy"><div class="ind-overlay"><h4>Energy &amp; Utilities</h4><p>Grid, usage and compliance reporting.</p></div></div>
+        <div class="industry-photo"><img src="assets/photos/stock-charts.webp" alt="Digital stock market charts — financial services" width="600" height="400" loading="lazy"><div class="ind-overlay"><h4>Financial Services</h4><p>Risk, fraud and performance analytics.</p></div></div>
+        <div class="industry-photo"><img src="assets/photos/parliament.webp" alt="Australian parliament building — government sector" width="500" height="400" loading="lazy"><div class="ind-overlay"><h4>Government</h4><p>Compliance-ready reporting and citizen services.</p></div></div>
+      </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
-        <div class="glass-card p-6"><h4 class="font-display font-semibold mb-1" style="color:#0A1626">Financial Services</h4><p class="text-slate-500 text-xs">Risk, fraud and performance analytics.</p></div>
-        <div class="glass-card p-6"><h4 class="font-display font-semibold mb-1" style="color:#0A1626">Government &amp; Education</h4><p class="text-slate-500 text-xs">Compliance-ready reporting and citizen services.</p></div>
         <div class="glass-card p-6"><h4 class="font-display font-semibold mb-1" style="color:#0A1626">Construction &amp; Building</h4><p class="text-slate-500 text-xs">Project, cost and supply-chain visibility.</p></div>
         <div class="glass-card p-6"><h4 class="font-display font-semibold mb-1" style="color:#0A1626">Retail &amp; Manufacturing</h4><p class="text-slate-500 text-xs">Production, inventory and demand intelligence.</p></div>
         <div class="glass-card p-6"><h4 class="font-display font-semibold mb-1" style="color:#0A1626">Insurance &amp; Superannuation</h4><p class="text-slate-500 text-xs">Claims, member and regulatory analytics.</p></div>
@@ -267,7 +316,7 @@
 <!-- ════════════════════ NIGHT FACTORY ════════════════════ -->
 <section class="py-24 relative">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="nf-band p-10 md:p-14 reveal">
+    <div class="nf-band photo-bg-nf p-10 md:p-14 reveal">
       <div class="mesh-gradient" style="background:#00C2FF;top:-100px;right:-100px;opacity:0.1"></div>
       <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
         <div>
@@ -317,7 +366,7 @@
 </section>
 
 <!-- ════════════════════ FINAL CTA ════════════════════ -->
-<section class="py-32 relative">
+<section class="py-32 relative photo-bg-cta">
   <div class="mesh-gradient" style="background:#00C2FF;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06"></div>
   <div class="max-w-3xl mx-auto px-6 text-center reveal relative z-10">
     <span class="text-electric-500 text-sm font-semibold tracking-widest uppercase">Get Started</span>

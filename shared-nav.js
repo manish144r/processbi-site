@@ -128,7 +128,7 @@ const footerHTML = `<footer style="border-top:1px solid rgba(2,86,155,0.13);back
         <div class="space-y-2">
           <p style="color:#3A4A5F;font-size:14px">hello@processbi.com.au</p>
           <p style="color:#3A4A5F;font-size:14px">Sydney, Australia</p>
-          <a href="https://linkedin.com/in/manish-sharma-processbi" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#3A4A5F;font-size:14px;text-decoration:none;margin-top:8px;transition:color 0.2s" onmouseover="this.style.color='#054186'" onmouseout="this.style.color='#3A4A5F'">
+          <a href="https://linkedin.com/in/manish24" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#3A4A5F;font-size:14px;text-decoration:none;margin-top:8px;transition:color 0.2s" onmouseover="this.style.color='#054186'" onmouseout="this.style.color='#3A4A5F'">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
             LinkedIn
           </a>

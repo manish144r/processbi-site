@@ -1,0 +1,23 @@
+ProcessBI — Image Credits
+==========================
+All photos sourced from Pexels (https://www.pexels.com).
+Free commercial license — no attribution required.
+Self-hosted as WebP in /assets/photos/.
+
+File                  | Source URL                                                      | Usage
+-------------------   | --------------------------------------------------------------- | -----
+hero-sydney.webp      | https://www.pexels.com/photo/sydney-cbd-skyline-at-sunset-2193300/ | Homepage hero background
+cta-cityscape.webp    | https://www.pexels.com/photo/city-skyscrapers-on-sea-shore-at-sunset-28985025/ | Final CTA background
+data-tunnel.webp      | https://www.pexels.com/photo/blue-digital-data-tunnel-17489163/ | Night Factory band background
+whiteboard.webp       | https://www.pexels.com/photo/person-writing-on-whiteboard-3861943/ | What We Do inline image
+data-center.webp      | https://www.pexels.com/photo/computer-server-in-data-center-room-325229/ | Three Disciplines inline image
+metro-train.webp      | https://www.pexels.com/photo/metro-train-at-station-2831794/    | Industry tile — Transport
+power-lines.webp      | https://www.pexels.com/photo/high-voltage-power-lines-at-dusk-2539462/ | Industry tile — Energy & Utilities
+stock-charts.webp     | https://www.pexels.com/photo/digital-stock-market-charts-on-screens-6801647/ | Industry tile — Financial Services
+parliament.webp       | https://www.pexels.com/photo/parliament-building-australia-2193268/ | Industry tile — Government
+
+Legal notes:
+- No stock photo implies the people or brands shown are ProcessBI staff, clients, or endorsers.
+- Activity/scenery illustration only.
+- No image is used as part of the ProcessBI logo or brand mark.
+- Sydney Opera House is not featured as a focal subject in any image.
