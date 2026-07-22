@@ -72,7 +72,7 @@ const desktopLinks = NAV_LINKS.map(l=>{
       const items = g.items.map(it=>`<a href="${it.href}" class="dd-item">${it.name}</a>`).join('');
       return `<div class="dd-col"><div class="dd-col-h">${g.cat}</div>${items}</div>`;
     }).join('');
-    const viewAllLabel = l.href==='services.html' ? 'View all 22 services →' : 'View all selected work →';
+    const viewAllLabel = l.href==='services.html' ? 'View all services →' : 'View all selected work →';
     return `<div class="nav-drop-wrap"><a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#054186;font-weight:600':'color:#3A4A5F'}">${l.label}<svg class="dd-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:4px;vertical-align:middle;opacity:0.6"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-drop"><div class="nav-drop-inner">${groups}</div><div class="nav-drop-foot"><a href="${l.href}">${viewAllLabel}</a></div></div></div>`;
   }
   return `<a href="${l.href}" class="${navLinkClass(l.href)}" style="${currentPage===l.href?'color:#054186;font-weight:600':'color:#3A4A5F'}" onmouseover="this.style.color='#054186'" onmouseout="this.style.color='${currentPage===l.href?'#054186':'#3A4A5F'}'">${l.label}</a>`;
